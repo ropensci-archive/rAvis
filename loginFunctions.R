@@ -11,14 +11,32 @@ ravis_curl_handler <- NULL
 
 ravis_url_login <- "http://proyectoavis.com/cgi-bin/login.cgi"
 
-avisLogin <- function (avis_user, avis_pass) {
+avisCurlHandler <- function(){
+  if(is.null(ravis_curl_handler)){
+    avisLogin()
+  } else {
+    
+  }
+  
+  return (ravis_curl_handler)
+}
+
+avisLogin <- function() {
+  return (rAvisUserLogin())
+}
+
+rAvisUserLogin <- function() {
+  return (avisLoginUser("ravis-user", "ravis-pass7592Hz%"))
+}
+
+avisLoginUser <- function (avis_user, avis_pass) {
   # log user in remote server
 
   params<- list( usu=avis_user, password=avis_pass, control_login='1' )
 
   html = postForm(ravis_url_login, 
     .params = params, 
-    curl = avisCurlHandler(), 
+    curl = avisCreateCurlHandler(), 
     style="POST")
 
   status<- parseAvisLoginStatusFromHTML(html)[1]
@@ -32,11 +50,12 @@ avisLogin <- function (avis_user, avis_pass) {
   return (status == ravis_login_status_types["OK"])
 }
 
-avisCurlHandler <- function() {
+# new curl handler
+avisCreateCurlHandler <- function() {
   # Curl handle for the requests to avis
   
-  if(is.null(ravis_curl_handler)){
-    print(" initializing curl handler for connecting to avis project")
+  # if(is.null(ravis_curl_handler)){
+    message("INFO: initializing curl handler for connecting to avis project")
 
     ravis_curl_handler <- getCurlHandle()
 
@@ -54,7 +73,7 @@ avisCurlHandler <- function() {
 
     # first call to initializate session
     getURL(ravis_url_login, curl = ravis_curl_handler)
-  }
+  # }
 
   return (ravis_curl_handler)
 }
@@ -65,7 +84,7 @@ parseAvisLoginStatusFromHTML<- function(html) {
   html <- tolower(html)
 
   status <- NULL
-
+  
   if(textHasString(html, "usuario o clave incorrecta")){
     status <- ravis_login_status_types["BAD_CREDENTIALS"]
   }

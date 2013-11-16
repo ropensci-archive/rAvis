@@ -36,6 +36,63 @@ ravis_search_default_params<- list(
 
 ravisQueryRawData <- NULL
 
+# query observations of one or several species
+# names is character vector or a list of species names
+# 
+# TODO: depurar problemas warning invalid factor level a descargar varias especies
+ravisQuerySpecies <- function (names, args = list()) 
+{
+	if(is.element('id_especie', names(args)))
+	{
+		warning("id_especie argument in the argument list won't be regarded")
+	}
+
+	if(!is.list(names)){ 
+		names = list(names)
+	}
+
+	# check all species exists in bd before querying
+	lapply(names, function(n){ 
+		if(!avisSpeciesExists(n)) stop(paste("Species not found: ", n)) 
+	})
+
+	df<- NULL
+	for (name in names) {
+		args['id_especie'] <- avisSpeciesId(name)
+		df<- rbind(df, ravisQuery(args))
+	}
+
+	return (df)
+}
+
+# query observations for a single or a group of contributors
+ravisQueryContributor <- function (contributor_ids, args = list()) {
+	if(is.element('usu', names(args)))
+	{
+		warning("usu argument in the argument list won't be regarded")
+	}
+
+	if(is.null(ravis_username_id_list)){
+		avisContributorsSummary()
+	}
+
+	if(!is.list(contributor_ids)){ 
+		contributor_ids = list(contributor_ids)
+	}
+
+	names = lapply(contributor_ids, function(id){
+		return (ravis_username_id_list[as.character(id)])
+		})
+
+	df<- NULL
+	for (name in names) {
+		args['usu'] <- name
+		df<- rbind(df, ravisQuery(args))
+	}
+
+	return (df)
+}
+
 ravisQuery <- function (args){
 	# query the project database with the argments
 	
@@ -45,11 +102,7 @@ ravisQuery <- function (args){
 
 	ravisQueryRawData <- NULL
 
-	for (argName in names(ravis_search_default_params)) {
-		if(!is.element(argName, names(args))){
-			args[argName] <- ravis_search_default_params[argName]
-		}
-	}
+	args<-ravisMergeArgumentList(args, ravis_search_default_params)
 
 	# query string
 	qs <- ''
@@ -60,18 +113,26 @@ ravisQuery <- function (args){
 
 	url <- paste(ravis_search_url_base, qs, sep = "?")
 
+	# message(paste("query to: ", url))
+
 	ravisQueryRawData <- ravisGetURL(url)
 
 	# TODO: debe ser una propiedad de un objeto, no un objeto en entorno global
     assign("ravisQueryRawData", ravisQueryRawData, envir = .GlobalEnv)
 
-	return(read.csv(textConnection(ravisQueryRawData), sep = ";"))
+	return(read.csv(textConnection(ravisQueryRawData), sep = ";", quote = ""))
 }
 
-ravisQuerySpecies <- function (idSpecies) {
-	args <- ravis_search_default_params
-	args['id_especie'] <- idSpecies
-	ravisQuery(args)
+# merge two argument list. first argument lists overwrite seccond (default)
+ravisMergeArgumentList<-function(args, defaultArgs)
+{
+	for (argName in names(defaultArgs)) {
+		if(!is.element(argName, names(args))){
+			args[argName] <- defaultArgs[argName]
+		}
+	}
+
+	return (args)
 }
 
 
