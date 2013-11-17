@@ -1,4 +1,4 @@
-\name{anRpackage-package}
+\name{r_avis}
 \alias{anRpackage-package}
 \alias{anRpackage}
 \docType{package}
