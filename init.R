@@ -8,6 +8,10 @@ library(RCurl)
 library(scrapeR)
 library(XLConnect)
 library(gdata)
+library(scales)
+library(maptools)
+library(raster)
+library(rgdal)
 
 # package functions
 source.with.encoding('loginFunctions.R', encoding='UTF-8')
