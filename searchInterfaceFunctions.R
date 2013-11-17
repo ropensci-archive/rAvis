@@ -36,6 +36,8 @@ ravis_search_default_params<- list(
 
 ravisQueryRawData <- NULL
 
+ravisUTMLatLong<-NULL
+
 # query observations of one or several species
 # names is character vector or a list of species names
 # 
@@ -118,9 +120,16 @@ ravisQuery <- function (args){
 	ravisQueryRawData <- ravisGetURL(url)
 
 	# TODO: debe ser una propiedad de un objeto, no un objeto en entorno global
-    assign("ravisQueryRawData", ravisQueryRawData, envir = .GlobalEnv)
+  assign("ravisQueryRawData", ravisQueryRawData, envir = .GlobalEnv)
 
-	return(read.csv(textConnection(ravisQueryRawData), sep = ";", quote = ""))
+  data <- read.csv(textConnection(ravisQueryRawData), sep = ";", quote = "")
+  
+	utm_latlon<-getUTMLatlong()
+  
+	data<- data.frame(data, "x"= utm_latlon$x [match (substring(data$UTM,4), utm_latlon$utm)], 
+	                   "y"= utm_latlon$y [match (substring(data$UTM,4), utm_latlon$utm)])
+
+	return(data)
 }
 
 # merge two argument list. first argument lists overwrite seccond (default)
@@ -133,6 +142,15 @@ ravisMergeArgumentList<-function(args, defaultArgs)
 	}
 
 	return (args)
+}
+
+getUTMLatlong<- function(){
+  if(is.null(ravisUTMLatLong)){
+    ravisUTMLatLong<- read.table ("utm_latlon.csv", sep=",", header=T)
+    assign("ravisUTMLatLong", ravisUTMLatLong, envir = .GlobalEnv)
+  }
+  
+  return (ravisUTMLatLong)
 }
 
 
