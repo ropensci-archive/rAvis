@@ -4,7 +4,6 @@ ravis_birdwatcher_summary<- NULL
 
 ravis_username_id_list<- NULL
 
-
 #main summary of birdwatchers observations
 avisContributorsSummary<- function ()
 {

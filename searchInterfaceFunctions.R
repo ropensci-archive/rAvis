@@ -42,7 +42,7 @@ ravisUTMLatLong<-NULL
 # names is character vector or a list of species names
 # 
 # TODO: depurar problemas warning invalid factor level a descargar varias especies
-ravisQuerySpecies <- function (names, args = list()) 
+avisQuerySpecies <- function (names, args = list()) 
 {
 	if(is.element('id_especie', names(args)))
 	{
@@ -68,7 +68,7 @@ ravisQuerySpecies <- function (names, args = list())
 }
 
 # query observations for a single or a group of contributors
-ravisQueryContributor <- function (contributor_ids, args = list()) {
+avisQueryContributor <- function (contributor_ids, args = list()) {
 	if(is.element('usu', names(args)))
 	{
 		warning("usu argument in the argument list won't be regarded")
