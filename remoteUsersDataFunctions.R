@@ -96,5 +96,3 @@ avisExtractContributorObservationDataFromRowNode<-function(node)
   
   return (obsdata)
 }
-
-

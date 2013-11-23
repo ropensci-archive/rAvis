@@ -58,10 +58,16 @@ avisQueryRawData <- NULL
 
 ravisUTMLatLong<-NULL
 
-# query observations of one or several species
-# names is character vector or a list of species names
+# Is a wrapper for avisQuery that allows you to perform a query for more than 
+# one species at once.
+# 'names' must be either a string or a list of species names
+# 'args' is a list of query parameters (see avisQuery) that adds further filters to the query
 # 
-# TODO: depurar problemas warning invalid factor level a descargar varias especies
+# eg: 
+# 
+# avisQuerySpecies("bubo bubo")
+# avisQuerySpecies(list("bubo bubo", "tyto alba"), args = list(year = 2012))
+# 
 avisQuerySpecies <- function (names, args = list()) 
 {
 	if(is.element('id_species', names(args)))
@@ -87,7 +93,16 @@ avisQuerySpecies <- function (names, args = list())
 	return (df)
 }
 
-# query observations for a single or a group of contributors
+# Is a wrapper for avisQuery that allows you to perform a query for more than 
+# one contributor at once.
+# 'contributor_ids' must be either an integer or a list of contributors ids
+# 'args' is a list of query parameters (see avisQuery) that adds further filters to the query
+# 
+# eg: 
+# 
+# avisQueryContributor(56)
+# avisQueryContributor(list(56, 88), args = list(year = 2012))
+# 
 avisQueryContributor <- function (contributor_ids, args = list()) {
 	if(is.element('usu', names(args)))
 	{
@@ -115,8 +130,13 @@ avisQueryContributor <- function (contributor_ids, args = list()) {
 	return (df)
 }
 
-# query by a set of criteria
-avisQuery <- function (id_species = '', species = '', family = '', order = '', age = 'edad', 
+# General funciton for querying the database by a set of criteria. Criteria may be set by means of a few
+# named input variables and/or by the optional list variable 'args'
+# 
+# args may have both raw and translated query parameters for different subjects
+# explicit arguments overwrite those in 'args' list
+# 
+avisQuery <- function (id_species = '', species = '', family = '', order = '', age = '', 
 	sex = '', breeding = '', habitat = '', month = '', year = '', args = list())
 {
 	if (id_species != '') args['id_species'] <- id_species
@@ -129,14 +149,20 @@ avisQuery <- function (id_species = '', species = '', family = '', order = '', a
 	if (habitat != '') args['habitat'] <- habitat
 	if (month != '') args['month'] <- month
 	if (year != '') args['year'] <- year
-
-	if(args['species'] != '' && args['id_species'] != '')
+	
+	if(is.element('species', names(args)) && is.element('id_species', names(args)))
 	{
-		
+		warning(paste("ATENTION!: you setted 'species' (", args['species'], ") and 'id_species' (", args['id_species'], ") in your query. The parameter id_species will be discarded"))
 	}
 
-	# args may have both raw and translated query parameters for different subjects
-	rawargs<-avisTranslateArgsToRawArgs(args)
+	# species id
+	if(is.element('species', names(args)))
+	{
+		args['id_species'] <- avisSpeciesId(args['species'])
+		args['species']<-NULL	
+	}
+
+	rawargs <- avisTranslateArgsToRawArgs(args)
 
 	return (avisQueryRaw(rawargs))
 }
@@ -144,14 +170,14 @@ avisQuery <- function (id_species = '', species = '', family = '', order = '', a
 avisTranslateArgsToRawArgs<-function(args)
 {
 	# tranlate args (set by user) to rawargs (which can be handled by server)
-
 	rawargs<-args
 
-	for (argname in names(args) {
+	for (argname in names(args)) {
 		# if argname is a translated param
 		if(is.element(argname, names(ravis_translated_params_map))){
-			rawargs[ravis_translated_params_map[argname]] <- args[argname]
-			rawargs[[argname]]<-NULL
+			raw_param_name<-ravis_translated_params_map[argname][[1]]
+			rawargs[raw_param_name] <- args[argname]
+			rawargs[argname]<-NULL
 		}
 	}
 
