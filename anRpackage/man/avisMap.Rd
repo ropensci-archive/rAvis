@@ -1,5 +1,5 @@
-\name{avis_summary}
-\alias{avis_summary}
+\name{avisMap}
+\alias{avisMap}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
@@ -8,9 +8,20 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-avis_summary()
+avisMap(obs, label = "", maptype = "admin")
 }
 %- maybe also 'usage' for other objects documented here.
+\arguments{
+  \item{obs}{
+%%     ~~Describe \code{obs} here~~
+}
+  \item{label}{
+%%     ~~Describe \code{label} here~~
+}
+  \item{maptype}{
+%%     ~~Describe \code{maptype} here~~
+}
+}
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
@@ -42,18 +53,22 @@ avis_summary()
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function () 
+function (obs, label = "", maptype = "admin") 
 {
-    require(XML)
-    options(stringsAsFactors = FALSE)
-    tables <- readHTMLTable("http://proyectoavis.com/cgi-bin/bus_especie.cgi")
-    table_obs <- tables[[7]]
-    observ <- table_obs[4:dim(table_obs)[1], 3:6]
-    names(observ) <- c("Observations", "Individuals", "UTM.10x10", 
-        "Birdwatchers")
-    obs <- data.frame(lapply(observ, as.numeric), stringsAsFactors = FALSE)
-    row.names(obs) <- table_obs[4:dim(table_obs)[1], 2]
-    obs
+    if (is.null(obs$x) || is.null(obs$y)) {
+        stop("missing x or y columns in provided obs parameter")
+    }
+    par(mar = c(0, 0, 0, 0))
+    layout(matrix(c(1, 1, 1, 1, 1, 1, 1, 1, 2), 3, 3, byrow = TRUE))
+    if (maptype == "phys") {
+        .avisRenderMapPhysical(obs, label)
+    }
+    else if (maptype == "admin") {
+        .avisRenderMapAdmin(obs, label)
+    }
+    else {
+        stop(paste("Map type '", maptype, "' not available. Available map types are: 'admin' and 'phys'"))
+    }
   }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

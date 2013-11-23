@@ -1,5 +1,5 @@
-\name{id_users}
-\alias{id_users}
+\name{avisSpeciesId}
+\alias{avisSpeciesId}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
@@ -8,9 +8,14 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-id_users()
+avisSpeciesId(nombreraw)
 }
 %- maybe also 'usage' for other objects documented here.
+\arguments{
+  \item{nombreraw}{
+%%     ~~Describe \code{nombreraw} here~~
+}
+}
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
@@ -42,17 +47,13 @@ id_users()
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function () 
+function (nombreraw) 
 {
-    require(stringr)
-    url <- "http://proyectoavis.com/cgi-bin/usuarios.cgi"
-    texto <- readLines(url)
-    id <- grep("id_usuario=[0-9]+", texto)
-    ids <- str_extract_all(texto, "id_usuario=[0-9]+")
-    id_users <- as.numeric(substring(unlist(ids[c(id)]), 12))
-    select <- seq(1, length(id_usuario), 2)
-    users <- id_users[select]
-    users
+    if (!avisHasSpecies(nombreraw)) {
+        stop(paste("Species '", nombreraw, "' not found in proyectoavis.com"))
+    }
+    allspecies <- avisAllSpecies()
+    return(as.integer(allspecies[.avisNormalizeSpeciesName(nombreraw)]))
   }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

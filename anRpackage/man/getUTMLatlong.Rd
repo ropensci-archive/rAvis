@@ -1,5 +1,5 @@
-\name{birdwatcher}
-\alias{birdwatcher}
+\name{getUTMLatlong}
+\alias{getUTMLatlong}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
@@ -8,14 +8,9 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-birdwatcher(id)
+getUTMLatlong()
 }
 %- maybe also 'usage' for other objects documented here.
-\arguments{
-  \item{id}{
-%%     ~~Describe \code{id} here~~
-}
-}
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
@@ -47,20 +42,14 @@ birdwatcher(id)
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (id) 
+function () 
 {
-    require(XML)
-    options(stringsAsFactors = FALSE)
-    url <- paste("http://proyectoavis.com/cgi-bin/ficha_usuario.cgi?id_usuario=", 
-        id, sep = "")
-    tables <- readHTMLTable(url)
-    table_birds <- tables[[9]]
-    birds <- table_birds[, -c(1:2)]
-    names(birds) <- c("Observations", "Individuals", "UTM.10x10", 
-        "Birdwatchers")
-    bird <- data.frame(lapply(birds, as.numeric), stringsAsFactors = FALSE)
-    rownames(bird) <- table_birds[, 2]
-    bird
+    if (is.null(ravisUTMLatLong)) {
+        ravisUTMLatLong <- read.table("utm_latlon.csv", sep = ",", 
+            header = T)
+        assign("ravisUTMLatLong", ravisUTMLatLong, envir = .GlobalEnv)
+    }
+    return(ravisUTMLatLong)
   }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

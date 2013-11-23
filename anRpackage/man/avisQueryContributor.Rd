@@ -1,5 +1,5 @@
-\name{birdwatcher_summary}
-\alias{birdwatcher_summary}
+\name{avisQueryContributor}
+\alias{avisQueryContributor}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
@@ -8,9 +8,17 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-birdwatcher_summary()
+avisQueryContributor(contributor_ids, args = list())
 }
 %- maybe also 'usage' for other objects documented here.
+\arguments{
+  \item{contributor_ids}{
+%%     ~~Describe \code{contributor_ids} here~~
+}
+  \item{args}{
+%%     ~~Describe \code{args} here~~
+}
+}
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
@@ -42,18 +50,26 @@ birdwatcher_summary()
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function () 
+function (contributor_ids, args = list()) 
 {
-    require(XML)
-    options(stringsAsFactors = FALSE)
-    tables <- readHTMLTable("http://proyectoavis.com/cgi-bin/usuarios.cgi")
-    table_citizens <- tables[[3]]
-    citizens <- data.frame(c(1:(dim(table_citizens)[1] - 4)), 
-        table_citizens[5:dim(table_citizens)[1], 4:7])
-    names(citizens) <- c("Id.user.avis", "Observations", "Species", 
-        "Provinces", "UTM.10x10")
-    cit <- data.frame(lapply(citizens, as.numeric), stringsAsFactors = FALSE)
-    cit
+    if (is.element("usu", names(args))) {
+        warning("usu argument in the argument list won't be regarded")
+    }
+    if (is.null(ravis_username_id_list)) {
+        avisContributorsSummary()
+    }
+    if (!is.list(contributor_ids)) {
+        contributor_ids = list(contributor_ids)
+    }
+    names = lapply(contributor_ids, function(id) {
+        return(ravis_username_id_list[as.character(id)])
+    })
+    df <- NULL
+    for (name in names) {
+        args["usu"] <- name
+        df <- rbind(df, avisQuery(args = args))
+    }
+    return(df)
   }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

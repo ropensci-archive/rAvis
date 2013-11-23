@@ -1,5 +1,5 @@
-\name{id_especies}
-\alias{id_especies}
+\name{avisQuerySpecies}
+\alias{avisQuerySpecies}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
@@ -8,9 +8,17 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-id_especies()
+avisQuerySpecies(names, args = list())
 }
 %- maybe also 'usage' for other objects documented here.
+\arguments{
+  \item{names}{
+%%     ~~Describe \code{names} here~~
+}
+  \item{args}{
+%%     ~~Describe \code{args} here~~
+}
+}
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
@@ -42,21 +50,24 @@ id_especies()
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function () 
+function (names, args = list()) 
 {
-    require(stringr)
-    url <- "http://proyectoavis.com/cgi-bin/bus_orden.cgi"
-    texto <- readLines(url)
-    id <- grep("id_especie=[0-9]+", texto)
-    ids <- str_extract_all(texto, "id_especie=[0-9]+")
-    id_specie <- as.numeric(substring(unlist(ids[c(id)]), 12))
-    name <- grep("<i>.*?</i>", texto)
-    names <- str_extract_all(texto, "<i>.*?</i>")
-    names_specie <- substring(unlist(names[c(name)]), 4)
-    names_species <- substr(names_specie, 1, nchar(names_specie) - 
-        4)
-    ids <- data.frame(id_specie, names_species)
-    ids
+    if (is.element("id_species", names(args))) {
+        warning("id_species argument in the argument list won't be regarded")
+    }
+    if (!is.list(names)) {
+        names = list(names)
+    }
+    lapply(names, function(n) {
+        if (!avisHasSpecies(n)) 
+            stop(paste("Species not found: ", n))
+    })
+    df <- NULL
+    for (name in names) {
+        args["id_species"] <- avisSpeciesId(name)
+        df <- rbind(df, avisQuery(args = args))
+    }
+    return(df)
   }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
