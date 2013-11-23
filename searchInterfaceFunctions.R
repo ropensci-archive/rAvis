@@ -2,13 +2,33 @@
 
 ravis_search_url_base<- "http://proyectoavis.com/cgi-bin/bus_avanzada.cgi"
 
-ravis_search_default_params<- list( 
+# translate
+ravis_translated_params_map<- list( 
+	id_species = 'id_especie', # string / list -> id_especie
+	family = 'familia', # familia
+	order = 'orden', # orden
+	age = 'edad',
+	sex = 'sexo', # sexo: 'macho', 'hembra', 'indeterminado', 'pareja', 'machos y hembras'
+	breeding = 'reproduccion',
+	habitat = 'habitat', 
+	# habitat: 'terrenos agrícolas', 'roquedos de interior', 
+	# 'zonas humanizadas', 'zonas húmedas interiores', 'bosque',
+	# 'pastizales', 'costas', 'matorral', 'otros'
+	
+	# id_ca = '',	id_provincia = '',
+	# gr = '', cf = '', utm_10 = '', utm_1 = '', 
+	month = 'mes', 
+	year = 'ano'
+)
+
+# query parameters accepted by proyectoavis.com
+ravis_raw_search_default_params<- list( 
 	formato_consulta = 'observaciones', 
 	tipo_consulta = '', 
 	id_observacion = '', 
 	id_periodo = '', 
 	id_especie = '', 
-	orden = '', 
+	orden = '',
 	criterio = 'id_observacion', 
 	familia = '', 
 	edad = '', sexo = '', 
@@ -44,9 +64,9 @@ ravisUTMLatLong<-NULL
 # TODO: depurar problemas warning invalid factor level a descargar varias especies
 avisQuerySpecies <- function (names, args = list()) 
 {
-	if(is.element('id_especie', names(args)))
+	if(is.element('id_species', names(args)))
 	{
-		warning("id_especie argument in the argument list won't be regarded")
+		warning("id_species argument in the argument list won't be regarded")
 	}
 
 	if(!is.list(names)){ 
@@ -60,8 +80,8 @@ avisQuerySpecies <- function (names, args = list())
 
 	df<- NULL
 	for (name in names) {
-		args['id_especie'] <- avisSpeciesId(name)
-		df<- rbind(df, avisQuery(args))
+		args['id_species'] <- avisSpeciesId(name)
+		df<- rbind(df, avisQuery(args = args))
 	}
 
 	return (df)
@@ -89,14 +109,60 @@ avisQueryContributor <- function (contributor_ids, args = list()) {
 	df<- NULL
 	for (name in names) {
 		args['usu'] <- name
-		df<- rbind(df, avisQuery(args))
+		df<- rbind(df, avisQuery(args = args))
 	}
 
 	return (df)
 }
 
-avisQuery <- function (args){
+# query by a set of criteria
+avisQuery <- function (id_species = '', species = '', family = '', order = '', age = 'edad', 
+	sex = '', breeding = '', habitat = '', month = '', year = '', args = list())
+{
+	if (id_species != '') args['id_species'] <- id_species
+	if (species != '') args['species'] <- species
+	if (family != '') args['family'] <- family
+	if (order != '') args['order'] <- order
+	if (age != '') args['age'] <- age
+	if (sex != '') args['sex'] <- sex
+	if (breeding != '') args['breeding'] <- breeding
+	if (habitat != '') args['habitat'] <- habitat
+	if (month != '') args['month'] <- month
+	if (year != '') args['year'] <- year
+
+	if(args['species'] != '' && args['id_species'] != '')
+	{
+		
+	}
+
+	# args may have both raw and translated query parameters for different subjects
+	rawargs<-avisTranslateArgsToRawArgs(args)
+
+	return (avisQueryRaw(rawargs))
+}
+
+avisTranslateArgsToRawArgs<-function(args)
+{
+	# tranlate args (set by user) to rawargs (which can be handled by server)
+
+	rawargs<-args
+
+	for (argname in names(args) {
+		# if argname is a translated param
+		if(is.element(argname, names(ravis_translated_params_map))){
+			rawargs[ravis_translated_params_map[argname]] <- args[argname]
+			rawargs[[argname]]<-NULL
+		}
+	}
+
+	return (rawargs)
+}
+
+# internal
+avisQueryRaw <- function (args)
+{
 	# query the project database with the argments
+	# the arguments must have the exact names that proyectoavis.com gets (raw parameters)
 	
 	if(!is.list(args)){
 		stop("Object of type 'list' expected")
@@ -104,7 +170,7 @@ avisQuery <- function (args){
 
 	avisQueryRawData <- NULL
 
-	args<-avisMergeArgumentList(args, ravis_search_default_params)
+	args<-avisMergeArgumentList(args, ravis_raw_search_default_params)
 
 	# query string
 	qs <- ''
@@ -124,8 +190,8 @@ avisQuery <- function (args){
   
 	utm_latlon<-getUTMLatlong()
   
-	data<- data.frame(data, "x"= utm_latlon$x [match (substring(data$UTM,4), utm_latlon$utm)], 
-	                   "y"= utm_latlon$y [match (substring(data$UTM,4), utm_latlon$utm)])
+	# data<- data.frame(data, "x"= utm_latlon$x [match (substring(data$UTM,4), utm_latlon$utm)], 
+	#                    "y"= utm_latlon$y [match (substring(data$UTM,4), utm_latlon$utm)])
 
 	return(data)
 }
