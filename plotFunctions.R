@@ -4,12 +4,12 @@ PI<- brick ("PI.tif")
 canarias<- brick ("canarias.tif")
 
 
-ravisMapSpecies<- function (name, maptype = 'admin'){
-  obs<- ravisQuerySpecies (name)
-  ravisMap(obs, maptype, name)
+avisMapSpecies<- function (name, maptype = 'admin'){
+  obs<- avisQuerySpecies (name)
+  avisMap(obs, maptype, name)
 }
 
-ravisMap<-function(obs, name, maptype = 'admin')
+avisMap<-function(obs, name, maptype = 'admin')
 {
   par(mar = c(0, 0, 0, 0))
   layout(matrix(c(1,1,1,1,1,1,1,1,2), 3, 3, byrow = TRUE))

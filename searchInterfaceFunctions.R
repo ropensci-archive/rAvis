@@ -34,7 +34,7 @@ ravis_search_default_params<- list(
 	excel = 1
 )
 
-ravisQueryRawData <- NULL
+avisQueryRawData <- NULL
 
 ravisUTMLatLong<-NULL
 
@@ -42,7 +42,7 @@ ravisUTMLatLong<-NULL
 # names is character vector or a list of species names
 # 
 # TODO: depurar problemas warning invalid factor level a descargar varias especies
-ravisQuerySpecies <- function (names, args = list()) 
+avisQuerySpecies <- function (names, args = list()) 
 {
 	if(is.element('id_especie', names(args)))
 	{
@@ -61,14 +61,14 @@ ravisQuerySpecies <- function (names, args = list())
 	df<- NULL
 	for (name in names) {
 		args['id_especie'] <- avisSpeciesId(name)
-		df<- rbind(df, ravisQuery(args))
+		df<- rbind(df, avisQuery(args))
 	}
 
 	return (df)
 }
 
 # query observations for a single or a group of contributors
-ravisQueryContributor <- function (contributor_ids, args = list()) {
+avisQueryContributor <- function (contributor_ids, args = list()) {
 	if(is.element('usu', names(args)))
 	{
 		warning("usu argument in the argument list won't be regarded")
@@ -89,22 +89,22 @@ ravisQueryContributor <- function (contributor_ids, args = list()) {
 	df<- NULL
 	for (name in names) {
 		args['usu'] <- name
-		df<- rbind(df, ravisQuery(args))
+		df<- rbind(df, avisQuery(args))
 	}
 
 	return (df)
 }
 
-ravisQuery <- function (args){
+avisQuery <- function (args){
 	# query the project database with the argments
 	
 	if(!is.list(args)){
 		stop("Object of type 'list' expected")
 	}
 
-	ravisQueryRawData <- NULL
+	avisQueryRawData <- NULL
 
-	args<-ravisMergeArgumentList(args, ravis_search_default_params)
+	args<-avisMergeArgumentList(args, ravis_search_default_params)
 
 	# query string
 	qs <- ''
@@ -117,12 +117,12 @@ ravisQuery <- function (args){
 
 	# message(paste("query to: ", url))
 
-	ravisQueryRawData <- ravisGetURL(url)
+	avisQueryRawData <- avisGetURL(url)
 
 	# TODO: debe ser una propiedad de un objeto, no un objeto en entorno global
-  assign("ravisQueryRawData", ravisQueryRawData, envir = .GlobalEnv)
+  assign("avisQueryRawData", avisQueryRawData, envir = .GlobalEnv)
 
-  data <- read.csv(textConnection(ravisQueryRawData), sep = ";", quote = "")
+  data <- read.csv(textConnection(avisQueryRawData), sep = ";", quote = "")
   
 	utm_latlon<-getUTMLatlong()
   
@@ -133,7 +133,7 @@ ravisQuery <- function (args){
 }
 
 # merge two argument list. first argument lists overwrite seccond (default)
-ravisMergeArgumentList<-function(args, defaultArgs)
+avisMergeArgumentList<-function(args, defaultArgs)
 {
 	for (argName in names(defaultArgs)) {
 		if(!is.element(argName, names(args))){

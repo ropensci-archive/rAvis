@@ -4,7 +4,7 @@ ravis_species_id_list <- NULL
 
 ravis_species_summary <- NULL
 
-ravisGetURL <- function(url, nologin = FALSE) {
+avisGetURL <- function(url, nologin = FALSE) {
   if (nologin == TRUE){
     # new curl handle
     curl_handler<- getCurlHandle()
@@ -53,7 +53,7 @@ avisGetServerEspecies <- function()
 {
   message("INFO: fetching species list from proyectoavis.com server")
 
-  rawhtml<- ravisGetURL("http://proyectoavis.com/cgi-bin/bus_orden.cgi")
+  rawhtml<- avisGetURL("http://proyectoavis.com/cgi-bin/bus_orden.cgi")
   id<- grep("id_especie=[0-9]+",rawhtml)
   ids<- str_extract_all (rawhtml, "id_especie=[0-9]+")
   id_specie<- as.numeric (substring(unlist (ids [c(id)]), 12))
