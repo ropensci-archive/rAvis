@@ -4,17 +4,6 @@ ravis_species_id_list <- NULL
 
 ravis_species_summary <- NULL
 
-avisGetURL <- function(url, nologin = FALSE) {
-  if (nologin == TRUE){
-    # new curl handle
-    curl_handler<- getCurlHandle()
-  } else {
-    curl_handler<- avisCurlHandler()
-  }
-
-  return (getURL(url, curl = curl_handler))
-}
-
 # function to get the ids of the species
 avisSpeciesId <- function (nombreraw)
 {
@@ -24,12 +13,12 @@ avisSpeciesId <- function (nombreraw)
 
   allspecies <- avisAllSpecies()
 
-  return (as.integer(allspecies[avisNormalizeSpeciesName(nombreraw)]))
+  return (as.integer(allspecies[.avisNormalizeSpeciesName(nombreraw)]))
 }
 
 avisHasSpecies <- function (nombreraw)
 {
-  nombre <- avisNormalizeSpeciesName(nombreraw)
+  nombre <- .avisNormalizeSpeciesName(nombreraw)
   allspecies <- avisAllSpecies()
 
   return (is.element(nombre, names(allspecies)))
@@ -39,7 +28,7 @@ avisAllSpecies <- function()
 {
   if(is.null(ravis_species_id_list))
   {
-    ravis_species_id_list <- avisGetServerEspecies()
+    ravis_species_id_list <- .avisGetServerEspecies()
 
     # TODO: hacer variable a nivel de package
     assign("ravis_species_id_list", ravis_species_id_list, envir = .GlobalEnv)
@@ -48,19 +37,30 @@ avisAllSpecies <- function()
   return (ravis_species_id_list)
 }
 
+.avisGetURL <- function(url, nologin = FALSE) {
+  if (nologin == TRUE){
+    # new curl handle
+    curl_handler<- getCurlHandle()
+  } else {
+    curl_handler<- .avisCurlHandler()
+  }
+
+  return (getURL(url, curl = curl_handler))
+}
+
 # fetches species list from server
-avisGetServerEspecies <- function()
+.avisGetServerEspecies <- function()
 {
   message("INFO: fetching species list from proyectoavis.com server")
 
-  rawhtml<- avisGetURL("http://proyectoavis.com/cgi-bin/bus_orden.cgi")
+  rawhtml<- .avisGetURL("http://proyectoavis.com/cgi-bin/bus_orden.cgi")
   id<- grep("id_especie=[0-9]+",rawhtml)
   ids<- str_extract_all (rawhtml, "id_especie=[0-9]+")
   id_specie<- as.numeric (substring(unlist (ids [c(id)]), 12))
   name<- grep("<i>.*?</i>", rawhtml)
   names<- str_extract_all (rawhtml, "<i>.*?</i>")
   names_specie<- substring (unlist (names[c(name)]),4)
-  names_species<- avisNormalizeSpeciesName(substr(names_specie, 1, nchar(names_specie)-4))
+  names_species<- .avisNormalizeSpeciesName(substr(names_specie, 1, nchar(names_specie)-4))
   names(id_specie) <- names_species
 
   return (id_specie)
@@ -88,7 +88,7 @@ avisSpeciesSummary <- function ()
   return (ravis_species_summary)  
 }
 
-avisNormalizeSpeciesName<- function(raw)
+.avisNormalizeSpeciesName<- function(raw)
 {
   return (tolower(raw))
 }

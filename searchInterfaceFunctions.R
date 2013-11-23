@@ -1,9 +1,9 @@
 # Functions related to search from http://proyectoavis.com/cgi-bin/bus_avanzada.cgi
 
-ravis_search_url_base<- "http://proyectoavis.com/cgi-bin/bus_avanzada.cgi"
+.ravis_search_url_base<- "http://proyectoavis.com/cgi-bin/bus_avanzada.cgi"
 
 # translate
-ravis_translated_params_map<- list( 
+.ravis_translated_params_map<- list( 
 	id_species = 'id_especie', # string / list -> id_especie
 	family = 'familia', # familia
 	order = 'orden', # orden
@@ -22,7 +22,7 @@ ravis_translated_params_map<- list(
 )
 
 # query parameters accepted by proyectoavis.com
-ravis_raw_search_default_params<- list( 
+.ravis_raw_search_default_params<- list( 
 	formato_consulta = 'observaciones', 
 	tipo_consulta = '', 
 	id_observacion = '', 
@@ -162,20 +162,20 @@ avisQuery <- function (id_species = '', species = '', family = '', order = '', a
 		args['species']<-NULL	
 	}
 
-	rawargs <- avisTranslateArgsToRawArgs(args)
+	rawargs <- .avisTranslateArgsToRawArgs(args)
 
-	return (avisQueryRaw(rawargs))
+	return (.avisQueryRaw(rawargs))
 }
 
-avisTranslateArgsToRawArgs<-function(args)
+.avisTranslateArgsToRawArgs<-function(args)
 {
 	# tranlate args (set by user) to rawargs (which can be handled by server)
 	rawargs<-args
 
 	for (argname in names(args)) {
 		# if argname is a translated param
-		if(is.element(argname, names(ravis_translated_params_map))){
-			raw_param_name<-ravis_translated_params_map[argname][[1]]
+		if(is.element(argname, names(.ravis_translated_params_map))){
+			raw_param_name<-.ravis_translated_params_map[argname][[1]]
 			rawargs[raw_param_name] <- args[argname]
 			rawargs[argname]<-NULL
 		}
@@ -185,7 +185,7 @@ avisTranslateArgsToRawArgs<-function(args)
 }
 
 # internal
-avisQueryRaw <- function (args)
+.avisQueryRaw <- function (args)
 {
 	# query the project database with the argments
 	# the arguments must have the exact names that proyectoavis.com gets (raw parameters)
@@ -196,7 +196,7 @@ avisQueryRaw <- function (args)
 
 	avisQueryRawData <- NULL
 
-	args<-avisMergeArgumentList(args, ravis_raw_search_default_params)
+	args<-.avisMergeArgumentList(args, .ravis_raw_search_default_params)
 
 	# query string
 	qs <- ''
@@ -205,9 +205,9 @@ avisQueryRaw <- function (args)
 	}
 	qs <- substr(qs,0,nchar(qs)-1)
 
-	url <- paste(ravis_search_url_base, qs, sep = "?")
+	url <- paste(.ravis_search_url_base, qs, sep = "?")
 
-	avisQueryRawData <- avisGetURL(url)
+	avisQueryRawData <- .avisGetURL(url)
 
 	# TODO: better way
   	assign("avisQueryRawData", avisQueryRawData, envir = .GlobalEnv)
@@ -216,14 +216,14 @@ avisQueryRaw <- function (args)
   
 	utm_latlon<-getUTMLatlong()
   
-	# data<- data.frame(data, "x"= utm_latlon$x [match (substring(data$UTM,4), utm_latlon$utm)], 
-	#                    "y"= utm_latlon$y [match (substring(data$UTM,4), utm_latlon$utm)])
+	data<- data.frame(data, "x"= utm_latlon$x [match (substring(data$UTM,4), utm_latlon$utm)], 
+	                  "y"= utm_latlon$y [match (substring(data$UTM,4), utm_latlon$utm)])
 
 	return(data)
 }
 
 # merge two argument list. first argument lists overwrite seccond (default)
-avisMergeArgumentList<-function(args, defaultArgs)
+.avisMergeArgumentList<-function(args, defaultArgs)
 {
 	for (argName in names(defaultArgs)) {
 		if(!is.element(argName, names(args))){
@@ -242,5 +242,3 @@ getUTMLatlong<- function(){
   
   return (ravisUTMLatLong)
 }
-
-

@@ -4,12 +4,12 @@ ravis_birdwatcher_summary<- NULL
 
 ravis_username_id_list<- NULL
 
-#main summary of birdwatchers observations
+# main summary of birdwatchers observations
 avisContributorsSummary<- function ()
 {
   if(is.null(ravis_birdwatcher_summary))
   {
-    ravis_birdwatcher_summary<- avisExtractContributorsSummaryFromServer()
+    ravis_birdwatcher_summary<- .avisExtractContributorsSummaryFromServer()
 
     ravis_username_id_list<-unlist(ravis_birdwatcher_summary[,2])
 
@@ -26,25 +26,6 @@ avisContributorsSummary<- function ()
   return (ravis_birdwatcher_summary)
 }
 
-
-# Aggregated Summary of all contributors and their observations
-avisExtractContributorsSummaryFromServer<-function()
-{
-  doc<-htmlParse("http://proyectoavis.com/cgi-bin/usuarios.cgi")
-  nodes <- getNodeSet(doc, "//table[@class=\"observaciones1\"]/tr[@class=\"celda1\"]")
-
-  df<- NULL
-  for (node in nodes) {
-    df<- rbind(df, avisExtractContributorDataFromRowNode(node))
-  }
-
-  colnames(df)<- c("UserId", "User","Observations","Species","Provinces","UTMs","Periods")
-  # names(df)<- c("id","Usuario","Nombre","Citas","Especies","Provincias","UTMs","Periodos")
-
-  return (df)
-}
-
-
 # Aggregated summary of one contributor observations
 avisContributorAggregatedObservations<- function (contributor_id)
 {
@@ -54,7 +35,7 @@ avisContributorAggregatedObservations<- function (contributor_id)
   df<-data.frame()
   
   for(node in nodes[2:length(nodes)]){
-    df<-rbind(df, avisExtractContributorObservationDataFromRowNode(node))
+    df<-rbind(df, .avisExtractContributorObservationDataFromRowNode(node))
   }
   
   names (df)<- c("SpeciesId", "Observations", "Number", "UTM.10x10", "Birdwatchers")
@@ -62,8 +43,27 @@ avisContributorAggregatedObservations<- function (contributor_id)
   return(df)
 }
 
+
+# Aggregated Summary of all contributors and their observations
+.avisExtractContributorsSummaryFromServer<-function()
+{
+  doc<-htmlParse("http://proyectoavis.com/cgi-bin/usuarios.cgi")
+  nodes <- getNodeSet(doc, "//table[@class=\"observaciones1\"]/tr[@class=\"celda1\"]")
+
+  df<- NULL
+  for (node in nodes) {
+    df<- rbind(df, .avisExtractContributorDataFromRowNode(node))
+  }
+
+  colnames(df)<- c("UserId", "User","Observations","Species","Provinces","UTMs","Periods")
+  # names(df)<- c("id","Usuario","Nombre","Citas","Especies","Provincias","UTMs","Periodos")
+
+  return (df)
+}
+
+
 # internal
-avisExtractContributorDataFromRowNode<-function(node)
+.avisExtractContributorDataFromRowNode<-function(node)
 {
   strnode <- toString.XMLNode(node)   
   usu_id<-regmatches(strnode, regexpr('id_usuario=([0-9]+)', strnode))
@@ -81,7 +81,7 @@ avisExtractContributorDataFromRowNode<-function(node)
 }
 
 # internal
-avisExtractContributorObservationDataFromRowNode<-function(node)
+.avisExtractContributorObservationDataFromRowNode<-function(node)
 {
   clean_row_data <- xmlValue(node, encoding="utf-8")
   celdas<-as.list(strsplit(gsub("\n","#", clean_row_data), "#")[[1]])
