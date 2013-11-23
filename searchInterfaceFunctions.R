@@ -133,8 +133,16 @@ avisQueryContributor <- function (contributor_ids, args = list()) {
 # General funciton for querying the database by a set of criteria. Criteria may be set by means of a few
 # named input variables and/or by the optional list variable 'args'
 # 
-# args may have both raw and translated query parameters for different subjects
+# 'args' may have both raw and translated query parameters for different subjects
 # explicit arguments overwrite those in 'args' list
+# 
+# Options for normalized parameters (spanish) (this might become outdated):
+# - age: 'pollo', 'juvenil', 'adulto', 'indeterminado'
+# - sex: 'macho', 'hembra', 'indeterminado', 'pareja', 'machos y hembras'
+# - breeding: 'reproducción posible', 'reproducción probable', 'reproducción segura', 'migración', 'invernada'
+# - habitat: 'bosque', 'matorral', 'pastizales', 'terrenos agrícolas', 'zonas humanizadas', 
+# 			'zonas húmedas interiores', 'roquedos de interior', 'costas', 'otros'
+# - month: 1 to 12
 # 
 avisQuery <- function (id_species = '', species = '', family = '', order = '', age = '', 
 	sex = '', breeding = '', habitat = '', month = '', year = '', args = list())

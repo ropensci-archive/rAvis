@@ -1,4 +1,5 @@
-# initialize package 
+# initialize package.
+# file for developing purposes
 
 # dependencies
 library(stringr)
