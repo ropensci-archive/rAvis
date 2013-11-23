@@ -18,7 +18,7 @@ avisGetURL <- function(url, nologin = FALSE) {
 # function to get the ids of the species
 avisSpeciesId <- function (nombreraw)
 {
-  if(!avisSpeciesExists(nombreraw)){
+  if(!avisHasSpecies(nombreraw)){
     stop(paste("Species '", nombreraw,"' not found in proyectoavis.com"))
   }
 
@@ -27,7 +27,7 @@ avisSpeciesId <- function (nombreraw)
   return (as.integer(allspecies[avisNormalizeSpeciesName(nombreraw)]))
 }
 
-avisSpeciesExists <- function (nombreraw)
+avisHasSpecies <- function (nombreraw)
 {
   nombre <- avisNormalizeSpeciesName(nombreraw)
   allspecies <- avisAllSpecies()

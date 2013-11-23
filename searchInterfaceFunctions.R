@@ -55,7 +55,7 @@ avisQuerySpecies <- function (names, args = list())
 
 	# check all species exists in bd before querying
 	lapply(names, function(n){ 
-		if(!avisSpeciesExists(n)) stop(paste("Species not found: ", n)) 
+		if(!avisHasSpecies(n)) stop(paste("Species not found: ", n)) 
 	})
 
 	df<- NULL
@@ -115,14 +115,12 @@ avisQuery <- function (args){
 
 	url <- paste(ravis_search_url_base, qs, sep = "?")
 
-	# message(paste("query to: ", url))
-
 	avisQueryRawData <- avisGetURL(url)
 
-	# TODO: debe ser una propiedad de un objeto, no un objeto en entorno global
-  assign("avisQueryRawData", avisQueryRawData, envir = .GlobalEnv)
+	# TODO: better way
+  	assign("avisQueryRawData", avisQueryRawData, envir = .GlobalEnv)
 
-  data <- read.csv(textConnection(avisQueryRawData), sep = ";", quote = "")
+  	data <- read.csv(textConnection(avisQueryRawData), sep = ";", quote = "")
   
 	utm_latlon<-getUTMLatlong()
   

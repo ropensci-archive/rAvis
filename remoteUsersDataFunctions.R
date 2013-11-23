@@ -62,6 +62,7 @@ avisContributorAggregatedObservations<- function (contributor_id)
   return(df)
 }
 
+# internal
 avisExtractContributorDataFromRowNode<-function(node)
 {
   strnode <- toString.XMLNode(node)   
@@ -79,6 +80,7 @@ avisExtractContributorDataFromRowNode<-function(node)
   return (userdata)
 }
 
+# internal
 avisExtractContributorObservationDataFromRowNode<-function(node)
 {
   clean_row_data <- xmlValue(node, encoding="utf-8")
