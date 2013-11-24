@@ -1,5 +1,4 @@
-avisAllSpecies <-
-function()
+avisAllSpecies <- function()
 {
   if(is.null(ravis_species_id_list))
   {

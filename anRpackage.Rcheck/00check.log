@@ -1,0 +1,17 @@
+* using log directory 'C:/proyectos/r/ravis/anRpackage.Rcheck'
+* using R version 3.0.2 (2013-09-25)
+* using platform: i386-w64-mingw32 (32-bit)
+* using session charset: ISO8859-1
+* checking for file 'anRpackage/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'rAvis' version '0.1'
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for .dll and .exe files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking whether package 'rAvis' can be installed ... ERROR
+Installation failed.
+See 'C:/proyectos/r/ravis/anRpackage.Rcheck/00install.out' for details.

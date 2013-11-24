@@ -1,5 +1,5 @@
-avisContributorsSummary <-
-function ()
+# main summary of birdwatchers observations
+avisContributorsSummary <- function ()
 {
   if(is.null(ravis_birdwatcher_summary))
   {

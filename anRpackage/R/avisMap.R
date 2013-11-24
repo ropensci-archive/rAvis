@@ -1,5 +1,10 @@
-avisMap <-
-function(obs, label = '', maptype = 'admin')
+# Renders a map for the observations provided in 'obs'.
+# 'obs' may be the set of observations returned by any of the avisQueryXXX functions
+# 'label' label for the map
+# 
+# Available types of map are 'admin' (by default) and 'phys'. 
+# 
+avisMap <- function(obs, label = '', maptype = 'admin')
 {
   if(is.null(obs$x) || is.null(obs$y)){
     stop("missing x or y columns in provided obs parameter")

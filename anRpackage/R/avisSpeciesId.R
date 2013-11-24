@@ -1,5 +1,4 @@
-avisSpeciesId <-
-function (nombreraw)
+avisSpeciesId <- function (nombreraw)
 {
   if(!avisHasSpecies(nombreraw)){
     stop(paste("Species '", nombreraw,"' not found in proyectoavis.com"))

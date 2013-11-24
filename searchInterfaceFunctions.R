@@ -222,7 +222,7 @@ avisQuery <- function (id_species = '', species = '', family = '', order = '', a
 
   	data <- read.csv(textConnection(avisQueryRawData), sep = ";", quote = "")
   
-	utm_latlon<-getUTMLatlong()
+	utm_latlon<-.getUTMLatlong()
   
 	data<- data.frame(data, "x"= utm_latlon$x [match (substring(data$UTM,4), utm_latlon$utm)], 
 	                  "y"= utm_latlon$y [match (substring(data$UTM,4), utm_latlon$utm)])
@@ -242,7 +242,7 @@ avisQuery <- function (id_species = '', species = '', family = '', order = '', a
 	return (args)
 }
 
-getUTMLatlong<- function(){
+.getUTMLatlong<- function(){
   if(is.null(ravisUTMLatLong)){
     ravisUTMLatLong<- read.table ("utm_latlon.csv", sep=",", header=T)
     assign("ravisUTMLatLong", ravisUTMLatLong, envir = .GlobalEnv)

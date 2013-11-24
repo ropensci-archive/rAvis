@@ -1,0 +1,16 @@
+"** usa 'subl' para editar con sublime !!!"
+* installing *source* package 'rAvis' ...
+Warning in .write_description(db, file.path(outDir, "DESCRIPTION")) :
+  Unknown encoding with non-ASCII data: converting to ASCII
+** R
+** data
+** preparing package for lazy loading
+** help
+Warning: C:/proyectos/r/ravis/anRpackage/man/anRpackage-package.Rd:33: All text must be in a section
+Warning: C:/proyectos/r/ravis/anRpackage/man/anRpackage-package.Rd:34: All text must be in a section
+*** installing help indices
+Error in Rd_info(db[[i]]) : 
+  missing/empty \title field in 'C:/proyectos/r/ravis/anRpackage/man/avisAllSpecies.Rd'
+Rd files must have a non-empty \title.
+See chapter 'Writing R documentation' in manual 'Writing R Extensions'.
+* removing 'C:/proyectos/r/ravis/anRpackage.Rcheck/rAvis'

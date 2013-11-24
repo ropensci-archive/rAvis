@@ -1,5 +1,14 @@
-avisQueryContributor <-
-function (contributor_ids, args = list()) {
+# Is a wrapper for avisQuery that allows you to perform a query for more than 
+# one contributor at once.
+# 'contributor_ids' must be either an integer or a list of contributors ids
+# 'args' is a list of query parameters (see avisQuery) that adds further filters to the query
+# 
+# eg: 
+# 
+# avisQueryContributor(56)
+# avisQueryContributor(list(56, 88), args = list(year = 2012))
+# 
+avisQueryContributor <- function (contributor_ids, args = list()) {
 	if(is.element('usu', names(args)))
 	{
 		warning("usu argument in the argument list won't be regarded")

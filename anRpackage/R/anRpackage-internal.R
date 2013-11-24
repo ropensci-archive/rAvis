@@ -1,5 +1,4 @@
-.avisCreateCurlHandler <-
-function() {
+.avisCreateCurlHandler <- function() {
   # Curl handle for the requests to avis
   
   # if(is.null(.ravis_curl_handler)){
@@ -25,8 +24,8 @@ function() {
 
   return (.ravis_curl_handler)
 }
-.avisCurlHandler <-
-function(){
+
+.avisCurlHandler <- function(){
   if(is.null(.ravis_curl_handler)){
     .avisLogin()
   } else {
@@ -35,8 +34,8 @@ function(){
   
   return (.ravis_curl_handler)
 }
-.avisExtractContributorDataFromRowNode <-
-function(node)
+
+.avisExtractContributorDataFromRowNode <- function(node)
 {
   strnode <- toString.XMLNode(node)   
   usu_id<-regmatches(strnode, regexpr('id_usuario=([0-9]+)', strnode))
@@ -52,8 +51,8 @@ function(node)
   
   return (userdata)
 }
-.avisExtractContributorObservationDataFromRowNode <-
-function(node)
+
+.avisExtractContributorObservationDataFromRowNode <- function(node)
 {
   clean_row_data <- xmlValue(node, encoding="utf-8")
   celdas<-as.list(strsplit(gsub("\n","#", clean_row_data), "#")[[1]])
@@ -68,8 +67,8 @@ function(node)
   
   return (obsdata)
 }
-.avisExtractContributorsSummaryFromServer <-
-function()
+
+.avisExtractContributorsSummaryFromServer <- function()
 {
   doc<-htmlParse("http://proyectoavis.com/cgi-bin/usuarios.cgi")
   nodes <- getNodeSet(doc, "//table[@class=\"observaciones1\"]/tr[@class=\"celda1\"]")
@@ -84,8 +83,8 @@ function()
 
   return (df)
 }
-.avisGetServerEspecies <-
-function()
+
+.avisGetServerEspecies <- function()
 {
   message("INFO: fetching species list from proyectoavis.com server")
 
@@ -101,8 +100,8 @@ function()
 
   return (id_specie)
 }
-.avisGetURL <-
-function(url, nologin = FALSE) {
+
+.avisGetURL <- function(url, nologin = FALSE) {
   if (nologin == TRUE){
     # new curl handle
     curl_handler<- getCurlHandle()
@@ -112,12 +111,12 @@ function(url, nologin = FALSE) {
 
   return (getURL(url, curl = curl_handler))
 }
-.avisLogin <-
-function() {
+
+.avisLogin <- function() {
   return (.avisUserLogin())
 }
-.avisLoginUser <-
-function (avis_user, avis_pass) {
+
+.avisLoginUser <- function (avis_user, avis_pass) {
   # log user in remote server
 
   params<- list( usu=avis_user, password=avis_pass, control_login='1' )
@@ -137,8 +136,8 @@ function (avis_user, avis_pass) {
 
   return (status == .ravis_session_started["OK"])
 }
-.avisMergeArgumentList <-
-function(args, defaultArgs)
+
+.avisMergeArgumentList <- function(args, defaultArgs)
 {
 	for (argName in names(defaultArgs)) {
 		if(!is.element(argName, names(args))){
@@ -148,13 +147,13 @@ function(args, defaultArgs)
 
 	return (args)
 }
-.avisNormalizeSpeciesName <-
-function(raw)
+
+.avisNormalizeSpeciesName <- function(raw)
 {
   return (tolower(raw))
 }
-.avisQueryRaw <-
-function (args)
+
+.avisQueryRaw <- function (args)
 {
 	# query the project database with the argments
 	# the arguments must have the exact names that proyectoavis.com gets (raw parameters)
@@ -183,15 +182,15 @@ function (args)
 
   	data <- read.csv(textConnection(avisQueryRawData), sep = ";", quote = "")
   
-	utm_latlon<-getUTMLatlong()
+	utm_latlon<-.getUTMLatlong()
   
 	data<- data.frame(data, "x"= utm_latlon$x [match (substring(data$UTM,4), utm_latlon$utm)], 
 	                  "y"= utm_latlon$y [match (substring(data$UTM,4), utm_latlon$utm)])
 
 	return(data)
 }
-.avisReadCanariasImg <-
-function()
+
+.avisReadCanariasImg <- function()
 {
   if(is.null(ravis_img_canarias)){
     ravis_img_canarias<-brick ("canarias.tif")
@@ -199,8 +198,8 @@ function()
   }
   return (ravis_img_canarias)
 }
-.avisReadPeninsulaImg <-
-function()
+
+.avisReadPeninsulaImg <- function()
 {
   if(is.null(ravis_img_ipeninsula)){
     ravis_img_ipeninsula<-brick ("PI.tif")
@@ -208,8 +207,8 @@ function()
   }
   return (ravis_img_ipeninsula)
 }
-.avisReadShapeSpain <-
-function()
+
+.avisReadShapeSpain <- function()
 {
   # TODO: package private property... easier way to cache stuff?
   if(is.null(ravis_shape_spain)){
@@ -218,8 +217,8 @@ function()
   }
   return (ravis_shape_spain)  
 }
-.avisRenderMapAdmin <-
-function(obs, label)
+
+.avisRenderMapAdmin <- function(obs, label)
 {
   shapeSpain<-.avisReadShapeSpain()
 
@@ -231,8 +230,8 @@ function(obs, label)
    col = NA, border = "grey40", lwd=2)
   points(obs$x, obs$y, col=alpha ("red", 0.5), pch=19, cex=1.2)
 }
-.avisRenderMapPhysical <-
-function(obs, label)
+
+.avisRenderMapPhysical <- function(obs, label)
 {
   peninsulaImg<-.avisReadPeninsulaImg()
   canariasImg<-.avisReadCanariasImg()
@@ -243,8 +242,8 @@ function(obs, label)
   plotRGB (canariasImg)
   points(obs$x, obs$y, col=alpha ("red", 0.5), pch=19, cex=1.2)
 }
-.avisTranslateArgsToRawArgs <-
-function(args)
+
+.avisTranslateArgsToRawArgs <- function(args)
 {
 	# tranlate args (set by user) to rawargs (which can be handled by server)
 	rawargs<-args
@@ -260,12 +259,12 @@ function(args)
 
 	return (rawargs)
 }
-.avisUserLogin <-
-function() {
+
+.avisUserLogin <- function() {
   return (.avisLoginUser("ravis-user", "ravis-pass7592Hz%"))
 }
-.parse.avisLoginStatusFromHTML <-
-function(html) {
+
+.parse.avisLoginStatusFromHTML <- function(html) {
   # Search an HTML text after login to find out the result of the login
   
   html <- tolower(html)
@@ -290,10 +289,30 @@ function(html) {
 
   return (as.integer(status[[1]]))
 }
-.ravis_curl_handler <-
-NULL
-.ravis_raw_search_default_params <-
-structure(list(formato_consulta = "observaciones", tipo_consulta = "", 
+
+.textHasString <- function(text, string) {
+  # Checks weather a text contains a string, returning logical
+  
+  res <- grep(string, text)
+
+  if(1 == length(res) && 1 == res[1]){
+    return (TRUE)
+  }
+
+  return (FALSE)
+}
+
+.getUTMLatlong <- function(){
+  if(is.null(ravisUTMLatLong)){
+    ravisUTMLatLong<- read.table ("utm_latlon.csv", sep=",", header=T)
+    assign("ravisUTMLatLong", ravisUTMLatLong, envir = .GlobalEnv)
+  }
+  
+  return (ravisUTMLatLong)
+}
+
+.ravis_curl_handler <- NULL
+.ravis_raw_search_default_params <- structure(list(formato_consulta = "observaciones", tipo_consulta = "", 
     id_observacion = "", id_periodo = "", id_especie = "", orden = "", 
     criterio = "id_observacion", familia = "", edad = "", sexo = "", 
     usu = "", id_ca = "", id_provincia = "", dia_ini = "", mes_ini = "", 
@@ -314,26 +333,14 @@ structure(list(formato_consulta = "observaciones", tipo_consulta = "",
 "filtro_id_especie", "filtro_estacion", "cobertura", "mostrar_capa", 
 "capa", "formato_consulta", "tipo_consulta", "control", "excel"
 ))
-.ravis_search_url_base <-
-"http://proyectoavis.com/cgi-bin/bus_avanzada.cgi"
-.ravis_session_started <-
-structure(list(OK = 1, NO_COOKIES = 2, BAD_CREDENTIALS = 3), .Names = c("OK", 
-"NO_COOKIES", "BAD_CREDENTIALS"))
-.ravis_translated_params_map <-
-structure(list(id_species = "id_especie", family = "familia", 
+
+.ravis_translated_params_map <- structure(list(id_species = "id_especie", family = "familia", 
     order = "orden", age = "edad", sex = "sexo", breeding = "reproduccion", 
     habitat = "habitat", month = "mes", year = "ano"), .Names = c("id_species", 
 "family", "order", "age", "sex", "breeding", "habitat", "month", 
 "year"))
-.textHasString <-
-function(text, string) {
-  # Checks weather a text contains a string, returning logical
-  
-  res <- grep(string, text)
 
-  if(1 == length(res) && 1 == res[1]){
-    return (TRUE)
-  }
+.ravis_search_url_base <- "http://proyectoavis.com/cgi-bin/bus_avanzada.cgi"
 
-  return (FALSE)
-}
+.ravis_session_started <- structure(list(OK = 1, NO_COOKIES = 2, BAD_CREDENTIALS = 3), .Names = c("OK", 
+"NO_COOKIES", "BAD_CREDENTIALS"))

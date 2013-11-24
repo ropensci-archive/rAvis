@@ -1,5 +1,4 @@
-avisSpeciesSummary <-
-function ()
+avisSpeciesSummary <- function ()
 {
   if(is.null(ravis_species_summary))
   {
