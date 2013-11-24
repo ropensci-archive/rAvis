@@ -5,7 +5,7 @@
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+A function to download the information about the observations of a birdwatcher.
 }
 \usage{
 avisContributorAggregatedObservations(contributor_id)
@@ -13,7 +13,7 @@ avisContributorAggregatedObservations(contributor_id)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{contributor_id}{
-%%     ~~Describe \code{contributor_id} here~~
+id of the birdwatcher (see avisContributorSummary)
 }
 }
 \details{
@@ -42,23 +42,9 @@ avisContributorAggregatedObservations(contributor_id)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+# Explore the contributions of Colectivo Ornitologico Ciguena Negra
 
-## The function is currently defined as
-function (contributor_id) 
-{
-    doc <- htmlParse(paste("http://proyectoavis.com/cgi-bin/ficha_usuario.cgi?id_usuario=", 
-        contributor_id, sep = ""))
-    nodes <- getNodeSet(doc, "//table[@class=\"resultados\"]/tr")
-    df <- data.frame()
-    for (node in nodes[2:length(nodes)]) {
-        df <- rbind(df, .avisExtractContributorObservationDataFromRowNode(node))
-    }
-    names(df) <- c("SpeciesId", "Observations", "Number", "UTM.10x10", 
-        "Birdwatchers")
-    return(df)
+avisContributorAggregatedObservations (370)
   }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

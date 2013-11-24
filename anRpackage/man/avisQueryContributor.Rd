@@ -5,7 +5,8 @@
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Is a wrapper for avisQuery that allows you to perform a query for more than one contributor at once.
+
 }
 \usage{
 avisQueryContributor(contributor_ids, args = list())
@@ -13,10 +14,10 @@ avisQueryContributor(contributor_ids, args = list())
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{contributor_ids}{
-%%     ~~Describe \code{contributor_ids} here~~
+must be either an integer or a list of contributors ids
 }
   \item{args}{
-%%     ~~Describe \code{args} here~~
+is a list of query parameters (see avisQuery) that adds further filters to the query
 }
 }
 \details{
@@ -29,11 +30,12 @@ avisQueryContributor(contributor_ids, args = list())
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
-%%  ~~who you are~~
+Sara Varela and Javier Gonzalez Hernandez
+}
+\references{
+Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in prep. rAvis: an R-package to download the information stored in Proyecto AVIS, a citizen science bird project.
+
 }
 \note{
 %%  ~~further notes~~
@@ -42,35 +44,11 @@ avisQueryContributor(contributor_ids, args = list())
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+avisContributorsSummary
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (contributor_ids, args = list()) 
-{
-    if (is.element("usu", names(args))) {
-        warning("usu argument in the argument list won't be regarded")
-    }
-    if (is.null(ravis_username_id_list)) {
-        avisContributorsSummary()
-    }
-    if (!is.list(contributor_ids)) {
-        contributor_ids = list(contributor_ids)
-    }
-    names = lapply(contributor_ids, function(id) {
-        return(ravis_username_id_list[as.character(id)])
-    })
-    df <- NULL
-    for (name in names) {
-        args["usu"] <- name
-        df <- rbind(df, avisQuery(args = args))
-    }
-    return(df)
-  }
+avisQueryContributor(370)
+avisQueryContributor(list(370, 399), args = list(year = 2002))
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

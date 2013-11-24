@@ -5,7 +5,8 @@
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+check if a species name exists in Proyecto AVIS. 
+Logical: returns TRUE for species with observations in the database and FALSE for errors or species with no data in Proyecto AVIS 
 }
 \usage{
 avisHasSpecies(nombreraw)
@@ -13,7 +14,7 @@ avisHasSpecies(nombreraw)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{nombreraw}{
-%%     ~~Describe \code{nombreraw} here~~
+species name
 }
 }
 \details{
@@ -26,11 +27,11 @@ avisHasSpecies(nombreraw)
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
-%%  ~~who you are~~
+Sara Varela and Javier Gonzalez Hernandez
+}
+\references{
+Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in prep. rAvis: an R-package to download the information stored in Proyecto AVIS, a citizen science bird project.
 }
 \note{
 %%  ~~further notes~~
@@ -42,17 +43,9 @@ avisHasSpecies(nombreraw)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function (nombreraw) 
-{
-    nombre <- .avisNormalizeSpeciesName(nombreraw)
-    allspecies <- avisAllSpecies()
-    return(is.element(nombre, names(allspecies)))
-  }
+avisHasSpecies("Pica pica")
+avisHasSpecies("Pica pic")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

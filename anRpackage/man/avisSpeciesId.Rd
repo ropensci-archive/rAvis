@@ -5,7 +5,7 @@
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Returns the id of the selected species
 }
 \usage{
 avisSpeciesId(nombreraw)
@@ -13,7 +13,7 @@ avisSpeciesId(nombreraw)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{nombreraw}{
-%%     ~~Describe \code{nombreraw} here~~
+name of the species
 }
 }
 \details{
@@ -26,12 +26,13 @@ avisSpeciesId(nombreraw)
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
-%%  ~~who you are~~
+Sara Varela and Javier Gonzalez Hernandez
 }
+\references{
+Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in prep. rAvis: an R-package to download the information stored in Proyecto AVIS, a citizen science bird project.
+}
+
 \note{
 %%  ~~further notes~~
 }
@@ -42,19 +43,7 @@ avisSpeciesId(nombreraw)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (nombreraw) 
-{
-    if (!avisHasSpecies(nombreraw)) {
-        stop(paste("Species '", nombreraw, "' not found in proyectoavis.com"))
-    }
-    allspecies <- avisAllSpecies()
-    return(as.integer(allspecies[.avisNormalizeSpeciesName(nombreraw)]))
-  }
+avisSpeciesId("Pica pica")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

@@ -5,7 +5,9 @@
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+General function for querying the database by a set of criteria. Criteria may be set by means of a few
+named input variables and/or by the optional list variable 'args'. 'args' may have both raw and translated query parameters for different subjects. Explicit arguments overwrite those in 'args' list.
+
 }
 \usage{
 avisQuery(id_species = "", species = "", family = "", order = "", age = "", sex = "", breeding = "", habitat = "", month = "", year = "", args = list())
@@ -16,34 +18,35 @@ avisQuery(id_species = "", species = "", family = "", order = "", age = "", sex 
 %%     ~~Describe \code{id_species} here~~
 }
   \item{species}{
-%%     ~~Describe \code{species} here~~
+name of the species (one single species): e.g. "Passer domesticus"
 }
   \item{family}{
-%%     ~~Describe \code{family} here~~
+Filter data by family: e.g. "Passeridae", "Falconidae", etc.  
 }
   \item{order}{
-%%     ~~Describe \code{order} here~~
+Filter data by Order: e.g. "Passeriformes", "Falconiformes", etc.
 }
   \item{age}{
-%%     ~~Describe \code{age} here~~
+Filer by age: 'pollo', 'juvenil', 'adulto', 'indeterminado'.
 }
   \item{sex}{
-%%     ~~Describe \code{sex} here~~
+Filter by sex: 'macho', 'hembra', 'indeterminado', 'pareja', 'machos y hembras'
 }
   \item{breeding}{
-%%     ~~Describe \code{breeding} here~~
+Filter by breeding-migratory status: 'reproducción posible', 'reproducción probable', 'reproducción segura', 'migración', 'invernada'
 }
   \item{habitat}{
-%%     ~~Describe \code{habitat} here~~
+Filter by habitat: 'bosque', 'matorral', 'pastizales', 'terrenos agrícolas', 'zonas humanizadas', 
+'zonas húmedas interiores', 'roquedos de interior', 'costas', 'otros'
 }
   \item{month}{
-%%     ~~Describe \code{month} here~~
+Filter by month: 1 to 12
 }
   \item{year}{
-%%     ~~Describe \code{year} here~~
+Filter by year: e.g. 2001
 }
   \item{args}{
-%%     ~~Describe \code{args} here~~
+Other arguments accepted by Proyectoavis.com endpoint, not translated and not documented here. 
 }
 }
 \details{
@@ -56,11 +59,12 @@ avisQuery(id_species = "", species = "", family = "", order = "", age = "", sex 
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
-%%  ~~who you are~~
+Sara Varela and Javier Gonzalez Hernandez
+}
+\references{
+Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in prep. rAvis: an R-package to download the information stored in Proyecto AVIS, a citizen science bird project.
+
 }
 \note{
 %%  ~~further notes~~
@@ -72,47 +76,15 @@ avisQuery(id_species = "", species = "", family = "", order = "", age = "", sex 
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+# all the observations of the species of the Order Falconiformes
+avisQuery (order = "Falconiformes") 
 
-## The function is currently defined as
-function (id_species = "", species = "", family = "", order = "", 
-    age = "", sex = "", breeding = "", habitat = "", month = "", 
-    year = "", args = list()) 
-{
-    if (id_species != "") 
-        args["id_species"] <- id_species
-    if (species != "") 
-        args["species"] <- species
-    if (family != "") 
-        args["family"] <- family
-    if (order != "") 
-        args["order"] <- order
-    if (age != "") 
-        args["age"] <- age
-    if (sex != "") 
-        args["sex"] <- sex
-    if (breeding != "") 
-        args["breeding"] <- breeding
-    if (habitat != "") 
-        args["habitat"] <- habitat
-    if (month != "") 
-        args["month"] <- month
-    if (year != "") 
-        args["year"] <- year
-    if (is.element("species", names(args)) && is.element("id_species", 
-        names(args))) {
-        warning(paste("ATENTION!: you setted 'species' (", args["species"], 
-            ") and 'id_species' (", args["id_species"], ") in your query. The parameter id_species will be discarded"))
-    }
-    if (is.element("species", names(args))) {
-        args["id_species"] <- avisSpeciesId(args["species"])
-        args["species"] <- NULL
-    }
-    rawargs <- .avisTranslateArgsToRawArgs(args)
-    return(.avisQueryRaw(rawargs))
-  }
+# all the observations of the species of the Family Falconidae
+avisQuery(family = "Falconidae")
+
+# Search for the observations of immatures of Iberian Imperial Eagle
+avisQuery ("Aquila adalberti", age = "juvenil")
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

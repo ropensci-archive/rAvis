@@ -11,8 +11,8 @@ ravis_img_canarias<-NULL
 # 'names' argument might be a string or a list of species names
 
 # eg:
-#  avisMapSpecies("bubo bubo", "phys")
-#  avisMapSpecies(list("tyto alba", "bubo bubo", "asio capensis"))
+#  avisMapSpecies("Bubo bubo", "phys")
+#  avisMapSpecies(list("Tyto alba", "Bubo bubo", "Asio capensis"))
 #  
 avisMapSpecies<- function (names, maptype = 'admin')
 {

@@ -5,7 +5,8 @@
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Renders a map for the observations provided in 'obs'.
+
 }
 \usage{
 avisMap(obs, label = "", maptype = "admin")
@@ -13,13 +14,13 @@ avisMap(obs, label = "", maptype = "admin")
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{obs}{
-%%     ~~Describe \code{obs} here~~
+set of observations returned by any of the avisQueryXXX functions
 }
   \item{label}{
-%%     ~~Describe \code{label} here~~
+label for the map
 }
   \item{maptype}{
-%%     ~~Describe \code{maptype} here~~
+Available types of map are 'admin', administrative provinces of Spain (by default) or 'phys, physical map of Spain. 
 }
 }
 \details{
@@ -32,11 +33,11 @@ avisMap(obs, label = "", maptype = "admin")
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
-%%  ~~who you are~~
+Sara Varela and Javier Gonzalez Hernandez
+}
+\references{
+Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in prep. rAvis: an R-package to download the information stored in Proyecto AVIS, a citizen science bird project.
 }
 \note{
 %%  ~~further notes~~
@@ -48,28 +49,9 @@ avisMap(obs, label = "", maptype = "admin")
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (obs, label = "", maptype = "admin") 
-{
-    if (is.null(obs$x) || is.null(obs$y)) {
-        stop("missing x or y columns in provided obs parameter")
-    }
-    par(mar = c(0, 0, 0, 0))
-    layout(matrix(c(1, 1, 1, 1, 1, 1, 1, 1, 2), 3, 3, byrow = TRUE))
-    if (maptype == "phys") {
-        .avisRenderMapPhysical(obs, label)
-    }
-    else if (maptype == "admin") {
-        .avisRenderMapAdmin(obs, label)
-    }
-    else {
-        stop(paste("Map type '", maptype, "' not available. Available map types are: 'admin' and 'phys'"))
-    }
-  }
+obs<- avisQuerySpecies ("Pica pica")
+avisMap(obs, label = "Pica pica")
+avisMap(obs, label = "Pica pica", maptype = "phys")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

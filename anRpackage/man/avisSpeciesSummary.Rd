@@ -2,66 +2,40 @@
 \alias{avisSpeciesSummary}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Download a table with a summary of the records stored in Proyecto AVIS (http://proyectoavis.com) aggregated by species; number of observations of each species, number of individuals recorded, number of different UTMs (10x10km) with observations, number of birdwatchers that recorded the species
 }
 \usage{
 avisSpeciesSummary()
 }
 %- maybe also 'usage' for other objects documented here.
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+This function has no arguments.
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+It returns an object of class "data.frame". 
+}
+
+\author{
+Sara Varela and Javier Gonzalez Hernandez
 }
 \references{
-%% ~put references to the literature/web site here ~
+Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in prep. rAvis: an R-package to download the information stored in Proyecto AVIS, a citizen science bird project.
 }
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+avisMapSpecies, avisQuerySpecies, avisQuery
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+avis_summary<- avisSpeciesSummary()
 
-## The function is currently defined as
-function () 
-{
-    if (is.null(ravis_species_summary)) {
-        message("INFO: fetching species summary from proyectoavis.com server")
-        tables <- readHTMLTable("http://proyectoavis.com/cgi-bin/bus_especie.cgi")
-        table_obs <- tables[[7]]
-        observ <- table_obs[4:dim(table_obs)[1], 3:6]
-        names(observ) <- c("Observations", "Individuals", "UTM.10x10", 
-            "Birdwatchers")
-        ravis_species_summary <- data.frame(lapply(observ, as.numeric), 
-            stringsAsFactors = FALSE)
-        row.names(ravis_species_summary) <- table_obs[4:dim(table_obs)[1], 
-            2]
-        assign("ravis_species_summary", ravis_species_summary, 
-            envir = .GlobalEnv)
-    }
-    return(ravis_species_summary)
-  }
+#general overview of the data aggregated by species
+
+par (mfrow =c(2,2))
+hist (avis_summary$Observations, col="red", border=F, main=NULL)
+hist (avis_summary$Individuals, col="red", border=F, main=NULL)
+hist (avis_summary$UTM.10x10, col="red", border=F, main=NULL)
+hist (avis_summary$Birdwatchers, col="red", border=F, main=NULL)
+
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
