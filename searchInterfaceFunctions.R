@@ -65,8 +65,8 @@ ravisUTMLatLong<-NULL
 # 
 # eg: 
 # 
-# avisQuerySpecies("bubo bubo")
-# avisQuerySpecies(list("bubo bubo", "tyto alba"), args = list(year = 2012))
+# avisQuerySpecies("Bubo bubo")
+# avisQuerySpecies(list("Bubo bubo", "Tyto alba"), args = list(year = 2012))
 # 
 avisQuerySpecies <- function (names, args = list()) 
 {
@@ -130,7 +130,7 @@ avisQueryContributor <- function (contributor_ids, args = list()) {
 	return (df)
 }
 
-# General funciton for querying the database by a set of criteria. Criteria may be set by means of a few
+# General function for querying the database by a set of criteria. Criteria may be set by means of a few
 # named input variables and/or by the optional list variable 'args'
 # 
 # 'args' may have both raw and translated query parameters for different subjects

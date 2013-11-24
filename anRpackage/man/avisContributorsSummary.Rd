@@ -2,10 +2,10 @@
 \alias{avisContributorsSummary}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Returns a table with the observations aggregated by birdwatcher. 
 }
 \usage{
 avisContributorsSummary()
@@ -15,20 +15,17 @@ avisContributorsSummary()
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
+This function returns a matrix
 }
 \author{
-%%  ~~who you are~~
+Sara Varela and Javier Gonzalez Hernandez
+}
+\references{
+Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in prep. rAvis: an R-package to download the information stored in Proyecto AVIS, a citizen science bird project.
+}
 }
 \note{
-%%  ~~further notes~~
+This function does not allow arguments
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
@@ -37,28 +34,16 @@ avisContributorsSummary()
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function () 
-{
-    if (is.null(ravis_birdwatcher_summary)) {
-        ravis_birdwatcher_summary <- .avisExtractContributorsSummaryFromServer()
-        ravis_username_id_list <- unlist(ravis_birdwatcher_summary[, 
-            2])
-        names(ravis_username_id_list) <- unlist(ravis_birdwatcher_summary[, 
-            1])
-        ravis_birdwatcher_summary <- ravis_birdwatcher_summary[, 
-            -(which(colnames(ravis_birdwatcher_summary) == "User"))]
-        assign("ravis_birdwatcher_summary", ravis_birdwatcher_summary, 
-            envir = .GlobalEnv)
-        assign("ravis_username_id_list", ravis_username_id_list, 
-            envir = .GlobalEnv)
-    }
-    return(ravis_birdwatcher_summary)
-  }
+birdwatchers<- avisContributorsSummary()
+par (mfrow =c(2,2))
+plot (birdwatchers[,2],birdwatchers[,3], xlab=colnames (birdwatchers)[2], 
+      ylab=colnames (birdwatchers)[3], pch=19)
+plot (birdwatchers[,2],birdwatchers[,4], xlab=colnames (birdwatchers)[2], 
+      ylab=colnames (birdwatchers)[4], pch=19)
+plot (birdwatchers[,2],birdwatchers[,5], xlab=colnames (birdwatchers)[2], 
+      ylab=colnames (birdwatchers)[5], pch=19)
+plot (birdwatchers[,2],birdwatchers[,6], xlab=colnames (birdwatchers)[2], 
+      ylab=colnames (birdwatchers)[6], pch=19)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

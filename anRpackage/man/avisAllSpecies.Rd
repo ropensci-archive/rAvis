@@ -2,10 +2,10 @@
 \alias{avisAllSpecies}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Return a list with the species names and the ids of the species in Proyecto AVIS
 }
 \usage{
 avisAllSpecies()
@@ -28,7 +28,7 @@ avisAllSpecies()
 %%  ~~who you are~~
 }
 \note{
-%%  ~~further notes~~
+This functions does not allow arguments
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
@@ -37,22 +37,5 @@ avisAllSpecies()
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function () 
-{
-    if (is.null(ravis_species_id_list)) {
-        ravis_species_id_list <- .avisGetServerEspecies()
-        assign("ravis_species_id_list", ravis_species_id_list, 
-            envir = .GlobalEnv)
-    }
-    return(ravis_species_id_list)
-  }
+avisAllSpecies()
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

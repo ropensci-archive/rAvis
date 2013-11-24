@@ -1,42 +1,44 @@
-\name{anRpackage-package}
-\alias{anRpackage-package}
-\alias{anRpackage}
+\name{rAvis}
+\alias{rAvis}
+\alias{rAvis}
 \docType{package}
 \title{
-What the package does (short line)
-~~ package title ~~
+An R-package to download the information stored in Proyecto AVIS, a citizen science bird project. 
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+We developed functions to explore the database Proyecto AVIS in an easy and visual way and functions to make specific queries and download the selected information.
 }
 \details{
 \tabular{ll}{
-Package: \tab anRpackage\cr
+Package: \tab rAvis \cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
+Version: \tab 0.1\cr
 Date: \tab 2013-11-24\cr
-License: \tab What license is it under?\cr
+License: \tab GPL-2 \cr
 }
-~~ An overview of how to use the package, including the most important ~~
-~~ functions ~~
+
+We programmed two main functions to set flexible queries about the species occurrences and the birdwatcher observations: avisQuerySpecies and avisQueryContributor. Besides, there are also functions to explore the database, like avisMapSpecies.
+
 }
 \author{
-Who wrote it
+Javier Gonzalez-Hernandez and Sara Varela
 
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
+Maintainer: javigzz@yahoo.es
+
 }
 \references{
-~~ Literature or other references for background information ~~
+Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in prep. rAvis: an R-package to download the information stored in Proyecto AVIS, a citizen science bird project.
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS ~~
-~~ in the R documentation directory ~~
+
 \keyword{ package }
 \seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
+http://proyectoavis.com
 }
 \examples{
-~~ simple examples of the most important functions ~~
+
+avisSpeciesSummary()
+
+avisMapSpecies ("Pica pica", maptype="phys")
+
+avisQuerySpecies(list("Bubo bubo", "Tyto alba"), args = list(year = 2012))
 }

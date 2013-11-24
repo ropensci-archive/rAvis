@@ -5,7 +5,8 @@
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Renders a map for each of the species provided in names
+
 }
 \usage{
 avisMapSpecies(names, maptype = "admin")
@@ -13,14 +14,14 @@ avisMapSpecies(names, maptype = "admin")
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{names}{
-%%     ~~Describe \code{names} here~~
+might be a string or a list of species names
 }
   \item{maptype}{
-%%     ~~Describe \code{maptype} here~~
+Available types of map are 'admin', administrative provinces of Spain (by default) or 'phys, physical map of Spain. 
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+For these maps, we used free online map repositories. We downloaded the Spanish administrative map from  http://www.diva-gis.org/ and the Spanish physical map of http://www.openstreetmap.org/ using the R- library OpenStreetMap. 
 }
 \value{
 %%  ~Describe the value returned
@@ -29,8 +30,14 @@ avisMapSpecies(names, maptype = "admin")
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
+\author{
+Sara Varela and Javier Gonzalez Hernandez
+}
 \references{
-%% ~put references to the literature/web site here ~
+Fellows I and Stotz) utJlbJP (2013) OpenStreetMap: Access to open street map raster images. R package version 0.3.1. http://CRAN.R-project.org/package=OpenStreetMap.
+
+Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in prep. rAvis: an R-package to download the information stored in Proyecto AVIS, a citizen science bird project.
+
 }
 \author{
 %%  ~~who you are~~
@@ -45,21 +52,8 @@ avisMapSpecies(names, maptype = "admin")
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (names, maptype = "admin") 
-{
-    if (!is.list(names)) {
-        names <- list(names)
-    }
-    for (name in names) {
-        obs <- avisQuerySpecies(name)
-        avisMap(obs, name, maptype)
-    }
-  }
+avisMapSpecies("Bubo bubo", "phys")
+avisMapSpecies(list("Tyto alba", "Bubo bubo", "Asio capensis"))
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
