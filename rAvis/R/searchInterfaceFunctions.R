@@ -14,9 +14,6 @@
 	# habitat: 'terrenos agrícolas', 'roquedos de interior', 
 	# 'zonas humanizadas', 'zonas húmedas interiores', 'bosque',
 	# 'pastizales', 'costas', 'matorral', 'otros'
-	
-	# id_ca = '',	id_provincia = '',
-	# gr = '', cf = '', utm_10 = '', utm_1 = '', 
 	month = 'mes', 
 	year = 'ano'
 )
@@ -48,13 +45,8 @@
 	formato_consulta = 'tabla', 
 	tipo_consulta = '', 
 	control = 1, 
-	# filter modes
-	# primero = 1, ultimo = 25, filtrar = 0, 
-	# orden_tabla = 'numero', num_pag = 1,
 	excel = 1
 )
-
-# ravisUTMLatLong<-NULL
 
 # Is a wrapper for avisQuery that allows you to perform a query for more than 
 # one species at once.
@@ -101,7 +93,8 @@ avisQuerySpecies <- function (names, args = list())
 # avisQueryContributor(56)
 # avisQueryContributor(list(56, 88), args = list(year = 2012))
 # 
-avisQueryContributor <- function (contributor_ids, args = list()) {
+avisQueryContributor <- function (contributor_ids, args = list()) 
+{
 	if(is.element('usu', names(args)))
 	{
 		warning("usu argument in the argument list won't be regarded")
@@ -235,6 +228,7 @@ avisQuery <- function (id_species = '', species = '', family = '', order = '', a
 	return (args)
 }
 
-.getUTMLatlong<- function(){
-  return (ravisUTMLatLong)
+.getUTMLatlong<- function()
+{
+	return (ravisUTMLatLong)
 }

@@ -11,11 +11,11 @@
   {
   	if(is.function(setupfun)){
   		setupcall <- as.call(list(setupfun))
-  	} else {
-  		setupcall <- call(setupfun)
-  	}
+    } else {
+      setupcall <- call(setupfun)
+    }
 
-  	setupvalue <- eval(setupcall)
+    setupvalue <- eval(setupcall)
     .avisCacheSet(varname, setupvalue)
 
     .avisCacheGet(varname)
