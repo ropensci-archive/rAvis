@@ -1,11 +1,12 @@
 Package: rAvis
+Encoding: UTF-8
 Type: Package
 Title: Interface to the birdwatching datasets at proyectoavis.com
 Version: 0.1
 Date: 2013-11-24
 Author: Javier González Hernández, Sara Varela González
-Maintainer: Javier González Hernánde <javigzz@yahoo.es>
+Maintainer: Javier González Hernández <javigzz@yahoo.es>
 Description: Interface to the proyectoavis.com bird observations records database. 
-	It provides means to download datasets filtered by speces, order, family, and several other fields. Provides also basic functionality to plot exploratory maps of the datasets.
+	It provides means to download datasets filtered by speces, order, family, and several other criteria. Provides also basic functionality to plot exploratory maps of the datasets.
 License: GPL-2
-Imports: stringr, XML, tools, RCurl, scrapeR, gdata, scales, maptools, raster, rgdal
+Depends: stringr, XML, tools, RCurl, scrapeR, gdata, scales, maptools, raster, rgdal

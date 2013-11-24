@@ -23,7 +23,6 @@ Sara Varela and Javier Gonzalez Hernandez
 \references{
 Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in prep. rAvis: an R-package to download the information stored in Proyecto AVIS, a citizen science bird project.
 }
-}
 \note{
 This function does not allow arguments
 }
@@ -34,6 +33,7 @@ This function does not allow arguments
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+\dontrun{
 birdwatchers<- avisContributorsSummary()
 par (mfrow =c(2,2))
 plot (birdwatchers[,2],birdwatchers[,3], xlab=colnames (birdwatchers)[2], 
@@ -45,7 +45,7 @@ plot (birdwatchers[,2],birdwatchers[,5], xlab=colnames (birdwatchers)[2],
 plot (birdwatchers[,2],birdwatchers[,6], xlab=colnames (birdwatchers)[2], 
       ylab=colnames (birdwatchers)[6], pch=19)
 }
+}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{data}

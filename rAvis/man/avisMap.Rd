@@ -49,11 +49,12 @@ Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+\dontrun{
 obs<- avisQuerySpecies ("Pica pica")
 avisMap(obs, label = "Pica pica")
 avisMap(obs, label = "Pica pica", maptype = "phys")
 }
+}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{aplot}

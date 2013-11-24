@@ -7,6 +7,17 @@
 
 ravis_url_login <- "http://proyectoavis.com/cgi-bin/login.cgi"
 
+.avisGetURL <- function(url, nologin = FALSE) {
+  if (nologin == TRUE){
+    # new curl handle
+    curl_handler<- getCurlHandle()
+  } else {
+    curl_handler<- .avisCurlHandler()
+  }
+
+  return (getURL(url, curl = curl_handler))
+}
+
 .avisCurlHandler <- function(){
   if(is.null(.ravis_curl_handler)){
     .avisLogin()

@@ -29,6 +29,8 @@ Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in
 avisMapSpecies, avisQuerySpecies, avisQuery
 }
 \examples{
+\dontrun{
+
 avis_summary<- avisSpeciesSummary()
 
 #general overview of the data aggregated by species
@@ -38,5 +40,7 @@ hist (avis_summary$Observations, col="red", border=F, main=NULL)
 hist (avis_summary$Individuals, col="red", border=F, main=NULL)
 hist (avis_summary$UTM.10x10, col="red", border=F, main=NULL)
 hist (avis_summary$Birdwatchers, col="red", border=F, main=NULL)
+}
 
 }
+\keyword{data}

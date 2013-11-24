@@ -14,8 +14,8 @@ library(raster)
 library(rgdal)
 
 # package functions
-source.with.encoding('loginFunctions.R', encoding='UTF-8')
-source.with.encoding('remoteSpeciesDataFunctions.R', encoding='UTF-8')
-source.with.encoding('remoteUsersDataFunctions.R', encoding='UTF-8')
-source.with.encoding('searchInterfaceFunctions.R', encoding='UTF-8')
-source.with.encoding('plotFunctions.R', encoding='UTF-8')
+source.with.encoding('rAvis/R/loginFunctions.R', encoding='UTF-8')
+source.with.encoding('rAvis/R/remoteSpeciesDataFunctions.R', encoding='UTF-8')
+source.with.encoding('rAvis/R/remoteUsersDataFunctions.R', encoding='UTF-8')
+source.with.encoding('rAvis/R/searchInterfaceFunctions.R', encoding='UTF-8')
+source.with.encoding('rAvis/R/plotFunctions.R', encoding='UTF-8')

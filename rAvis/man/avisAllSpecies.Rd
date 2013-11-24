@@ -37,5 +37,9 @@ This functions does not allow arguments
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+\dontrun{
 avisAllSpecies()
 }
+}
+\keyword{data}
+\keyword{datasets}

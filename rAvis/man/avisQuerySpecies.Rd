@@ -36,6 +36,11 @@ Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+\dontrun{
  avisQuerySpecies("Bubo bubo")
  avisQuerySpecies(list("Bubo bubo", "Tyto alba"), args = list(year = 2012))
-
+}
+}
+\keyword{IO}
+\keyword{data}
+\keyword{datasets}

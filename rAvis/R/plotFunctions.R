@@ -1,8 +1,8 @@
 
 # global shapes and images
-ravis_shape_spain<-NULL
-ravis_img_ipeninsula<-NULL
-ravis_img_canarias<-NULL
+.ravis_shape_spain<-NULL
+.ravis_img_ipeninsula<-NULL
+.ravis_img_canarias<-NULL
 
 
 # Renders a map for each species provided in names list / string
@@ -78,28 +78,28 @@ avisMap<-function(obs, label = '', maptype = 'admin')
 
 .avisReadShapeSpain<-function()
 {
-  # TODO: package private property... easier way to cache stuff?
-  if(is.null(ravis_shape_spain)){
-    ravis_shape_spain<-readShapePoly ("ESP_adm2.shp")
-    assign("ravis_shape_spain", ravis_shape_spain, envir = .GlobalEnv)
+  if(is.null(.ravis_shape_spain)){
+    # todo: load from package csv or remove (should be in .rda)
+    .ravis_shape_spain<-readShapePoly ("ESP_adm2.shp")
+    assign(".ravis_shape_spain", .ravis_shape_spain, envir = .GlobalEnv)
   }
-  return (ravis_shape_spain)  
+  return (.ravis_shape_spain)  
 }
 
 .avisReadPeninsulaImg<-function()
 {
-  if(is.null(ravis_img_ipeninsula)){
-    ravis_img_ipeninsula<-brick ("PI.tif")
-    assign("ravis_img_ipeninsula", ravis_img_ipeninsula, envir = .GlobalEnv)
+  if(is.null(.ravis_img_ipeninsula)){
+    .ravis_img_ipeninsula<-brick ("PI.tif")
+    assign(".ravis_img_ipeninsula", .ravis_img_ipeninsula, envir = .GlobalEnv)
   }
-  return (ravis_img_ipeninsula)
+  return (.ravis_img_ipeninsula)
 }
 
 .avisReadCanariasImg<-function()
 {
-  if(is.null(ravis_img_canarias)){
-    ravis_img_canarias<-brick ("canarias.tif")
-    assign("ravis_img_canarias", ravis_img_canarias, envir = .GlobalEnv)
+  if(is.null(.ravis_img_canarias)){
+    .ravis_img_canarias<-brick ("canarias.tif")
+    assign(".ravis_img_canarias", .ravis_img_canarias, envir = .GlobalEnv)
   }
-  return (ravis_img_canarias)
+  return (.ravis_img_canarias)
 }

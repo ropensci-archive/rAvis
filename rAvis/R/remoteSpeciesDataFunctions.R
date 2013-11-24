@@ -37,17 +37,6 @@ avisAllSpecies <- function()
   return (ravis_species_id_list)
 }
 
-.avisGetURL <- function(url, nologin = FALSE) {
-  if (nologin == TRUE){
-    # new curl handle
-    curl_handler<- getCurlHandle()
-  } else {
-    curl_handler<- .avisCurlHandler()
-  }
-
-  return (getURL(url, curl = curl_handler))
-}
-
 # fetches species list from server
 .avisGetServerEspecies <- function()
 {

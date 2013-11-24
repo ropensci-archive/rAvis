@@ -26,11 +26,11 @@ id of the birdwatcher (see avisContributorSummary)
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
-%%  ~~who you are~~
+Sara Varela and Javier Gonzalez Hernandez
+}
+\references{
+Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in prep. rAvis: an R-package to download the information stored in Proyecto AVIS, a citizen science bird project.
 }
 \note{
 %%  ~~further notes~~
@@ -43,11 +43,10 @@ id of the birdwatcher (see avisContributorSummary)
 }
 \examples{
 # Explore the contributions of Colectivo Ornitologico Ciguena Negra
-
+\dontrun{
 avisContributorAggregatedObservations (370)
-  }
+}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{data}

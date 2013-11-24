@@ -47,10 +47,12 @@ Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in
 avisContributorsSummary
 }
 \examples{
+\dontrun{
 avisQueryContributor(370)
 avisQueryContributor(list(370, 399), args = list(year = 2002))
 }
+}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{data}
+\keyword{dataset}% __ONLY ONE__ keyword per line

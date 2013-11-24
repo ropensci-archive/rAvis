@@ -35,10 +35,11 @@ Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in
 http://proyectoavis.com
 }
 \examples{
-
+\dontrun{
 avisSpeciesSummary()
 
 avisMapSpecies ("Pica pica", maptype="phys")
 
 avisQuerySpecies(list("Bubo bubo", "Tyto alba"), args = list(year = 2012))
+}
 }
