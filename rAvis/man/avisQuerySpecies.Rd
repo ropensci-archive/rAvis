@@ -2,7 +2,7 @@
 \alias{avisQuerySpecies}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+avisQuerySpecies
 }
 \description{
 Is a wrapper for avisQuery that allows you to perform a query for more than one species at once.'names' must be either a string or a list of species names, 'args' is a list of query parameters (see avisQuery) that adds further filters to the query.

@@ -1,19 +1,26 @@
-\name{avisSpeciesId}
-\alias{avisSpeciesId}
+\name{avisMap}
+\alias{avisMap}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+avisMap
 }
 \description{
-Returns the id of the selected species
+Renders a map for the observations provided in 'obs'.
+
 }
 \usage{
-avisSpeciesId(nombreraw)
+avisMap(obs, label = "", maptype = "admin")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{nombreraw}{
-name of the species
+  \item{obs}{
+set of observations returned by any of the avisQueryXXX functions
+}
+  \item{label}{
+label for the map
+}
+  \item{maptype}{
+Available types of map are 'admin', administrative provinces of Spain (by default) or 'phys, physical map of Spain. 
 }
 }
 \details{
@@ -32,7 +39,6 @@ Sara Varela and Javier Gonzalez Hernandez
 \references{
 Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in prep. rAvis: an R-package to download the information stored in Proyecto AVIS, a citizen science bird project.
 }
-
 \note{
 %%  ~~further notes~~
 }
@@ -43,7 +49,9 @@ Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-avisSpeciesId("Pica pica")
+obs<- avisQuerySpecies ("Pica pica")
+avisMap(obs, label = "Pica pica")
+avisMap(obs, label = "Pica pica", maptype = "phys")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

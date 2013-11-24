@@ -2,7 +2,7 @@
 \alias{avisQuery}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+avisQuery
 }
 \description{
 General function for querying the database by a set of criteria. Criteria may be set by means of a few

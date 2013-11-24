@@ -2,6 +2,7 @@
 \alias{avisSpeciesSummary}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
+avisSpeciesSummary
 }
 \description{
 Download a table with a summary of the records stored in Proyecto AVIS (http://proyectoavis.com) aggregated by species; number of observations of each species, number of individuals recorded, number of different UTMs (10x10km) with observations, number of birdwatchers that recorded the species

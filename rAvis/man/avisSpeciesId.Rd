@@ -1,23 +1,19 @@
-\name{avisQueryContributor}
-\alias{avisQueryContributor}
+\name{avisSpeciesId}
+\alias{avisSpeciesId}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+avisSpeciesId
 }
 \description{
-Is a wrapper for avisQuery that allows you to perform a query for more than one contributor at once.
-
+Returns the id of the selected species
 }
 \usage{
-avisQueryContributor(contributor_ids, args = list())
+avisSpeciesId(nombreraw)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{contributor_ids}{
-must be either an integer or a list of contributors ids
-}
-  \item{args}{
-is a list of query parameters (see avisQuery) that adds further filters to the query
+  \item{nombreraw}{
+name of the species
 }
 }
 \details{
@@ -35,8 +31,8 @@ Sara Varela and Javier Gonzalez Hernandez
 }
 \references{
 Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in prep. rAvis: an R-package to download the information stored in Proyecto AVIS, a citizen science bird project.
-
 }
+
 \note{
 %%  ~~further notes~~
 }
@@ -44,11 +40,10 @@ Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-avisContributorsSummary
+%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-avisQueryContributor(370)
-avisQueryContributor(list(370, 399), args = list(year = 2002))
+avisSpeciesId("Pica pica")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

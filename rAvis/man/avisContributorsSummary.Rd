@@ -2,7 +2,7 @@
 \alias{avisContributorsSummary}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-
+avisContributorsSummary
 }
 \description{
 Returns a table with the observations aggregated by birdwatcher. 

@@ -2,7 +2,7 @@
 \alias{avisAllSpecies}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-
+avisAllSpecies
 }
 \description{
 Return a list with the species names and the ids of the species in Proyecto AVIS
