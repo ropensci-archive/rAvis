@@ -54,9 +54,7 @@
 	excel = 1
 )
 
-.avisQueryRawData <- NULL
-
-.ravisUTMLatLong<-NULL
+# ravisUTMLatLong<-NULL
 
 # Is a wrapper for avisQuery that allows you to perform a query for more than 
 # one species at once.
@@ -202,8 +200,6 @@ avisQuery <- function (id_species = '', species = '', family = '', order = '', a
 		stop("Object of type 'list' expected")
 	}
 
-	.avisQueryRawData <- NULL
-
 	args<-.avisMergeArgumentList(args, .ravis_raw_search_default_params)
 
 	# query string
@@ -216,9 +212,6 @@ avisQuery <- function (id_species = '', species = '', family = '', order = '', a
 	url <- paste(.ravis_search_url_base, qs, sep = "?")
 
 	.avisQueryRawData <- .avisGetURL(url)
-
-	# TODO: better way
-  	assign(".avisQueryRawData", .avisQueryRawData, envir = .GlobalEnv)
 
   	data <- read.csv(textConnection(.avisQueryRawData), sep = ";", quote = "")
   
@@ -243,11 +236,5 @@ avisQuery <- function (id_species = '', species = '', family = '', order = '', a
 }
 
 .getUTMLatlong<- function(){
-  if(is.null(.ravisUTMLatLong)){
-  	# todo: load from package csv or remove (should be in .rda)
-    .ravisUTMLatLong<- read.table ("utm_latlon.csv", sep=",", header=T)
-    assign(".ravisUTMLatLong", .ravisUTMLatLong, envir = .GlobalEnv)
-  }
-  
-  return (.ravisUTMLatLong)
+  return (ravisUTMLatLong)
 }

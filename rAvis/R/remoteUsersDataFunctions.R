@@ -1,29 +1,12 @@
 # functions concerning contributor users (birdwatchers) of proyectoavis.com
 
-ravis_birdwatcher_summary<- NULL
-
-ravis_username_id_list<- NULL
-
 # main summary of birdwatchers observations
 avisContributorsSummary<- function ()
 {
-  if(is.null(ravis_birdwatcher_summary))
-  {
-    ravis_birdwatcher_summary<- .avisExtractContributorsSummaryFromServer()
+  # todo: falla si no asigno a cs
+  cs <- .avisCacheReturnOrSetup("contributors_summary", ".avisContributorsSummaryInit")
 
-    ravis_username_id_list<-unlist(ravis_birdwatcher_summary[,2])
-
-    names(ravis_username_id_list)<-unlist(ravis_birdwatcher_summary[,1])
-
-    # remove username
-    ravis_birdwatcher_summary <- ravis_birdwatcher_summary[,-(which (colnames(ravis_birdwatcher_summary)=="User"))]
-
-    # TODO: hacer variable a nivel de package
-    assign("ravis_birdwatcher_summary", ravis_birdwatcher_summary, envir = .GlobalEnv)
-    assign("ravis_username_id_list", ravis_username_id_list, envir = .GlobalEnv)
-  }
-
-  return (ravis_birdwatcher_summary)
+  return(cs)
 }
 
 # Aggregated summary of one contributor observations
@@ -41,6 +24,22 @@ avisContributorAggregatedObservations<- function (contributor_id)
   names (df)<- c("SpeciesId", "Observations", "Number", "UTM.10x10", "Birdwatchers")
   
   return(df)
+}
+
+.avisContributorsSummaryInit <- function()
+{
+  rbs<- .avisExtractContributorsSummaryFromServer()
+
+  ravis_username_id_list<-unlist(rbs[,2])
+  names(ravis_username_id_list)<-unlist(rbs[,1])
+
+  # remove username
+  rbs <- rbs[,-(which (colnames(rbs)=="User"))]
+
+  # cache username - id list
+  .avisCacheSet('ravis_username_id_list', ravis_username_id_list)
+    
+  return(rbs)
 }
 
 

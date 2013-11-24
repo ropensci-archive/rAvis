@@ -2,10 +2,7 @@
 
 .ravis_session_started<- list( OK = 1, NO_COOKIES = 2, BAD_CREDENTIALS = 3 )
 
-# handler for requests to server
-.ravis_curl_handler <- NULL
-
-ravis_url_login <- "http://proyectoavis.com/cgi-bin/login.cgi"
+.ravis_url_login <- "http://proyectoavis.com/cgi-bin/login.cgi"
 
 .avisGetURL <- function(url, nologin = FALSE) {
   if (nologin == TRUE){
@@ -19,13 +16,12 @@ ravis_url_login <- "http://proyectoavis.com/cgi-bin/login.cgi"
 }
 
 .avisCurlHandler <- function(){
-  if(is.null(.ravis_curl_handler)){
+
+  if(!.avisCacheHas(".ravis_curl_handler")){
     .avisLogin()
-  } else {
-    
   }
-  
-  return (.ravis_curl_handler)
+
+  return (.avisCacheGet(".ravis_curl_handler"))
 }
 
 .avisLogin <- function() {
@@ -41,7 +37,7 @@ ravis_url_login <- "http://proyectoavis.com/cgi-bin/login.cgi"
 
   params<- list( usu=avis_user, password=avis_pass, control_login='1' )
 
-  html = postForm(ravis_url_login, 
+  html = postForm(.ravis_url_login, 
     .params = params, 
     curl = .avisCreateCurlHandler(), 
     style="POST")
@@ -57,32 +53,29 @@ ravis_url_login <- "http://proyectoavis.com/cgi-bin/login.cgi"
   return (status == .ravis_session_started["OK"])
 }
 
-# new curl handler
+# Create new Curl handle for the requests to avis
 .avisCreateCurlHandler <- function() {
-  # Curl handle for the requests to avis
   
-  # if(is.null(.ravis_curl_handler)){
-    message("INFO: initializing curl handler for connecting to avis project")
+  message("INFO: initializing curl handler for connecting to avis project")
 
-    .ravis_curl_handler <- getCurlHandle()
+  .handler <- getCurlHandle()
 
-    curlSetOpt(
-      .opts = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")),
-      cookiefile = "cookies.txt",
+  curlSetOpt(
+    .opts = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")),
+      # cookiefile = "cookies.txt",
+      cookiefile = tempfile("r_avis_cookie.txt"),
       useragent = 'R-Avis package',
       followlocation = TRUE,
       # verbose = TRUE,
       httpheader = "Referer: http://proyectoavis.com",
-      curl = .ravis_curl_handler)
+      curl = .handler)
 
-    # TODO: handle debe ser una propiedad de un objeto, no un objeto en entorno global
-    assign(".ravis_curl_handler", .ravis_curl_handler, envir = .GlobalEnv)
+  .avisCacheSet(".ravis_curl_handler", .handler)
 
-    # first call to initializate session
-    getURL(ravis_url_login, curl = .ravis_curl_handler)
-  # }
+  # first call to initializate session
+  getURL(.ravis_url_login, curl = .handler)
 
-  return (.ravis_curl_handler)
+  return (.handler)
 }
 
 .parse.avisLoginStatusFromHTML<- function(html) {

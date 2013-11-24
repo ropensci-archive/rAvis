@@ -14,6 +14,7 @@ library(raster)
 library(rgdal)
 
 # package functions
+source.with.encoding('rAvis/R/ravisCacheEnvironment.R', encoding='UTF-8')
 source.with.encoding('rAvis/R/loginFunctions.R', encoding='UTF-8')
 source.with.encoding('rAvis/R/remoteSpeciesDataFunctions.R', encoding='UTF-8')
 source.with.encoding('rAvis/R/remoteUsersDataFunctions.R', encoding='UTF-8')

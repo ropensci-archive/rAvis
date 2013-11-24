@@ -1,9 +1,5 @@
 # Functions for grabing remote data
 
-ravis_species_id_list <- NULL
-
-.ravis_species_summary <- NULL
-
 # function to get the ids of the species
 avisSpeciesId <- function (nombreraw)
 {
@@ -26,15 +22,7 @@ avisHasSpecies <- function (nombreraw)
 
 avisAllSpecies <- function()
 {
-  if(is.null(ravis_species_id_list))
-  {
-    ravis_species_id_list <- .avisGetServerEspecies()
-
-    # TODO: hacer variable a nivel de package
-    assign("ravis_species_id_list", ravis_species_id_list, envir = .GlobalEnv)
-  }
-
-  return (ravis_species_id_list)
+  .avisCacheReturnOrSetup(".ravis_species_id_list", ".avisGetServerEspecies")
 }
 
 # fetches species list from server
@@ -42,7 +30,7 @@ avisAllSpecies <- function()
 {
   message("INFO: fetching species list from proyectoavis.com server")
 
-  rawhtml<- .avisGetURL("http://proyectoavis.com/cgi-bin/bus_orden.cgi")
+  rawhtml<- .avisGetURL("http://proyectoavis.com/cgi-bin/bus_orden.cgi", TRUE)
   id<- grep("id_especie=[0-9]+",rawhtml)
   ids<- str_extract_all (rawhtml, "id_especie=[0-9]+")
   id_specie<- as.numeric (substring(unlist (ids [c(id)]), 12))
@@ -59,22 +47,19 @@ avisAllSpecies <- function()
 # to see how many records of species are stored in the database
 avisSpeciesSummary <- function ()
 {
-  if(is.null(.ravis_species_summary))
-  {
-    message("INFO: fetching species summary from proyectoavis.com server")
+  .avisCacheReturnOrSetup(".ravis_species_summary", function(){
 
+    # fetches form server
+    message("INFO: fetching species summary from proyectoavis.com server")
     tables<- readHTMLTable ("http://proyectoavis.com/cgi-bin/bus_especie.cgi")
     table_obs<- tables[[7]]
     observ<-  table_obs[4:dim(table_obs)[1],3:6]
     names (observ)<- c("Observations", "Individuals", "UTM.10x10", "Birdwatchers")
-    .ravis_species_summary<- data.frame (lapply(observ, as.numeric), stringsAsFactors=FALSE)
-    row.names (.ravis_species_summary)<- table_obs [4:dim(table_obs)[1],2]
+    spsummary<- data.frame (lapply(observ, as.numeric), stringsAsFactors=FALSE)
+    row.names (spsummary)<- table_obs [4:dim(table_obs)[1],2]
 
-    # TODO: hacer variable a nivel de package
-    assign(".ravis_species_summary", .ravis_species_summary, envir = .GlobalEnv)
-  }
-
-  return (.ravis_species_summary)  
+    return(spsummary)
+  });
 }
 
 .avisNormalizeSpeciesName<- function(raw)

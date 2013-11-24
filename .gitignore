@@ -7,3 +7,4 @@ localScripts.R
 cookies.txt
 anRpackage.Rcheck
 rAvis.Rcheck
+rAvis_*.tar.gz

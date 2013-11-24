@@ -1,10 +1,4 @@
 
-# global shapes and images
-.ravis_shape_spain<-NULL
-.ravis_img_ipeninsula<-NULL
-.ravis_img_canarias<-NULL
-
-
 # Renders a map for each species provided in names list / string
 # Types of map are the same as for avisMap
 # 
@@ -65,41 +59,31 @@ avisMap<-function(obs, label = '', maptype = 'admin')
 
 .avisRenderMapAdmin<-function(obs, label)
 {
-  shapeSpain<-.avisReadShapeSpain()
+  # ravis_shape_spain: shape in package data folder
 
-  plot (shapeSpain, border="grey75", ylim=c(34,44), xlim=c(-10,5))
+  plot (ravis_shape_spain, border="grey75", ylim=c(34,44), xlim=c(-10,5))
   points(obs$x, obs$y, col=alpha ("red", 0.5), pch=19, cex=1.2)
   text(-9.5, 34.2, label,  font=3, cex=2, adj=c(0,0))
-  plot (shapeSpain, border="grey75", ylim=c(27.5, 29.5), xlim=c(-18.5,-13.5))
+  plot (ravis_shape_spain, border="grey75", ylim=c(27.5, 29.5), xlim=c(-18.5,-13.5))
   rect(-18.5, 21, -11, 30, density = NULL, angle = 45,
    col = NA, border = "grey40", lwd=2)
   points(obs$x, obs$y, col=alpha ("red", 0.5), pch=19, cex=1.2)
 }
 
-.avisReadShapeSpain<-function()
-{
-  if(is.null(.ravis_shape_spain)){
-    # todo: load from package csv or remove (should be in .rda)
-    .ravis_shape_spain<-readShapePoly ("ESP_adm2.shp")
-    assign(".ravis_shape_spain", .ravis_shape_spain, envir = .GlobalEnv)
-  }
-  return (.ravis_shape_spain)  
-}
-
 .avisReadPeninsulaImg<-function()
 {
-  if(is.null(.ravis_img_ipeninsula)){
-    .ravis_img_ipeninsula<-brick ("PI.tif")
-    assign(".ravis_img_ipeninsula", .ravis_img_ipeninsula, envir = .GlobalEnv)
-  }
-  return (.ravis_img_ipeninsula)
+  .avisCacheReturnOrSetup(".ravis_img_ipeninsula", function(){
+
+      brick ( system.file('extdata/peninsula.tif', package="rAvis"))
+
+  })
 }
 
 .avisReadCanariasImg<-function()
 {
-  if(is.null(.ravis_img_canarias)){
-    .ravis_img_canarias<-brick ("canarias.tif")
-    assign(".ravis_img_canarias", .ravis_img_canarias, envir = .GlobalEnv)
-  }
-  return (.ravis_img_canarias)
+  .avisCacheReturnOrSetup(".ravis_img_canarias", function(){
+
+      brick ( system.file('extdata/canarias.tif', package="rAvis"))
+
+  })
 }

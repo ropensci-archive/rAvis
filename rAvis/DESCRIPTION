@@ -10,3 +10,4 @@ Description: Interface to the proyectoavis.com bird observations records databas
 	It provides means to download datasets filtered by speces, order, family, and several other criteria. Provides also basic functionality to plot exploratory maps of the datasets.
 License: GPL-2
 Depends: stringr, XML, tools, RCurl, scrapeR, gdata, scales, maptools, raster, rgdal
+LazyData: true
