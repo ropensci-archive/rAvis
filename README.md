@@ -8,6 +8,7 @@ rAvis: an R-package to download the information stored in “proyectoavis”, a 
 The package is stored in CRAN repository, so you may install it as:
 
 install.packages ("rAvis")
+
 library(rAvis)
 
 # See help
