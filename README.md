@@ -11,9 +11,16 @@ install.packages ("rAvis")
 
 library(rAvis)
 
-# Load package in your workspace
+# Install with devtools
 
-Meanwhile the package is available in CRAN, you may clone or download this repository and install the tar version of the package included in this repo.
+In the mean time you can install this development version with devtools package
+
+```coffee
+install.packages("devtools")
+library(devtools)
+install_github("javigzz/rAvis")
+library(rAvis)
+```
 
 # See help
 
