@@ -13,7 +13,7 @@ library(rAvis)
 
 # Install with devtools
 
-In the mean time you can install this development version with devtools package
+In the meantime you can install this development version with devtools package
 
 ```coffee
 install.packages("devtools")
