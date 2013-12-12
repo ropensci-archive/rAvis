@@ -22,6 +22,27 @@ install_github("javigzz/rAvis")
 library(rAvis)
 ```
 
+# Try some command
+
+## Get species observation data
+
+```coffee
+q <- avisQuerySpecies("bubo bubo")
+```
+
+## Render a map
+
+```coffee
+avisMapSpecies("pica pica")
+```
+
+or with a physical map behind:
+
+```coffee
+avisMapSpecies("pica pica", "phys")
+
 # See help
+
+Package help for more info
 
 ??rAvis
