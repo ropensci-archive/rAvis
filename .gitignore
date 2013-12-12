@@ -8,3 +8,4 @@ cookies.txt
 anRpackage.Rcheck
 rAvis.Rcheck
 #rAvis_*.tar.gz
+check_as_cran.log
