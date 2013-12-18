@@ -40,6 +40,8 @@ or with a physical map behind:
 
 ```coffee
 avisMapSpecies("pica pica", "phys")
+```
+
 
 # See help
 
