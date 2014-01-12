@@ -50,10 +50,10 @@ avisMap<-function(obs, label = '', maptype = 'admin')
   peninsulaImg<-.avisReadPeninsulaImg()
   canariasImg<-.avisReadCanariasImg()
 
-  plotRGB (peninsulaImg)
+  raster::plotRGB (peninsulaImg)
   points(obs$x, obs$y, col=alpha ("red", 0.5), pch=19, cex=1.2)
-  text(-9.5, 34.2, label,  font=3, cex=2, adj=c(0,0))
-  plotRGB (canariasImg)
+  raster::text(-9.5, 34.2, label,  font=3, cex=2, adj=c(0,0))
+  raster::plotRGB (canariasImg)
   points(obs$x, obs$y, col=alpha ("red", 0.5), pch=19, cex=1.2)
 }
 
@@ -63,7 +63,7 @@ avisMap<-function(obs, label = '', maptype = 'admin')
 
   plot (ravis_shape_spain, border="grey75", ylim=c(34,44), xlim=c(-10,5))
   points(obs$x, obs$y, col=alpha ("red", 0.5), pch=19, cex=1.2)
-  text(-9.5, 34.2, label,  font=3, cex=2, adj=c(0,0))
+  raster::text(-9.5, 34.2, label,  font=3, cex=2, adj=c(0,0))
   plot (ravis_shape_spain, border="grey75", ylim=c(27.5, 29.5), xlim=c(-18.5,-13.5))
   rect(-18.5, 21, -11, 30, density = NULL, angle = 45,
    col = NA, border = "grey40", lwd=2)

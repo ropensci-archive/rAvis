@@ -12,8 +12,8 @@ avisContributorsSummary<- function ()
 # Aggregated summary of one contributor observations
 avisContributorAggregatedObservations<- function (contributor_id)
 {
-  doc<-htmlParse(paste ("http://proyectoavis.com/cgi-bin/ficha_usuario.cgi?id_usuario=", contributor_id, sep=""))
-  nodes <- getNodeSet(doc, "//table[@class=\"resultados\"]/tr")
+  doc<-XML::htmlParse(paste ("http://proyectoavis.com/cgi-bin/ficha_usuario.cgi?id_usuario=", contributor_id, sep=""))
+  nodes <- XML::getNodeSet(doc, "//table[@class=\"resultados\"]/tr")
 
   df<-data.frame()
   
@@ -46,8 +46,8 @@ avisContributorAggregatedObservations<- function (contributor_id)
 # Aggregated Summary of all contributors and their observations
 .avisExtractContributorsSummaryFromServer<-function()
 {
-  doc<-htmlParse("http://proyectoavis.com/cgi-bin/usuarios.cgi")
-  nodes <- getNodeSet(doc, "//table[@class=\"observaciones1\"]/tr[@class=\"celda1\"]")
+  doc<-XML::htmlParse("http://proyectoavis.com/cgi-bin/usuarios.cgi")
+  nodes <- XML::getNodeSet(doc, "//table[@class=\"observaciones1\"]/tr[@class=\"celda1\"]")
 
   df<- NULL
   for (node in nodes) {
@@ -64,11 +64,11 @@ avisContributorAggregatedObservations<- function (contributor_id)
 # internal
 .avisExtractContributorDataFromRowNode<-function(node)
 {
-  strnode <- toString.XMLNode(node)   
+  strnode <- XML::toString.XMLNode(node)   
   usu_id<-regmatches(strnode, regexpr('id_usuario=([0-9]+)', strnode))
   id<-as.integer(regmatches(usu_id, regexpr('[0-9]+', usu_id)))
   
-  clean_row_data <- xmlValue(node, encoding="utf-8")
+  clean_row_data <- XML::xmlValue(node, encoding="utf-8")
   celdas<-as.list(strsplit(gsub("\n","#", clean_row_data), "#")[[1]][1:8])
 
   # remove username and name
@@ -82,7 +82,7 @@ avisContributorAggregatedObservations<- function (contributor_id)
 # internal
 .avisExtractContributorObservationDataFromRowNode<-function(node)
 {
-  clean_row_data <- xmlValue(node, encoding="utf-8")
+  clean_row_data <- XML::xmlValue(node, encoding="utf-8")
   celdas<-as.list(strsplit(gsub("\n","#", clean_row_data), "#")[[1]])
   
   # id de especie
