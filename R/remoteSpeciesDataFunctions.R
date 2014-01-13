@@ -1,23 +1,24 @@
 # Functions for grabing remote data
 
 # function to get the ids of the species
-avisSpeciesId <- function (nombreraw)
+avisSpeciesId <- function (nameraw)
 {
-  if(!avisHasSpecies(nombreraw)){
-    stop(paste("Species '", nombreraw,"' not found in proyectoavis.com"))
+  if(!avisHasSpecies(nameraw)){
+    stop(paste("Species '", nameraw,"' not found in proyectoavis.com"))
   }
 
   allspecies <- avisAllSpecies()
 
-  return (as.integer(allspecies[.avisNormalizeSpeciesName(nombreraw)]))
+  return (as.integer(allspecies[.avisNormalizeSpeciesName(nameraw)]))
 }
 
-avisHasSpecies <- function (nombreraw)
+avisHasSpecies <- function (nameraw)
 {
-  nombre <- .avisNormalizeSpeciesName(nombreraw)
+ 
+  name <- .avisNormalizeSpeciesName(nameraw)
   allspecies <- avisAllSpecies()
 
-  return (is.element(nombre, names(allspecies)))
+  return (is.element(name, names(allspecies)))
 }
 
 avisAllSpecies <- function()
@@ -28,7 +29,7 @@ avisAllSpecies <- function()
 # fetches species list from server
 .avisGetServerEspecies <- function()
 {
-  message("INFO: fetching species list from proyectoavis.com server")
+  .avisVerboseMessage("INFO: fetching species list from proyectoavis.com server")
 
   rawhtml<- .avisGetURL("http://proyectoavis.com/cgi-bin/bus_orden.cgi", TRUE)
   id<- grep("id_especie=[0-9]+",rawhtml)
@@ -50,7 +51,7 @@ avisSpeciesSummary <- function ()
   .avisCacheReturnOrSetup(".ravis_species_summary", function(){
 
     # fetches form server
-    message("INFO: fetching species summary from proyectoavis.com server")
+    .avisVerboseMessage("INFO: fetching species summary from proyectoavis.com server")
     tables<- XML::readHTMLTable ("http://proyectoavis.com/cgi-bin/bus_especie.cgi")
     table_obs<- tables[[7]]
     observ<-  table_obs[4:dim(table_obs)[1],3:6]

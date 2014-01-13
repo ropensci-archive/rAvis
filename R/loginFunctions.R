@@ -56,17 +56,15 @@
 # Create new Curl handle for the requests to avis
 .avisCreateCurlHandler <- function() {
   
-  message("INFO: initializing curl handler for connecting to avis project")
+  .avisVerboseMessage("INFO: initializing curl handler for connecting to avis project")
 
   .handler <- getCurlHandle()
 
   curlSetOpt(
     .opts = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")),
-      # cookiefile = "cookies.txt",
       cookiefile = tempfile("r_avis_cookie.txt"),
       useragent = 'R-Avis package',
       followlocation = TRUE,
-      # verbose = TRUE,
       httpheader = "Referer: http://proyectoavis.com",
       curl = .handler)
 
