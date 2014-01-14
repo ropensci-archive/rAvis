@@ -48,16 +48,25 @@
 	excel = 1
 )
 
-# Is a wrapper for avisQuery that allows you to perform a query for more than 
-# one species at once.
-# 'names' must be either a string or a list of species names
-# 'args' is a list of query parameters (see avisQuery) that adds further filters to the query
-# 
-# eg: 
-# 
-# avisQuerySpecies("Bubo bubo")
-# avisQuerySpecies(list("Bubo bubo", "Tyto alba"), args = list(year = 2012))
-# 
+#' avisQuerySpecies
+#' 
+#' Is a wrapper for avisQuery that allows you to perform 
+#' a query for more than one species at once.'names' must 
+#' be either a string or a list of species names, 'args' 
+#' is a list of query parameters 
+#' (see avisQuery) that adds further filters to the query.
+#' 
+#' @usage avisQuerySpecies(names, args = list())
+#' @param names Must be either a string or a list of scientific names
+#' @param args A list of normalized parameters to add filters to the query. 
+#' Currently in Spanish, but this might become outdated. See avisQuery.
+#' @return a dataframe with the results of your specific query to Proyecto AVIS database
+#' @export 
+#' @examples \dontrun{
+#' avisQuerySpecies("Bubo bubo")
+#' avisQuerySpecies(list("Bubo bubo", "Tyto alba"), args = list(year = 2012))
+#' }
+
 avisQuerySpecies <- function (names, args = list()) 
 {
 	if(is.element('id_species', names(args)))
@@ -83,16 +92,23 @@ avisQuerySpecies <- function (names, args = list())
 	return (df)
 }
 
-# Is a wrapper for avisQuery that allows you to perform a query for more than 
-# one contributor at once.
-# 'contributor_ids' must be either an integer or a list of contributors ids
-# 'args' is a list of query parameters (see avisQuery) that adds further filters to the query
-# 
-# eg: 
-# 
-# avisQueryContributor(56)
-# avisQueryContributor(list(56, 88), args = list(year = 2012))
-# 
+#' avisQueryContributor
+#' 
+#' Is a wrapper for avisQuery that allows you to perform 
+#' a query for more than one contributor at once.
+#' 
+#' @usage avisQueryContributor(contributor_ids, args = list())
+#' @param contributor_ids must be either an integer or a list of contributors ids (integers)
+#' @param args A list of normalized parameters to add filters to the query. 
+#' Currently in Spanish, but this might become outdated. See avisQuery.
+#' @return a dataframe with the results of your specific query to Proyecto AVIS database
+#' @export 
+#' @seealso avisContributorsSummary
+#' @examples \dontrun{
+#' avisQueryContributor(370)
+#' avisQueryContributor(list(370, 399), args = list(year = 2002))
+#' }
+ 
 avisQueryContributor <- function (contributor_ids, args = list()) 
 {
 	if(is.element('usu', names(args)))
@@ -121,20 +137,45 @@ avisQueryContributor <- function (contributor_ids, args = list())
 	return (df)
 }
 
-# General function for querying the database by a set of criteria. Criteria may be set by means of a few
-# named input variables and/or by the optional list variable 'args'
-# 
-# 'args' may have both raw and translated query parameters for different subjects
-# explicit arguments overwrite those in 'args' list
-# 
-# Options for normalized parameters (spanish) (this might become outdated):
-# - age: 'pollo', 'juvenil', 'adulto', 'indeterminado'
-# - sex: 'macho', 'hembra', 'indeterminado', 'pareja', 'machos y hembras'
-# - breeding: 'reproducción posible', 'reproducción probable', 'reproducción segura', 'migración', 'invernada'
-# - habitat: 'bosque', 'matorral', 'pastizales', 'terrenos agrícolas', 'zonas humanizadas', 
-# 			'zonas húmedas interiores', 'roquedos de interior', 'costas', 'otros'
-# - month: 1 to 12
-# 
+#' avisQuery
+#' 
+#' General function for querying the database using several filters, like order, 
+#' family, species, age, sex, habitat, etc. 
+#' 
+#' In case you set a query parameter by its name (eg: avisQuery (species="Bubo bubo"))
+#' and also you set it inside the 'args' parameter (eg: avisQuery (species="Bubo bubo", args=list(species="Tyto alba")), 
+#' the value setted by its name will prevail (in the example, "Bubo bubo" will apply).
+#' 
+#' @usage avisQuery(id_species = "", species = "", family = "", order = "", age = "", sex = "", breeding = "", habitat = "", month = "", year = "", args = list())
+#' @param id_species a number setting the id of the species according to proyectoavis.com database. 
+#' You may get the id of a species with \code{\link{avisSpeciesId}}
+#' @param species scientific name of the species (one single species): e.g. "Passer domesticus"
+#' @param family To filter the data by family: e.g. "Passeridae", "Falconidae", etc.  
+#' @param order To filter the data by Order: e.g. "Passeriformes", "Falconiformes", etc.
+#' @param age To filter the data by age: "pollo", "juvenil", "adulto", "indeterminado".
+#' @param sex To filter the data by sex: "macho", "hembra", "indeterminado", "pareja", "machos y hembras"
+#' @param breeding To filter the data by breeding-migratory status: "reproducción posible", "reproducción probable", 
+#' "reproducción segura", "migración", "invernada"
+#' @param habitat Filter by habitat: "bosque", "matorral", "pastizales", "terrenos agrícolas", "zonas humanizadas", 
+#' "zonas húmedas interiores", "roquedos de interior", "costas", "otros"
+#' @param month Filter by month: 1 to 12
+#' @param year Filter by year: e.g. 2001
+#' @param args List of arguments accepted by www.proyectoavis.com endpoint. You may use
+#' this list to set the arguments of the function (species, sex, breeding...), or 
+#' you may also set all the parameters supported by the endpoint, but not normalized for its use in this package. 
+#' These arguments are: id_ca, id_provincia, dia_ini, mes_ini, ano_ini, dia_fin, mes_fin, ano_fin, usu, 
+#' plazo, hora_ini, minuto_ini, hora_fin, minuto_fin, codigo_habitat, gr, cf, utm_10, utm_1 (see www.proyectoavis.com)
+#' @return a dataframe with the results of your specific query to Proyecto AVIS database.
+#' @export 
+#' @examples \dontrun{
+#' # get all the observations of the species of the Order Falconiformes
+#' avisQuery (order = "Falconiformes") 
+#' # get all the observations of the species of the Family Falconidae
+#' avisQuery(family = "Falconidae")
+#' # get the observations of immatures of Iberian Imperial Eagle
+#' avisQuery (species= "Aquila adalberti", age = "juvenil")
+#' }
+
 avisQuery <- function (id_species = '', species = '', family = '', order = '', age = '', 
 	sex = '', breeding = '', habitat = '', month = '', year = '', args = list())
 {

@@ -1,45 +1,22 @@
 \name{avisAllSpecies}
 \alias{avisAllSpecies}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-avisAllSpecies
-}
-\description{
-Return a list with the species names and the ids of the species in Proyecto AVIS
-}
+\title{avisAllSpecies}
 \usage{
 avisAllSpecies()
 }
-%- maybe also 'usage' for other objects documented here.
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+returns a vector
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
+\description{
+Returns a vector with the ids of the species in Proyecto
+AVIS
 }
 \note{
 This functions does not allow arguments
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
 \dontrun{
 avisAllSpecies()
 }
 }
-\keyword{data}
-\keyword{datasets}
+

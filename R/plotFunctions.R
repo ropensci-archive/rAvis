@@ -1,13 +1,28 @@
-
-# Renders a map for each species provided in names list / string
-# Types of map are the same as for avisMap
-# 
-# 'names' argument might be a string or a list of species names
-
-# eg:
-#  avisMapSpecies("Bubo bubo", "phys")
-#  avisMapSpecies(list("Tyto alba", "Bubo bubo", "Asio capensis"))
-#  
+#' Renders a map for each of the species provided in names
+#' 
+#' This function map the species occurrences in the Iberian Peninsula.
+#' 
+#' For constructing these maps we used free online map repositories. 
+#' We downloaded the Spanish administrative map from  http://www.diva-gis.org/ 
+#' and the Spanish physical map of http://www.openstreetmap.org/ 
+#' using the R- library OpenStreetMap.
+#' 
+#' @usage avisMapSpecies(names, maptype = "admin")
+#' @param names scientific name of the species 
+#' (it could be a list of scientific names). E.g. "Pica pica"
+#' @param maptype Available types of map are 'admin', 
+#' administrative provinces of Spain (by default) 
+#' or 'phys', physical map of Spain.
+#' @return a raster map with the occurrences of the species in the Iberian Peninsula
+#' @export 
+#' @references Ian Fellows, using the JMapViewer library by Jan Peter Stotz (2013) 
+#' OpenStreetMap: Access to open street map raster images. 
+#' R package version 0.3.1. http://CRAN.R-project.org/package=OpenStreetMap.
+#' @examples \dontrun{
+#' avisMapSpecies("Bubo bubo", "phys")
+#' avisMapSpecies(list("Tyto alba", "Bubo bubo", "Asio capensis"))
+#' }
+#' 
 avisMapSpecies<- function (names, maptype = 'admin')
 {
   if(!is.list(names))
@@ -22,12 +37,27 @@ avisMapSpecies<- function (names, maptype = 'admin')
   }
 }
 
-# Renders a map for the observations provided in 'obs'.
-# 'obs' may be the set of observations returned by any of the avisQueryXXX functions
-# 'label' label for the map
-# 
-# Available types of map are 'admin' (by default) and 'phys'. 
-# 
+
+#' Renders a map for the observations provided in 'obs'
+#' 
+#' This function should be used with avisQuerySpecies, to set a particular
+#' query (with or without filters) and get the observations that we want to map. 
+#' It just allow to map one species. See avisMapSpecies for multiple maps. 
+#'  
+#' @usage avisMap(obs, label = "", maptype = "admin")
+#' @param obs set of observations returned by any of the avisQueryXXX functions
+#' @param label label for the map. E.g. "Occurrences of Pica pica in Proyecto AVIS"
+#' @param maptype Available types of map are 'admin', 
+#' administrative provinces of Spain (by default) 
+#' or 'phys, physical map of Spain.
+#' @return a raster map with the occurrences of the species in the Iberian Peninsula
+#' @export 
+#' @examples \dontrun{
+#' obs<- avisQuerySpecies ("Pica pica", args = list(habitat = bosque))
+#' avisMap(obs, label = "Occurrences of Pica pica in Proyecto AVIS")
+#' avisMap(obs, label = "Occurrences of Pica pica in Proyecto AVIS", maptype = "phys")
+#'}
+ 
 avisMap<-function(obs, label = '', maptype = 'admin')
 {
   if(is.null(obs$x) || is.null(obs$y)){
