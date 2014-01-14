@@ -5,11 +5,11 @@
 avisMapSpecies(names, maptype = "admin")
 }
 \arguments{
-  \item{names}{name of the species (could be a list of
-  names)}
+  \item{names}{scientific name of the species (it could be
+  a list of scientific names). E.g. "Pica pica"}
 
   \item{maptype}{Available types of map are 'admin',
-  administrative provinces of Spain (by default) or 'phys,
+  administrative provinces of Spain (by default) or 'phys',
   physical map of Spain.}
 }
 \value{

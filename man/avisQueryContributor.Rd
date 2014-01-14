@@ -6,7 +6,7 @@ avisQueryContributor(contributor_ids, args = list())
 }
 \arguments{
   \item{contributor_ids}{must be either an integer or a
-  list of contributors ids}
+  list of contributors ids (integers)}
 
   \item{args}{A list of normalized parameters to add
   filters to the query. Currently in Spanish, but this

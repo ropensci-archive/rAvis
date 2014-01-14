@@ -111,22 +111,24 @@ avisQuerySpecies <- function (names, args = list())
  
 avisQueryContributor <- function (contributor_ids, args = list()) 
 {
-	if(is.element('usu', names(args)))
-	{
+	if(is.element('usu', names(args))){
 		warning("usu argument in the argument list won't be regarded")
 	}
 
-	if(is.null(ravis_username_id_list)){
-		avisContributorsSummary()
-	}
+	ravis_username_id_list = .avisUserNameList()
 
 	if(!is.list(contributor_ids)){ 
 		contributor_ids = list(contributor_ids)
 	}
 
 	names = lapply(contributor_ids, function(id){
-		return (ravis_username_id_list[as.character(id)])
-		})
+		name = ravis_username_id_list[as.character(id)][[1]]
+
+		if(is.null(name) | is.na(name)){
+			stop(paste("Contributor with id ",id," not found"))
+		}
+		return (name)
+	})
 
 	df<- NULL
 	for (name in names) {
@@ -250,9 +252,12 @@ avisQuery <- function (id_species = '', species = '', family = '', order = '', a
   	data <- read.csv(textConnection(.avisQueryRawData), sep = ";", quote = "")
   
 	utm_latlon<-.getUTMLatlong()
-  
-	data<- data.frame(data, "x"= utm_latlon$x [match (substring(data$UTM,4), utm_latlon$utm)], 
-	                  "y"= utm_latlon$y [match (substring(data$UTM,4), utm_latlon$utm)])
+
+	x = utm_latlon$x [match (substring(data$UTM,4), utm_latlon$utm)]
+
+	y = utm_latlon$y [match (substring(data$UTM,4), utm_latlon$utm)]
+
+	data<- data.frame(data, "x"= x, "y"= y)
 
 	return(data)
 }

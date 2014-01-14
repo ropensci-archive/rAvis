@@ -59,6 +59,18 @@ avisContributorAggregatedObservations<- function (contributor_id)
   return(df)
 }
 
+.avisUserNameList <- function()
+{
+  cached_list = .avisCacheGet('ravis_username_id_list')
+
+  if(is.null(cached_list)){
+    # ravis_username_id_list (cached object) is a by-product of avisContributorsSummary process
+    avisContributorsSummary()
+  }
+
+  .avisCacheGet('ravis_username_id_list')
+}
+
 .avisContributorsSummaryInit <- function()
 {
   rbs<- .avisExtractContributorsSummaryFromServer()

@@ -8,7 +8,8 @@ avisMap(obs, label = "", maptype = "admin")
   \item{obs}{set of observations returned by any of the
   avisQueryXXX functions}
 
-  \item{label}{label for the map}
+  \item{label}{label for the map. E.g. "Occurrences of Pica
+  pica in Proyecto AVIS"}
 
   \item{maptype}{Available types of map are 'admin',
   administrative provinces of Spain (by default) or 'phys,
@@ -27,8 +28,8 @@ species. See avisMapSpecies for multiple maps.
 \examples{
 \dontrun{
 obs<- avisQuerySpecies ("Pica pica", args = list(habitat = bosque))
-avisMap(obs, label = "Pica pica")
-avisMap(obs, label = "Pica pica", maptype = "phys")
+avisMap(obs, label = "Occurrences of Pica pica in Proyecto AVIS")
+avisMap(obs, label = "Occurrences of Pica pica in Proyecto AVIS", maptype = "phys")
 }
 }
 
