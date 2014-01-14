@@ -1,6 +1,25 @@
-# functions concerning contributor users (birdwatchers) of proyectoavis.com
+#' avisContributorsSummary
+#' 
+#'Returns a table with the 
+#'observations aggregated by birdwatcher. 
+#'
+#' @usage avisContributorsSummary()
+#' @note This function does not allow arguments
+#' @return This function returns a matrix
+#' @export 
+#' @examples \dontrun{
+#' birdwatchers<- avisContributorsSummary()
+#' par (mfrow =c(2,2))
+#' plot (birdwatchers[,2],birdwatchers[,3], xlab=colnames (birdwatchers)[2], 
+#' ylab=colnames (birdwatchers)[3], pch=19)
+#' plot (birdwatchers[,2],birdwatchers[,4], xlab=colnames (birdwatchers)[2], 
+#' ylab=colnames (birdwatchers)[4], pch=19)
+#' plot (birdwatchers[,2],birdwatchers[,5], xlab=colnames (birdwatchers)[2], 
+#' ylab=colnames (birdwatchers)[5], pch=19)
+#' plot (birdwatchers[,2],birdwatchers[,6], xlab=colnames (birdwatchers)[2], 
+#' ylab=colnames (birdwatchers)[6], pch=19)
+#' }
 
-# main summary of birdwatchers observations
 avisContributorsSummary<- function ()
 {
   # todo: falla si no asigno a cs
@@ -9,7 +28,21 @@ avisContributorsSummary<- function ()
   return(cs)
 }
 
-# Aggregated summary of one contributor observations
+#' avisContributorAggregatedObservations
+#' 
+#' A function to download the information about the
+#'  observations of a birdwatcher.
+#'
+#' @usage avisContributorAggregatedObservations(contributor_id)
+#' @param contributor_id a number setting the id of the birdwatcher (see avisContributorSummary)
+#' @return This function returns a dataframe
+#' @export 
+#' @examples # Explore the contributions of Colectivo Ornitologico Ciguena Negra
+#' \dontrun{
+#' avisContributorAggregatedObservations (370)
+#' }
+#' 
+#' 
 avisContributorAggregatedObservations<- function (contributor_id)
 {
   doc<-XML::htmlParse(paste ("http://proyectoavis.com/cgi-bin/ficha_usuario.cgi?id_usuario=", contributor_id, sep=""))

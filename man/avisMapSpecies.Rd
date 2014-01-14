@@ -1,52 +1,31 @@
 \name{avisMapSpecies}
 \alias{avisMapSpecies}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-avisMapSpecies
-}
-\description{
-Renders a map for each of the species provided in names
-
-}
+\title{Renders a map for each of the species provided in names}
 \usage{
 avisMapSpecies(names, maptype = "admin")
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{names}{
-might be a string or a list of species names
-}
-  \item{maptype}{
-Available types of map are 'admin', administrative provinces of Spain (by default) or 'phys, physical map of Spain. 
-}
-}
-\details{
-For these maps, we used free online map repositories. We downloaded the Spanish administrative map from  http://www.diva-gis.org/ and the Spanish physical map of http://www.openstreetmap.org/ using the R- library OpenStreetMap. 
+  \item{names}{name of the species (could be a list of
+  names)}
+
+  \item{maptype}{Available types of map are 'admin',
+  administrative provinces of Spain (by default) or 'phys,
+  physical map of Spain.}
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+a raster map with the occurrences of the species in the
+Iberian Peninsula
 }
-\author{
-Sara Varela and Javier Gonzalez Hernandez
+\description{
+This function map the species occurrences in the Iberian
+Peninsula.
 }
-\references{
-Fellows I and Stotz) utJlbJP (2013) OpenStreetMap: Access to open street map raster images. R package version 0.3.1. http://CRAN.R-project.org/package=OpenStreetMap.
-
-Sara Varela, Javier Gonzalez-Hernandez, Eduardo Casabella, Rafael Barrientos, in prep. rAvis: an R-package to download the information stored in Proyecto AVIS, a citizen science bird project.
-
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\details{
+For constructing these maps we used free online map
+repositories. We downloaded the Spanish administrative map
+from http://www.diva-gis.org/ and the Spanish physical map
+of http://www.openstreetmap.org/ using the R- library
+OpenStreetMap.
 }
 \examples{
 \dontrun{
@@ -54,6 +33,10 @@ avisMapSpecies("Bubo bubo", "phys")
 avisMapSpecies(list("Tyto alba", "Bubo bubo", "Asio capensis"))
 }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{aplot}
+\references{
+Ian Fellows, using the JMapViewer library by Jan Peter
+Stotz (2013) OpenStreetMap: Access to open street map
+raster images. R package version 0.3.1.
+http://CRAN.R-project.org/package=OpenStreetMap.
+}
+
