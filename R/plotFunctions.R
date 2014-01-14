@@ -8,7 +8,7 @@
 #  avisMapSpecies("Bubo bubo", "phys")
 #  avisMapSpecies(list("Tyto alba", "Bubo bubo", "Asio capensis"))
 #  
-avisMapSpecies<- function (names, maptype = 'admin')
+avisMapSpecies<- function (names, maptype = 'admin', ...)
 {
   if(!is.list(names))
   {
@@ -17,7 +17,7 @@ avisMapSpecies<- function (names, maptype = 'admin')
 
   for (name in names) 
   {
-    obs<- avisQuerySpecies (name)
+    obs<- avisQuerySpecies (name, args = list(...))
     avisMap(obs, name, maptype)
   }
 }
