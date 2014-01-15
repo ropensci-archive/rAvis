@@ -5,8 +5,8 @@
 avisContributorAggregatedObservations(contributor_id)
 }
 \arguments{
-  \item{contributor_id}{id of the birdwatcher (see
-  avisContributorSummary)}
+  \item{contributor_id}{a number setting the id of the
+  birdwatcher (see avisContributorSummary)}
 }
 \value{
 This function returns a dataframe

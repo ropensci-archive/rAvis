@@ -5,8 +5,8 @@
 avisQuerySpecies(names, args = list())
 }
 \arguments{
-  \item{names}{Must be either a string or a list of species
-  names}
+  \item{names}{Must be either a string or a list of
+  scientific names}
 
   \item{args}{A list of normalized parameters to add
   filters to the query. Currently in Spanish, but this

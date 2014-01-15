@@ -5,28 +5,29 @@
 avisQuery(id_species = "", species = "", family = "", order = "", age = "", sex = "", breeding = "", habitat = "", month = "", year = "", args = list())
 }
 \arguments{
-  \item{id_species}{Id of the species according to
-  proyectoavis.com database. You may get the id of a
-  species with \code{\link{avisSpeciesId}}}
+  \item{id_species}{a number setting the id of the species
+  according to proyectoavis.com database. You may get the
+  id of a species with \code{\link{avisSpeciesId}}}
 
-  \item{species}{name of the species (one single species):
-  e.g. "Passer domesticus"}
+  \item{species}{scientific name of the species (one single
+  species): e.g. "Passer domesticus"}
 
-  \item{family}{Filter data by family: e.g. "Passeridae",
-  "Falconidae", etc.}
+  \item{family}{To filter the data by family: e.g.
+  "Passeridae", "Falconidae", etc.}
 
-  \item{order}{Filter data by Order: e.g. "Passeriformes",
-  "Falconiformes", etc.}
+  \item{order}{To filter the data by Order: e.g.
+  "Passeriformes", "Falconiformes", etc.}
 
-  \item{age}{Filer by age: "pollo", "juvenil", "adulto",
-  "indeterminado".}
+  \item{age}{To filter the data by age: "pollo", "juvenil",
+  "adulto", "indeterminado".}
 
-  \item{sex}{Filter by sex: "macho", "hembra",
+  \item{sex}{To filter the data by sex: "macho", "hembra",
   "indeterminado", "pareja", "machos y hembras"}
 
-  \item{breeding}{Filter by breeding-migratory status:
-  "reproducción posible", "reproducción probable",
-  "reproducción segura", "migración", "invernada"}
+  \item{breeding}{To filter the data by breeding-migratory
+  status: "reproducción posible", "reproducción
+  probable", "reproducción segura", "migración",
+  "invernada"}
 
   \item{habitat}{Filter by habitat: "bosque", "matorral",
   "pastizales", "terrenos agrícolas", "zonas humanizadas",
@@ -50,7 +51,7 @@ avisQuery(id_species = "", species = "", family = "", order = "", age = "", sex 
 }
 \value{
 a dataframe with the results of your specific query to
-Proyecto AVIS database
+Proyecto AVIS database.
 }
 \description{
 General function for querying the database using several

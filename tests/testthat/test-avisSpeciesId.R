@@ -9,6 +9,3 @@ test_that("The id of Pica pica in Proyecto AVIS is an integer and 480,
   expect_identical (avisSpeciesId (nameraw), as.integer (480))
   expect_that (avisSpeciesId ("Pica pic"), throws_error())
   })
-
-
-
