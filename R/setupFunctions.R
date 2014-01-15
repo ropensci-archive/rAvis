@@ -5,11 +5,12 @@
 #'  
 #'@usage avisSetup (...)
 #'@param verbose TRUE / FALSE
-#'@example \dontrun{
-#'avisSetup (verbose=FALSE)
-#'}
-#' @export
+#'@export
+#'@examples \dontrun{
+#' avisSetup(verbose=FALSE)
+#' }
 #'
+
 avisSetup <- function(...){
 	l <- list(...)
 

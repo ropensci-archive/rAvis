@@ -1,10 +1,20 @@
 \name{avisSetup}
 \alias{avisSetup}
-\title{Sets up serveral settings that apply to the behabiour of the library}
+\title{avisSetup}
 \usage{
-avisSetup(...)
+avisSetup (...)
+}
+\arguments{
+  \item{verbose}{TRUE / FALSE}
 }
 \description{
-Optional arguments available: - verbose: TRUE / FALSE
+Sets up settings that apply to the behabiour of the package
+Allow users to turn off the information messages of the
+functions.
+}
+\examples{
+\dontrun{
+avisSetup(verbose=FALSE)
+}
 }
 

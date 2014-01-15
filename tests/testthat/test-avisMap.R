@@ -2,10 +2,6 @@
 context ("avisMap")
 
 test_that("avisMap",{ 
-  expect_true()
-  expect_match (, 
-  )        
+  expect_error(avisMap(avisQuerySpecies ("Pica pic")), )        
 })
 
-obs<- avisQuerySpecies ("Pica pica", args = list(habitat = "bosque"))
-avisMap(obs, label = "Occurrences of Pica pica in Proyecto AVIS")

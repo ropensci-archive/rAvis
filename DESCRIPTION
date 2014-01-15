@@ -5,7 +5,8 @@ Title: Interface to the birdwatching datasets at proyectoavis.com
 Version: 0.1
 Date: 2013-11-24
 BugReports: https://github.com/javigzz/rAvis/issues
-Authors: Javier González Hernández <javigzz@yahoo.es>, Sara Varela González <svarela@paleobiogeography.org>
+Author: Javier González Hernández <javigzz@yahoo.es>, Sara Varela González
+    <svarela@paleobiogeography.org>
 Maintainer: Javier González Hernández <javigzz@yahoo.es>
 Description: Interface to the proyectoavis.com bird observations records
     database. It provides means to download datasets filtered by speces, order,

@@ -14,7 +14,7 @@
 #' @param maptype Available types of map are 'admin', 
 #' administrative provinces of Spain (by default) 
 #' or 'phys', physical map of Spain.
-#' @return a raster map with the occurrences of the species in the Iberian Peninsula
+#' @return a plot with the occurrences of the species in the Iberian Peninsula. Maps have high resolution, so they could be printed.
 #' @export 
 #' @references Ian Fellows, using the JMapViewer library by Jan Peter Stotz (2013) 
 #' OpenStreetMap: Access to open street map raster images. 
@@ -51,7 +51,7 @@ avisMapSpecies<- function (names, maptype = 'admin', ...)
 #' @param maptype Available types of map are 'admin', 
 #' administrative provinces of Spain (by default) 
 #' or 'phys, physical map of Spain.
-#' @return a raster map with the occurrences of the species in the Iberian Peninsula
+#' @return a plot with the occurrences of the species in the Iberian Peninsula. Maps have high resolution, so they could be printed.
 #' @export 
 #' @examples \dontrun{
 #' obs<- avisQuerySpecies ("Pica pica", args = list(habitat = "bosque"))
@@ -92,10 +92,10 @@ avisMap<-function(obs, label = '', maptype = 'admin')
 {
   # ravis_shape_spain: shape in package data folder
 
-  raster::plot (ravis_shape_spain, border="grey75", ylim=c(34,44), xlim=c(-10,5))
+  plot (ravis_shape_spain, border="grey75", ylim=c(34,44), xlim=c(-10,5))
   points(obs$x, obs$y, col=alpha ("red", 0.5), pch=19, cex=1.2)
   raster::text(-9.5, 34.2, label,  font=3, cex=2, adj=c(0,0))
-  raster::plot (ravis_shape_spain, border="grey75", ylim=c(27.5, 29.5), xlim=c(-18.5,-13.5))
+  plot (ravis_shape_spain, border="grey75", ylim=c(27.5, 29.5), xlim=c(-18.5,-13.5))
   rect(-18.5, 21, -11, 30, density = NULL, angle = 45,
    col = NA, border = "grey40", lwd=2)
   points(obs$x, obs$y, col=alpha ("red", 0.5), pch=19, cex=1.2)
