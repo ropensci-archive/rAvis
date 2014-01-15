@@ -4,13 +4,16 @@ Type: Package
 Title: Interface to the birdwatching datasets at proyectoavis.com
 Version: 0.1
 Date: 2013-11-24
-Author: Javier González Hernández, Sara Varela González
+BugReports: https://github.com/javigzz/rAvis/issues
+Authors: Javier González Hernández <javigzz@yahoo.es>, Sara Varela González <svarela@paleobiogeography.org>
 Maintainer: Javier González Hernández <javigzz@yahoo.es>
 Description: Interface to the proyectoavis.com bird observations records
     database. It provides means to download datasets filtered by speces, order,
     family, and several other criteria. Provides also basic functionality to
     plot exploratory maps of the datasets.
 License: GPL-2
+Depends:
+    R (>= 3.0.1)
 Imports:
     stringr,
     XML,
@@ -22,4 +25,7 @@ Imports:
     rgdal,
     raster,
     tools
+Suggests:
+    testthat,
+    roxygen2
 LazyData: true

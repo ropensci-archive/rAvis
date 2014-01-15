@@ -16,6 +16,11 @@ library(rAvis)
 In the meantime you can install this development version with devtools package
 
 ```coffee
+list.of.packages <- c("stringr","XML","RCurl","scrapeR","gdata","scales",
+                      "maptools","rgdal","raster","tools")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
+
 install.packages("devtools")
 library(devtools)
 install_github("javigzz/rAvis")

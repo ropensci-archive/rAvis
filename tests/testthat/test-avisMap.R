@@ -7,4 +7,5 @@ test_that("avisMap",{
   )        
 })
 
-avisMap(obs= "Pica pica", "Pica pica")
+obs<- avisQuerySpecies ("Pica pica", args = list(habitat = "bosque"))
+avisMap(obs, label = "Occurrences of Pica pica in Proyecto AVIS")

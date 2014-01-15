@@ -54,7 +54,7 @@ avisMapSpecies<- function (names, maptype = 'admin', ...)
 #' @return a raster map with the occurrences of the species in the Iberian Peninsula
 #' @export 
 #' @examples \dontrun{
-#' obs<- avisQuerySpecies ("Pica pica", args = list(habitat = bosque))
+#' obs<- avisQuerySpecies ("Pica pica", args = list(habitat = "bosque"))
 #' avisMap(obs, label = "Occurrences of Pica pica in Proyecto AVIS")
 #' avisMap(obs, label = "Occurrences of Pica pica in Proyecto AVIS", maptype = "phys")
 #'}
