@@ -16,8 +16,9 @@ avisMap(obs, label = "", maptype = "admin")
   physical map of Spain.}
 }
 \value{
-a raster map with the occurrences of the species in the
-Iberian Peninsula
+a plot with the occurrences of the species in the Iberian
+Peninsula. Maps have high resolution, so they could be
+printed.
 }
 \description{
 This function should be used with avisQuerySpecies, to set
@@ -27,7 +28,7 @@ species. See avisMapSpecies for multiple maps.
 }
 \examples{
 \dontrun{
-obs<- avisQuerySpecies ("Pica pica", args = list(habitat = bosque))
+obs<- avisQuerySpecies ("Pica pica", args = list(habitat = "bosque"))
 avisMap(obs, label = "Occurrences of Pica pica in Proyecto AVIS")
 avisMap(obs, label = "Occurrences of Pica pica in Proyecto AVIS", maptype = "phys")
 }

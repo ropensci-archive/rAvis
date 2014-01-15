@@ -13,8 +13,9 @@ avisMapSpecies(names, maptype = "admin")
   physical map of Spain.}
 }
 \value{
-a raster map with the occurrences of the species in the
-Iberian Peninsula
+a plot with the occurrences of the species in the Iberian
+Peninsula. Maps have high resolution, so they could be
+printed.
 }
 \description{
 This function map the species occurrences in the Iberian
