@@ -9,3 +9,4 @@ test_that("test if avisQuery has the correct structure",{
               expect_match (response$Especie, "Pica pica")
             })
 
+# TODO: check filtered queryies do filter results (eg: habitat="bosque")

@@ -209,17 +209,25 @@ avisQuery <- function (id_species = '', species = '', family = '', order = '', a
 	return (.avisQueryRaw(rawargs))
 }
 
+#' avisTranslateArgsToRawArgs
+#'
+#' Tranlate args (set by user) to rawargs, which can be handled by server (in spanish)
+#'
 .avisTranslateArgsToRawArgs<-function(args)
 {
-	# tranlate args (set by user) to rawargs (which can be handled by server)
 	rawargs<-args
+
+	trans_arg_names <- names(.ravis_translated_params_map)
 
 	for (argname in names(args)) {
 		# if argname is a translated param
-		if(is.element(argname, names(.ravis_translated_params_map))){
+		if(is.element(argname, trans_arg_names)){
 			raw_param_name<-.ravis_translated_params_map[argname][[1]]
 			rawargs[raw_param_name] <- args[argname]
-			rawargs[argname]<-NULL
+
+			if(!is.element(argname, .ravis_translated_params_map)){
+				rawargs[argname]<-NULL
+			}
 		}
 	}
 
@@ -233,7 +241,7 @@ avisQuery <- function (id_species = '', species = '', family = '', order = '', a
 	# the arguments must have the exact names that proyectoavis.com gets (raw parameters)
 	
 	if(!is.list(args)){
-		stop("Object of type 'list' expected")
+		stop("Object of type 'list' expected for query args")
 	}
 
 	args<-.avisMergeArgumentList(args, .ravis_raw_search_default_params)
@@ -246,6 +254,8 @@ avisQuery <- function (id_species = '', species = '', family = '', order = '', a
 	qs <- substr(qs,0,nchar(qs)-1)
 
 	url <- paste(.ravis_search_url_base, qs, sep = "?")
+
+	.avisVerboseMessage(paste("INFO: querying to proyectoavis.com at: ", url))
 
 	.avisQueryRawData <- .avisGetURL(url)
 
