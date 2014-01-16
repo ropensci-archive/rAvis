@@ -2,9 +2,12 @@
 
 context ("avisSpeciesSummary")
 
-test_that("avisSpeciesSummary output is a dataframe and the first colname is Observations",{ 
+test_that("avisSpeciesSummary output is a dataframe",{ 
   response<- avisSpeciesSummary()
-  expect_true(is.data.frame (response))
-  expect_match (names(response [1], "Observations")
+  expect_is(response, 'data.frame')
 })
 
+test_that("avisSpeciesSummary output first colname is Observations",{ 
+  response<- avisSpeciesSummary()
+  expect_match (names(response)[1], "Observations")
+})
