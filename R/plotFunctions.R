@@ -14,6 +14,7 @@
 #' @param maptype Available types of map are 'admin', 
 #' administrative provinces of Spain (by default) 
 #' or 'phys', physical map of Spain.
+#' @param ... other filters passed to the observations query with avisQuerySpecies, 
 #' @return a plot with the occurrences of the species in the Iberian Peninsula. Maps have high resolution, so they could be printed.
 #' @export 
 #' @examples \dontrun{
@@ -33,18 +34,19 @@
 #'  avisMapSpecies (x)
 #'  dev.off() 
 #' }
+#' }
 #' 
 avisMapSpecies<- function (names, maptype = 'admin', ...)
 {
-  if(is.list(names)| is.character (names)) {
+  if(!(is.list(names) | is.character (names))) {
+    stop ("species names should be a list: e.g. avisMapSpecies (list ('Pica pica','Bucanetes githagineus')); or a character: avisMapSpecies ('Pica pica')")
+  }
+  
   for (name in names) 
   {
     obs<- avisQuerySpecies (name, args = list(...))
     avisMap(obs, name, maptype)
-  }} else {
-    stop ("species names should be a list: e.g. avisMapSpecies (list ('Pica pica','Bucanetes githagineus'))")
   }
-  
 }
 
 

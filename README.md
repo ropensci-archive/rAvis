@@ -47,6 +47,12 @@ or with a physical map behind:
 avisMapSpecies("pica pica", "phys")
 ```
 
+## Disable INFO messages
+
+```coffee
+avisSetup(verbose=FALSE)
+```
+
 
 # See help
 

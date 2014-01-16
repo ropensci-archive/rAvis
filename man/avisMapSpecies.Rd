@@ -11,6 +11,9 @@ avisMapSpecies(names, maptype = "admin")
   \item{maptype}{Available types of map are 'admin',
   administrative provinces of Spain (by default) or 'phys',
   physical map of Spain.}
+
+  \item{...}{other filters passed to the observations query
+  with avisQuerySpecies,}
 }
 \value{
 a plot with the occurrences of the species in the Iberian
@@ -45,6 +48,7 @@ for (x in species){
  tiff (file.path (directory, paste ("/", x, ".tiff", sep="")))
  avisMapSpecies (x)
  dev.off()
+}
 }
 }
 
