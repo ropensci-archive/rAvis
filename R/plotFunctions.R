@@ -26,16 +26,15 @@
 #' 
 avisMapSpecies<- function (names, maptype = 'admin', ...)
 {
-  if(!is.list(names))
-  {
-    names <- list(names)
-  }
-
+  if(is.list(names)) {
   for (name in names) 
   {
     obs<- avisQuerySpecies (name, args = list(...))
     avisMap(obs, name, maptype)
+  }} else {
+    stop ("species names should be a list: e.g. avisMapSpecies (list ('Pica pica','Bucanetes githagineus'))")
   }
+  
 }
 
 
