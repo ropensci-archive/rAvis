@@ -30,14 +30,21 @@ OpenStreetMap.
 }
 \examples{
 \dontrun{
+
 avisMapSpecies("Bubo bubo", "phys")
-avisMapSpecies(list("Tyto alba", "Bubo bubo", "Asio capensis"))
+
+# if interested in several species, you can explore the database using avisMApSpecies
+avisMapSpecies (list("Tyto alba", "Athene noctua", "Bubo bubo", "Strix aluco"),
+               maptype="phys")
+
+# and you can save those maps individually using the tiff function
+
+directory<- "C:/your_directory"
+species<- list("Tyto alba", "Athene noctua", "Bubo bubo", "Strix aluco")
+for (x in species){
+ tiff (file.path (directory, paste ("/", x, ".tiff", sep="")))
+ avisMapSpecies (x)
+ dev.off()
 }
-}
-\references{
-Ian Fellows, using the JMapViewer library by Jan Peter
-Stotz (2013) OpenStreetMap: Access to open street map
-raster images. R package version 0.3.1.
-http://CRAN.R-project.org/package=OpenStreetMap.
 }
 
