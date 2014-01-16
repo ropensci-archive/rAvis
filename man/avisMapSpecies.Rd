@@ -33,7 +33,7 @@ OpenStreetMap.
 
 avisMapSpecies("Bubo bubo", "phys")
 
-# if interested in several species, you can explore the database using avisMApSpecies
+# if interested in several species, you can explore the database using avisMapSpecies
 avisMapSpecies (list("Tyto alba", "Athene noctua", "Bubo bubo", "Strix aluco"),
                maptype="phys")
 
