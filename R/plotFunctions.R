@@ -26,7 +26,7 @@
 #' 
 avisMapSpecies<- function (names, maptype = 'admin', ...)
 {
-  if(is.list(names)) {
+  if(is.list(names)| is.character (names)) {
   for (name in names) 
   {
     obs<- avisQuerySpecies (name, args = list(...))
