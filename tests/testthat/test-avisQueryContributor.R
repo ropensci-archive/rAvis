@@ -8,6 +8,5 @@ test_that("avisQueryContributor returns correct format and throws error if missi
   cs <- avisContributorsSummary()
   id <- cs[[1]]
 
-  expect_is(avisQueryContributor(id), 'data.frame')
-  )        
+  expect_is(avisQueryContributor(id), 'data.frame')        
 })
