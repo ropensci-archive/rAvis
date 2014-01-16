@@ -4,6 +4,8 @@
 
 .ravis_url_login <- "http://proyectoavis.com/cgi-bin/login.cgi"
 
+# Get contents of a url. Depending on 'nologin' parameter it uses an avisproject.com user session
+# or not
 .avisGetURL <- function(url, nologin = FALSE) {
   if (nologin == TRUE){
     # new curl handle
@@ -18,21 +20,19 @@
 .avisCurlHandler <- function(){
 
   if(!.avisCacheHas(".ravis_curl_handler")){
-    .avisLogin()
+    .avisUserLogin()
   }
 
   return (.avisCacheGet(".ravis_curl_handler"))
 }
 
-.avisLogin <- function() {
-  return (.avisUserLogin())
-}
-
+# logs to web with ravis specific user
 .avisUserLogin <- function() {
-  return (.avisLoginUser("ravis-user", "ravis-pass7592Hz%"))
+  return (.avisLogin("ravis-user", "ravis-pass7592Hz%"))
 }
 
-.avisLoginUser <- function (avis_user, avis_pass) {
+# logs to web with user defined credentials
+.avisLogin <- function (avis_user, avis_pass) {
   # log user in remote server
 
   params<- list( usu=avis_user, password=avis_pass, control_login='1' )
@@ -76,8 +76,8 @@
   return (.handler)
 }
 
+# Search HTML to find out the result of the login request
 .parse.avisLoginStatusFromHTML<- function(html) {
-  # Search an HTML text after login to find out the result of the login
   
   html <- tolower(html)
 
@@ -102,8 +102,8 @@
   return (as.integer(status[[1]]))
 }
 
+# Checks weather a text contains some string, returning logical
 .textHasString <- function(text, string) {
-  # Checks weather a text contains a string, returning logical
   
   res <- grep(string, text)
 
