@@ -9,5 +9,5 @@ import(scales)
 import(rgdal)
 import(maptools)
 import(sp)
-importFrom(raster)
+import(raster)
 
