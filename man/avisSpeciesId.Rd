@@ -5,7 +5,7 @@
 avisSpeciesId(nameraw)
 }
 \arguments{
-  \item{namerow}{scientific name of the species (e.g. "Pica
+  \item{nameraw}{scientific name of the species (e.g. "Pica
   pica")}
 }
 \value{

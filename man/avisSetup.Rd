@@ -5,7 +5,8 @@
 avisSetup (...)
 }
 \arguments{
-  \item{verbose}{TRUE / FALSE}
+  \item{...}{Package settings parameters. Available params:
+  verbose = TRUE/FALSE}
 }
 \description{
 Sets up settings that apply to the behabiour of the package

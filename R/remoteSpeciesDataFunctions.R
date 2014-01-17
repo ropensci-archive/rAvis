@@ -3,7 +3,7 @@
 #' Returns the id of the selected species
 #' 
 #' @usage avisSpeciesId(nameraw)
-#' @param namerow scientific name of the species (e.g. "Pica pica")
+#' @param nameraw scientific name of the species (e.g. "Pica pica")
 #' @return an integer
 #' @export 
 #' @examples \dontrun{

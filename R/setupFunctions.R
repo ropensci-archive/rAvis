@@ -3,10 +3,10 @@
 #' Sets up settings that apply to the behabiour of the package
 #' Allow users to turn off the information messages of the functions.
 #'  
-#'@usage avisSetup (...)
-#'@param verbose TRUE / FALSE
-#'@export
-#'@examples \dontrun{
+#' @usage avisSetup (...)
+#' @param ... Package settings parameters. Available params: verbose = TRUE/FALSE
+#' @export
+#' @examples \dontrun{
 #' avisSetup(verbose=FALSE)
 #' }
 #'

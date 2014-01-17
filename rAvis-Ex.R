@@ -14,7 +14,6 @@ flush(stderr()); flush(stdout())
 ### Name: avisAllSpecies
 ### Title: avisAllSpecies
 ### Aliases: avisAllSpecies
-### Keywords: data datasets
 
 ### ** Examples
 
@@ -33,7 +32,6 @@ flush(stderr()); flush(stdout())
 ### Name: avisContributorAggregatedObservations
 ### Title: avisContributorAggregatedObservations
 ### Aliases: avisContributorAggregatedObservations
-### Keywords: data
 
 ### ** Examples
 
@@ -53,21 +51,20 @@ flush(stderr()); flush(stdout())
 ### Name: avisContributorsSummary
 ### Title: avisContributorsSummary
 ### Aliases: avisContributorsSummary
-### Keywords: data
 
 ### ** Examples
 
 ## Not run: 
 ##D birdwatchers<- avisContributorsSummary()
 ##D par (mfrow =c(2,2))
-##D plot (birdwatchers[,2],birdwatchers[,3], xlab=colnames (birdwatchers)[2], 
-##D       ylab=colnames (birdwatchers)[3], pch=19)
-##D plot (birdwatchers[,2],birdwatchers[,4], xlab=colnames (birdwatchers)[2], 
-##D       ylab=colnames (birdwatchers)[4], pch=19)
-##D plot (birdwatchers[,2],birdwatchers[,5], xlab=colnames (birdwatchers)[2], 
-##D       ylab=colnames (birdwatchers)[5], pch=19)
-##D plot (birdwatchers[,2],birdwatchers[,6], xlab=colnames (birdwatchers)[2], 
-##D       ylab=colnames (birdwatchers)[6], pch=19)
+##D plot (birdwatchers[,2],birdwatchers[,3], xlab=colnames (birdwatchers)[2],
+##D ylab=colnames (birdwatchers)[3], pch=19)
+##D plot (birdwatchers[,2],birdwatchers[,4], xlab=colnames (birdwatchers)[2],
+##D ylab=colnames (birdwatchers)[4], pch=19)
+##D plot (birdwatchers[,2],birdwatchers[,5], xlab=colnames (birdwatchers)[2],
+##D ylab=colnames (birdwatchers)[5], pch=19)
+##D plot (birdwatchers[,2],birdwatchers[,6], xlab=colnames (birdwatchers)[2],
+##D ylab=colnames (birdwatchers)[6], pch=19)
 ## End(Not run)
 
 
@@ -81,7 +78,6 @@ flush(stderr()); flush(stdout())
 ### Name: avisHasSpecies
 ### Title: avisHasSpecies
 ### Aliases: avisHasSpecies
-### Keywords: data datasets
 
 ### ** Examples
 
@@ -99,16 +95,15 @@ nameEx("avisMap")
 flush(stderr()); flush(stdout())
 
 ### Name: avisMap
-### Title: avisMap
+### Title: Renders a map for the observations provided in 'obs'
 ### Aliases: avisMap
-### Keywords: aplot
 
 ### ** Examples
 
 ## Not run: 
-##D obs<- avisQuerySpecies ("Pica pica")
-##D avisMap(obs, label = "Pica pica")
-##D avisMap(obs, label = "Pica pica", maptype = "phys")
+##D obs<- avisQuerySpecies ("Pica pica", args = list(habitat = "bosque"))
+##D avisMap(obs, label = "Occurrences of Pica pica in Proyecto AVIS")
+##D avisMap(obs, label = "Occurrences of Pica pica in Proyecto AVIS", maptype = "phys")
 ## End(Not run)
 
 
@@ -120,15 +115,28 @@ nameEx("avisMapSpecies")
 flush(stderr()); flush(stdout())
 
 ### Name: avisMapSpecies
-### Title: avisMapSpecies
+### Title: Renders a map for each of the species provided in names
 ### Aliases: avisMapSpecies
-### Keywords: aplot
 
 ### ** Examples
 
 ## Not run: 
+##D 
 ##D avisMapSpecies("Bubo bubo", "phys")
-##D avisMapSpecies(list("Tyto alba", "Bubo bubo", "Asio capensis"))
+##D 
+##D # if interested in several species, you can explore the database using avisMapSpecies
+##D avisMapSpecies (list("Tyto alba", "Athene noctua", "Bubo bubo", "Strix aluco"),
+##D                maptype="phys")
+##D 
+##D # and you can save those maps individually using the tiff function
+##D 
+##D directory<- "C:/your_directory"
+##D species<- list("Tyto alba", "Athene noctua", "Bubo bubo", "Strix aluco")
+##D for (x in species){
+##D  tiff (file.path (directory, paste ("/", x, ".tiff", sep="")))
+##D  avisMapSpecies (x)
+##D  dev.off()
+##D }
 ## End(Not run)
 
 
@@ -142,20 +150,16 @@ flush(stderr()); flush(stdout())
 ### Name: avisQuery
 ### Title: avisQuery
 ### Aliases: avisQuery
-### Keywords: IO data datasets
 
 ### ** Examples
 
 ## Not run: 
-##D 
-##D # all the observations of the species of the Order Falconiformes
-##D avisQuery (order = "Falconiformes") 
-##D 
-##D # all the observations of the species of the Family Falconidae
+##D # get all the observations of the species of the Order Falconiformes
+##D avisQuery (order = "Falconiformes")
+##D # get all the observations of the species of the Family Falconidae
 ##D avisQuery(family = "Falconidae")
-##D 
-##D # Search for the observations of immatures of Iberian Imperial Eagle
-##D avisQuery ("Aquila adalberti", age = "juvenil")
+##D # get the observations of immatures of Iberian Imperial Eagle
+##D avisQuery (species= "Aquila adalberti", age = "juvenil")
 ## End(Not run)
 
 
@@ -169,7 +173,6 @@ flush(stderr()); flush(stdout())
 ### Name: avisQueryContributor
 ### Title: avisQueryContributor
 ### Aliases: avisQueryContributor
-### Keywords: data dataset
 
 ### ** Examples
 
@@ -189,13 +192,30 @@ flush(stderr()); flush(stdout())
 ### Name: avisQuerySpecies
 ### Title: avisQuerySpecies
 ### Aliases: avisQuerySpecies
-### Keywords: IO data datasets
 
 ### ** Examples
 
 ## Not run: 
-##D  avisQuerySpecies("Bubo bubo")
-##D  avisQuerySpecies(list("Bubo bubo", "Tyto alba"), args = list(year = 2012))
+##D avisQuerySpecies("Bubo bubo")
+##D avisQuerySpecies(list("Bubo bubo", "Tyto alba"), args = list(year = 2012))
+## End(Not run)
+
+
+
+cleanEx()
+nameEx("avisSetup")
+### * avisSetup
+
+flush(stderr()); flush(stdout())
+
+### Name: avisSetup
+### Title: avisSetup
+### Aliases: avisSetup
+
+### ** Examples
+
+## Not run: 
+##D avisSetup(verbose=FALSE)
 ## End(Not run)
 
 
@@ -227,16 +247,12 @@ flush(stderr()); flush(stdout())
 ### Name: avisSpeciesSummary
 ### Title: avisSpeciesSummary
 ### Aliases: avisSpeciesSummary
-### Keywords: data
 
 ### ** Examples
 
 ## Not run: 
-##D 
 ##D avis_summary<- avisSpeciesSummary()
-##D 
-##D #general overview of the data aggregated by species
-##D 
+##D # general overview of the data aggregated by species
 ##D par (mfrow =c(2,2))
 ##D hist (avis_summary$Observations, col="red", border=FALSE, main=NULL)
 ##D hist (avis_summary$Individuals, col="red", border=FALSE, main=NULL)
@@ -246,17 +262,16 @@ flush(stderr()); flush(stdout())
 
 
 
-
 cleanEx()
-nameEx("rAvis-package")
-### * rAvis-package
+nameEx("rAvis")
+### * rAvis
 
 flush(stderr()); flush(stdout())
 
 ### Name: rAvis
-### Title: An R-package to download the information stored in Proyecto
-###   AVIS, a citizen science bird project.
-### Aliases: rAvis rAvis
+### Title: rAvis: An R-package to download the information stored in
+###   Proyecto AVIS, a citizen science bird project.
+### Aliases: rAvis rAvis-package
 ### Keywords: package
 
 ### ** Examples

@@ -2,7 +2,9 @@
 \alias{avisQuery}
 \title{avisQuery}
 \usage{
-avisQuery(id_species = "", species = "", family = "", order = "", age = "", sex = "", breeding = "", habitat = "", month = "", year = "", args = list())
+avisQuery(id_species = "", species = "", family = "", order = "",
+age = "", sex = "", breeding = "", habitat = "", month = "", year = "",
+args = list())
 }
 \arguments{
   \item{id_species}{a number setting the id of the species

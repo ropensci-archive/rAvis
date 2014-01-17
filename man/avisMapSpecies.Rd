@@ -49,6 +49,7 @@ for (x in species){
  avisMapSpecies (x)
  dev.off()
 }
+
 }
 }
 

@@ -148,7 +148,9 @@ avisQueryContributor <- function (contributor_ids, args = list())
 #' and also you set it inside the 'args' parameter (eg: avisQuery (species="Bubo bubo", args=list(species="Tyto alba")), 
 #' the value setted by its name will prevail (in the example, "Bubo bubo" will apply).
 #' 
-#' @usage avisQuery(id_species = "", species = "", family = "", order = "", age = "", sex = "", breeding = "", habitat = "", month = "", year = "", args = list())
+#' @usage avisQuery(id_species = "", species = "", family = "", order = "", 
+#' age = "", sex = "", breeding = "", habitat = "", month = "", year = "",
+#' args = list())
 #' @param id_species a number setting the id of the species according to proyectoavis.com database. 
 #' You may get the id of a species with \code{\link{avisSpeciesId}}
 #' @param species scientific name of the species (one single species): e.g. "Passer domesticus"
