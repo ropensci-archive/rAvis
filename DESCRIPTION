@@ -22,10 +22,10 @@ Imports:
     scrapeR,
     gdata,
     scales,
-    maptools,
     rgdal,
-    sp,
+    maptools,
     raster,
+    sp,
     tools
 Suggests:
     testthat,
