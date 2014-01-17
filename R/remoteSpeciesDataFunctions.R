@@ -28,7 +28,7 @@ avisSpeciesId <- function (nameraw)
 #' check if a species name exists in Proyecto AVIS. 
 #' 
 #' @usage avisHasSpecies(nameraw)
-#' @param namerow scientific name of the species (e.g. "Pica pica")
+#' @param nameraw scientific name of the species (e.g. "Pica pica")
 #' @return Logical: returns TRUE for species with observations in the database and 
 #' FALSE otherwise
 #' @examples \dontrun{
