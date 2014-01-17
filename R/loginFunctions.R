@@ -96,7 +96,7 @@
   }
 
   if(is.null(status)){
-    stop("Couldn´t find out the current login status")
+    stop("Could not find out the current login status")
   }
 
   return (as.integer(status[[1]]))

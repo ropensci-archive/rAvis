@@ -2,7 +2,7 @@
 \alias{avisMapSpecies}
 \title{Renders a map for each of the species provided in names}
 \usage{
-avisMapSpecies(names, maptype = "admin")
+avisMapSpecies(names, maptype = "admin", ...)
 }
 \arguments{
   \item{names}{scientific name of the species (it could be

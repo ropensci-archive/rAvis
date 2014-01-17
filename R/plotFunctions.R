@@ -8,7 +8,7 @@
 #' and the Spanish physical map of http://www.openstreetmap.org/ 
 #' using the R- library OpenStreetMap.
 #' 
-#' @usage avisMapSpecies(names, maptype = "admin")
+#' @usage avisMapSpecies(names, maptype = "admin", ...)
 #' @param names scientific name of the species 
 #' (it could be a list of scientific names). E.g. "Pica pica"
 #' @param maptype Available types of map are 'admin', 
