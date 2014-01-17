@@ -7,7 +7,7 @@ Date: 2013-11-24
 BugReports: https://github.com/javigzz/rAvis/issues
 Author: Javier González Hernández <javigzz@yahoo.es>, Sara Varela González
     <svarela@paleobiogeography.org>
-Maintainer: Javier González Hernández <javigzz@yahoo.es>
+Maintainer: Sara Varela González <svarela@paleobiogeography.org>
 Description: Interface to the proyectoavis.com bird observations records
     database. It provides means to download datasets filtered by speces, order,
     family, and several other criteria. Provides also basic functionality to

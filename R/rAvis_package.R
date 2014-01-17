@@ -1,9 +1,15 @@
 #' We developed several functions to explore and donwload 
-#' the information stored in Proyecto AVIS database, 
+#' the information stored in ProyectoAVIS database (www.proyectoavis.com), 
 #' in an easy and visual way.
-#'
-#'@name rAvis
-#'@aliases rAvis-package
+#' 
+#' We programmed two main functions to set flexible queries 
+#' about the species occurrences and the birdwatcher 
+#' observations: avisQuerySpecies and avisQueryContributor. 
+#' Besides, there are also general functions 
+#' to explore the database, like avisMapSpecies.
+#' 
+#' @name rAvis
+#' @aliases rAvis-package
 #' @docType package
 #' @title rAvis: An R-package to download the information stored in Proyecto AVIS, 
 #' a citizen science bird project.
@@ -22,12 +28,6 @@
 #' License: \tab GPL-2 \cr
 #' }
 #' 
-#' We programmed two main functions to set flexible queries 
-#' about the species occurrences and the birdwatcher 
-#' observations: avisQuerySpecies and avisQueryContributor. 
-#' Besides, there are also general functions 
-#' to explore the database, like avisMapSpecies.
-#'
 #'@seealso {
 #' http://proyectoavis.com
 #' }
