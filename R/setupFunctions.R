@@ -28,7 +28,7 @@ avisSetup <- function(...){
 
 .isAvisVerbose <- function(){
 	.avisCacheReturnOrSetup(".ravis_verbose", function(){ 
-		default_verbosity = TRUE
+		default_verbosity = FALSE
 		default_verbosity
 	})
 }
