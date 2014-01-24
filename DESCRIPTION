@@ -9,7 +9,7 @@ Author: Javier González Hernández <javigzz@yahoo.es>, Sara Varela González
     <svarela@paleobiogeography.org>
 Maintainer: Sara Varela González <svarela@paleobiogeography.org>
 Description: Interface to the proyectoavis.com bird observations records
-    database. It provides means to download datasets filtered by speces, order,
+    database. It provides means to download datasets filtered by species, order,
     family, and several other criteria. Provides also basic functionality to
     plot exploratory maps of the datasets.
 License: GPL-2
