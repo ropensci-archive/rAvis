@@ -2,12 +2,13 @@
 
 context ("avisContributorAggregatedObservations")
 
-test_that("avisContributorAggregatedObservations output is a dataframe and 
-            names are the expected ones",{ 
-            response<- avisContributorAggregatedObservations (370) 
-            expect_true(is.data.frame (response))
-            expect_match (names (response), 
-                          c("SpeciesId", "Observations", "Number", 
-                            "UTM.10x10", "Birdwatchers"))        
-          })
+response<- avisContributorAggregatedObservations (370) 
 
+test_that("avisContributorAggregatedObservations output is a dataframe",{ 
+	expect_true(is.data.frame (response))
+})
+
+test_that("avisContributorAggregatedObservations output has expected names",{ 
+    expect_equal (names (response), 
+    	c("SpeciesId", "Observations", "Number", "UTM.10x10", "Birdwatchers"))        
+})

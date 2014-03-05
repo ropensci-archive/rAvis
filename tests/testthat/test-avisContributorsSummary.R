@@ -6,10 +6,9 @@ context ("avisContributorsSummary")
 
 test_that("avisContributorsSummary output is a matrix and 
           colnames are the expected ones",{ 
-  response<- avisContributorsSummary()           
-  expect_true(is.matrix (response))
-  expect_match (colnames (response), 
-                c("UserId", "Observations",
-                 "Species", "Provinces", "UTMs","Periods"))        
+  	response<- avisContributorsSummary()           
+  	expect_true(is.matrix (response))
+  	expect_equal (colnames (response), 
+		c("UserId", "Observations","Species", "Provinces", "UTMs","Periods"))        
 })
 
