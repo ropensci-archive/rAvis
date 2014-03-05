@@ -6,5 +6,5 @@ test_that("avisQuerySpecies ",{
 	response<- avisQuerySpecies("Pica pica")
     expect_true(is.data.frame (response))
     expect_match (names (response)[1], "Id..Obs.")
-    expect_equal(as.character(r$Especie[1]), "Pica pica", info = "column species ok")
+    expect_equal(as.character(response$Especie[1]), "Pica pica", info = "column species ok")
 })
