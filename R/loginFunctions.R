@@ -40,7 +40,8 @@
   html = postForm(.ravis_url_login, 
     .params = params, 
     curl = .avisCreateCurlHandler(), 
-    style="POST")
+    style="POST",
+    .encoding="ISO-8859-1")
 
   status<- .parse.avisLoginStatusFromHTML(html)[1]
 
