@@ -40,3 +40,13 @@ NULL
 #' @format matrix
 #' @name ravisUTMLatLong
 NULL
+
+#' ravis_credentials
+#'
+#' Credentials for API
+#'
+#' @docType data
+#' @keywords datasets
+#' @format string
+#' @name ravis_credentials
+NULL

@@ -28,7 +28,7 @@
 
 # logs to web with ravis specific user
 .avisUserLogin <- function() {
-  return (.avisLogin("ravis-user", ravis_user_pass[[1]]))
+  return (.avisLogin("ravis-user", ravis_credentials[[1]]))
 }
 
 # logs to web with user defined credentials
