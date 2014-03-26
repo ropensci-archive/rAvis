@@ -1,4 +1,3 @@
-
 #' Renders a map for each of the species provided in names
 #' 
 #' This function map the species occurrences in the Iberian Peninsula.
@@ -14,7 +13,7 @@
 #' @param maptype Available types of map are 'admin', 
 #' administrative provinces of Spain (by default) 
 #' or 'phys', physical map of Spain.
-#' @param ... other filters passed to the observations query with avisQuerySpecies, 
+#' @param ... other filters passed to the observations query with avisQuerySpecies
 #' @return a plot with the occurrences of the species in the Iberian Peninsula. Maps have high resolution, so they could be printed.
 #' @export 
 #' @examples \dontrun{
