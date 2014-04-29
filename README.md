@@ -28,7 +28,7 @@ In the meantime you can install this development version with devtools package
 ```r
 install.packages("devtools")
 library("devtools")
-install_github("javigzz/rAvis")
+install_github("ropensci/rAvis")
 library("rAvis")
 ```
 
@@ -48,8 +48,8 @@ library("rAvis")
 
 
 ```r
-q <- avisQuerySpecies("bubo bubo")
-head(q)
+Bubo <- avisQuerySpecies("Bubo bubo")
+head(Bubo)
 ```
 
 ```
@@ -102,7 +102,7 @@ head(q)
 
 
 ```r
-avisMapSpecies("pica pica")
+avisMapSpecies("Pica pica")
 ```
 
 ![plot of chunk unnamed-chunk-6](inst/assets/figureunnamed-chunk-6.png) 
@@ -112,7 +112,7 @@ or with a physical map behind:
 
 
 ```r
-avisMapSpecies("pica pica", "phys")
+avisMapSpecies("Pica pica", "phys")
 ```
 
 ![plot of chunk unnamed-chunk-7](inst/assets/figureunnamed-chunk-7.png) 
