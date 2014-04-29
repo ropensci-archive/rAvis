@@ -116,7 +116,7 @@ avisMap<-function(obs, label = '', maptype = 'admin')
 {
   .avisCacheReturnOrSetup(".ravis_img_ipeninsula", function(){
 
-      brick ( system.file('extdata/peninsula.tif', package="rAvis"))
+      brick (system.file('extdata/peninsula.tif', package="rAvis"))
 
   })
 }

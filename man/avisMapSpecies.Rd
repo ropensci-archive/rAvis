@@ -13,7 +13,7 @@ avisMapSpecies(names, maptype = "admin", ...)
   physical map of Spain.}
 
   \item{...}{other filters passed to the observations query
-  with avisQuerySpecies,}
+  with avisQuerySpecies}
 }
 \value{
 a plot with the occurrences of the species in the Iberian
