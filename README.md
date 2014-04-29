@@ -148,14 +148,14 @@ To cite package `rAvis` in publications use:
 ```coffee
 To cite package ‘rAvis’ in publications use:
 
-Javier González Hernández and Sara Varela González (2014). rAvis: Interface to the bird-watching datasets at proyectoavis.com. R
+Javier González Hernández and Sara Varela (2014). rAvis: Interface to the bird-watching datasets at proyectoavis.com. R
 package version 0.1.2.
 
 A BibTeX entry for LaTeX users is
 
 @Manual{,
 title = {rAvis: Interface to the bird-watching datasets at proyectoavis.com},
-author = {Javier González Hernández and Sara Varela González},
+author = {Javier González Hernández and Sara Varela},
 year = {2014},
 note = {R package version 0.1.2},
 }
