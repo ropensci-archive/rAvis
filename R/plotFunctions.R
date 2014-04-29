@@ -116,7 +116,11 @@ avisMap<-function(obs, label = '', maptype = 'admin')
 {
   .avisCacheReturnOrSetup(".ravis_img_ipeninsula", function(){
 
+<<<<<<< HEAD
       brick (system.file('extdata/peninsula.tif', package="rAvis"))
+=======
+      brick ( system.file('tif/peninsula.tif', package="rAvis"))
+>>>>>>> 51b89da6948c7d5eebd10583490f4b862bbd44d2
 
   })
 }
@@ -125,7 +129,7 @@ avisMap<-function(obs, label = '', maptype = 'admin')
 {
   .avisCacheReturnOrSetup(".ravis_img_canarias", function(){
 
-      brick ( system.file('extdata/canarias.tif', package="rAvis"))
+      brick ( system.file('tif/canarias.tif', package="rAvis"))
 
   })
 }

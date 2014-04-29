@@ -1,0 +1,107 @@
+rAvis
+=====
+
+```{r include=FALSE}
+opts_chunk$set(fig.path = "inst/assets/figure")
+```
+
+
+`rAvis`: an R-package to download the information stored in “proyectoavis”, a citizen science bird project.
+
+[Proyectoavis web site](http://proyectoavis.com/cgi-bin/portada.cgi)
+
+## Installation
+
+### Stable version from CRAN:
+
+```{r eval=FALSE}
+install.packages ("rAvis")
+library("rAvis")
+```
+
+### Install with devtools
+
+In the meantime you can install this development version with devtools package
+
+```{r eval=FALSE}
+install.packages("devtools")
+library("devtools")
+install_github("javigzz/rAvis")
+library("rAvis")
+```
+
+Load the library
+
+```{r}
+library("rAvis")
+```
+
+
+## Try some command
+
+### Get species observation data
+
+```{r}
+q <- avisQuerySpecies("bubo bubo")
+head(q)
+```
+
+### Render a map
+
+```{r}
+avisMapSpecies("pica pica")
+```
+
+or with a physical map behind:
+
+```{r}
+avisMapSpecies("pica pica", "phys")
+```
+
+### Disable INFO messages
+
+```{r}
+avisSetup(verbose=FALSE)
+```
+
+
+## See help
+
+Package help for more info
+
+```r
+?rAvis
+```
+
+## Meta
+
+Please report any issues or bugs](https://github.com/ropensci/rAvis/issues).
+
+License: GPL-2
+
+This package is part of the [rOpenSci](http://ropensci.org/packages) project.
+
+To cite package `rAvis` in publications use:
+
+```coffee
+To cite package ‘rAvis’ in publications use:
+
+Javier González Hernández and Sara Varela González (2014). rAvis: Interface to the bird-watching datasets at proyectoavis.com. R
+package version 0.1.2.
+
+A BibTeX entry for LaTeX users is
+
+@Manual{,
+title = {rAvis: Interface to the bird-watching datasets at proyectoavis.com},
+author = {Javier González Hernández and Sara Varela González},
+year = {2014},
+note = {R package version 0.1.2},
+}
+
+ATTENTION: This citation information has been auto-generated from the package DESCRIPTION file and may need manual editing, see
+‘help("citation")’.
+```
+
+Get citation information for `rAvis` in R by `citation(package = 'rAvis')`
+
+[![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)

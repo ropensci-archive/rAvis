@@ -1,7 +1,6 @@
 .Rproj.user
 .Rhistory
 .RData
-.Rbuildignore
 r_avis.Rproj
 localNotes.md
 localScripts.R
@@ -9,4 +8,4 @@ anRpackage.Rcheck
 rAvis.Rcheck
 #rAvis_*.tar.gz
 rAvis-Ex.R
-bugs
+
