@@ -5,16 +5,14 @@ Title: Interface to the bird-watching datasets at proyectoavis.com
 Version: 0.1.2
 Date: 2014-03-05
 BugReports: https://github.com/ropensci/rAvis/issues
-Author: Javier González Hernández <javigzz@yahoo.es>, Sara Varela González
+Author: Javier González Hernández <javigzz@yahoo.es>, Sara Varela
     <svarela@paleobiogeography.org>
-Maintainer: Sara Varela González <svarela@paleobiogeography.org>
+Maintainer: Sara Varela <svarela@paleobiogeography.org>
 Description: Interface to the proyectoavis.com bird observations records
     database. It provides means to download datasets filtered by species, order,
     family, and several other criteria. Provides also basic functionality to
     plot exploratory maps of the datasets.
 License: GPL-2
-Depends:
-    R (>= 3.0.1)
 Imports:
     stringr,
     XML,
