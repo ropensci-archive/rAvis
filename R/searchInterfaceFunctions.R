@@ -261,8 +261,9 @@ avisQuery <- function (id_species = '', species = '', family = '', order = '', a
 
 	.avisQueryRawData <- .avisGetURL(url)
 
-  	data <- read.csv(textConnection(.avisQueryRawData), sep = ";", quote = "")
-  
+	data <- .parseFromHtmlTable(.avisQueryRawData)
+	#data <- read.csv(textConnection(.avisQueryRawData), sep = ";", quote = "")
+
 	utm_latlon<-.getUTMLatlong()
 
 	x = utm_latlon$x [match (substring(data$UTM,4), utm_latlon$utm)]
@@ -273,6 +274,35 @@ avisQuery <- function (id_species = '', species = '', family = '', order = '', a
 
 	return(data)
 }
+
+#' .parseFromHtmlTable
+#' TO REMOVE WHEN EXPORT TO CSV IS BACK TO WORK ON WEBSITE
+#' 
+.parseFromHtmlTable<-function(rawData)
+{
+
+  doc<-XML::htmlParse(rawData)
+  nodes <- XML::getNodeSet(doc, "//table/tr")
+
+  mx <- NULL
+
+  for(node in nodes[2:length(nodes)]){
+  	print (node)
+  	clean_row_data <- XML::xmlValue(node, encoding="utf-8")
+  	celdas<-strsplit(gsub("\n","#", clean_row_data), "#")[[1]]
+  	str(celdas)
+    mx<-rbind(mx, celdas)
+  }
+
+  # todo: fix here
+  # failing with: number of columns of result is not a multiple of vector length (arg 2)
+  df <- data.frame(mx)
+  #colnames(df) <- c(1:19)
+
+  return(df)
+}
+
+
 
 # merge two argument list. first argument lists overwrite seccond (default)
 .avisMergeArgumentList<-function(args, defaultArgs)

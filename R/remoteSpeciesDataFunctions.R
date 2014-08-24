@@ -110,16 +110,27 @@ avisSpeciesSummary <- function ()
 {
   .avisCacheReturnOrSetup(".ravis_species_summary", function(){
 
-    # fetches form server
     .avisVerboseMessage("INFO: fetching species summary from proyectoavis.com server")
-    tables<- XML::readHTMLTable ("http://proyectoavis.com/cgi-bin/bus_especie.cgi")
-    table_obs<- tables[[7]]
-    observ<-  table_obs[4:dim(table_obs)[1],3:6]
-    names (observ)<- c("Observations", "Individuals", "UTM.10x10", "Birdwatchers")
-    spsummary<- data.frame (lapply(observ, as.numeric), stringsAsFactors=FALSE)
-    row.names (spsummary)<- table_obs [4:dim(table_obs)[1],2]
 
-    return(spsummary)
+    doc<-XML::htmlParse("http://proyectoavis.com/cgi-bin/bus_especie.cgi")
+    nodes <- XML::getNodeSet(doc, "//table[@class=\"observaciones1\"]/tr")
+
+      mx<- NULL
+      species<-NULL
+
+      for (node in nodes[2:length(nodes)]) {
+        clean_row_data <- XML::xmlValue(node, encoding="utf-8")
+        celdas<-strsplit(gsub("\n","#", clean_row_data), "#")[[1]]
+        species<-c(species, celdas[3])
+        celdas<-celdas[c(-1,-2, -3,-length(celdas))]
+        mx<-rbind(mx, celdas)
+      }
+
+      spsummary <- data.frame(apply(mx, 2, as.numeric))
+      colnames(spsummary)<- c("Observations", "Individuals", "UTMs_10x10", "Birdwatchers")
+      row.names (spsummary)<- species
+
+    return (df)
   });
 }
 
