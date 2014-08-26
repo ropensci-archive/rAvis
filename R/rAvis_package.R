@@ -15,10 +15,9 @@
 #' a citizen science bird project.
 #' @author Javier Gonzalez \email{javigzz@@yahoo.es}
 #' @author Sara Varela \email{svarela@@paleobiogeography.org}
-#' @references Sara Varela, Javier González-Hernández, Eduardo Casabella,
-#' Rafael Barrientos (2014) rAvis: An R-Package for downloading information 
-#' stored in Proyecto AVIS, a citizen science bird project. 
-#' PLoS ONE 9(3): e91650. doi:10.1371/journal.pone.0091650
+#' @references Varela S, Gonzalez-Hernandez J, Casabella E, Barrientos R (2014) 
+#' rAvis: An R-Package for Downloading Information Stored in Proyecto AVIS, 
+#' a Citizen Science Bird Project. PLoS ONE 9(3): e91650. doi: 10.1371/journal.pone.0091650
 #' @keywords package
 #' @details \tabular{ll}{
 #' Package: \tab rAvis \cr
