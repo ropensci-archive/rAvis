@@ -6,7 +6,8 @@ opts_chunk$set(fig.path = "inst/assets/figure")
 ```
 
 
-`rAvis`: an R-package to download the information stored in “proyectoavis”, a citizen science bird project.
+`rAvis`: an R-package to download the information stored in “proyectoavis”, 
+a citizen science bird project.
 
 [Proyectoavis web site](http://proyectoavis.com/cgi-bin/portada.cgi)
 
@@ -86,20 +87,18 @@ To cite package `rAvis` in publications use:
 ```coffee
 To cite package ‘rAvis’ in publications use:
 
-Javier González Hernández and Sara Varela (2014). rAvis: Interface to the bird-watching datasets at proyectoavis.com. R
-package version 0.1.2.
+Javier González Hernández and Sara Varela (2015). rAvis: Interface to the bird-watching datasets at proyectoavis.com. R
+package version 0.1.3
 
 A BibTeX entry for LaTeX users is
 
 @Manual{,
 title = {rAvis: Interface to the bird-watching datasets at proyectoavis.com},
 author = {Javier González Hernández and Sara Varela},
-year = {2014},
-note = {R package version 0.1.2},
+year = {2015},
+note = {R package version 0.1.3},
 }
 
-ATTENTION: This citation information has been auto-generated from the package DESCRIPTION file and may need manual editing, see
-‘help("citation")’.
 ```
 
 Get citation information for `rAvis` in R by `citation(package = 'rAvis')`
