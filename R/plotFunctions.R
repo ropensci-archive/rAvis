@@ -66,8 +66,8 @@ avisMapSpecies<- function (names, maptype = 'admin', ...)
 #' @export 
 #' @examples \dontrun{
 #' obs<- avisQuerySpecies ("Pica pica", args = list(habitat = "bosque"))
-#' avisMap(obs, label = "Occurrences of Pica pica in Proyecto AVIS")
-#' avisMap(obs, label = "Occurrences of Pica pica in Proyecto AVIS", maptype = "phys")
+#' avisMap(obs, label = "Pica pica")
+#' avisMap(obs, label = "Pica pica", maptype = "phys")
 #'}
  
 avisMap<-function(obs, label = '', maptype = 'admin')
