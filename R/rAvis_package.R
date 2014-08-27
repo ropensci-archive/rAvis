@@ -13,7 +13,7 @@
 #' @docType package
 #' @title rAvis: An R-package to download the information stored in Proyecto AVIS, 
 #' a citizen science bird project.
-#' @author Javier Gonzalez \email{javigzz@@yahoo.es}
+#' @author Javier Gonzalez Hernandez \email{javigzz@@yahoo.es}
 #' @author Sara Varela \email{svarela@@paleobiogeography.org}
 #' @references Varela S, Gonzalez-Hernandez J, Casabella E, Barrientos R (2014) 
 #' rAvis: An R-Package for Downloading Information Stored in Proyecto AVIS, 

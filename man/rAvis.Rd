@@ -30,7 +30,7 @@ avisQuerySpecies(list("Bubo bubo", "Tyto alba"), args = list(year = 2012))
 }
 }
 \author{
-Javier Gonzalez \email{javigzz@yahoo.es}
+Javier Gonzalez Hernandez \email{javigzz@yahoo.es}
 
 Sara Varela \email{svarela@paleobiogeography.org}
 }
