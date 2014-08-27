@@ -22,8 +22,8 @@
 #' @details \tabular{ll}{
 #' Package: \tab rAvis \cr
 #' Type: \tab Package\cr
-#' Version: \tab 0.1\cr
-#' Date: \tab 2013-11-24\cr
+#' Version: \tab 0.1.3 \cr
+#' Date: \tab 2015-06-17\cr
 #' License: \tab GPL-2 \cr
 #' }
 #' 
