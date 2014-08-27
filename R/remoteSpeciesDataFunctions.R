@@ -113,7 +113,7 @@ avisSpeciesSummary <- function ()
     # fetches form server
     .avisVerboseMessage("INFO: fetching species summary from proyectoavis.com server")
     tables<- XML::readHTMLTable ("http://proyectoavis.com/cgi-bin/bus_especie.cgi")
-    table_obs<- tables[[7]]
+    table_obs<- tables[[4]]
     observ<-  table_obs[4:dim(table_obs)[1],3:6]
     names (observ)<- c("Observations", "Individuals", "UTM.10x10", "Birdwatchers")
     spsummary<- data.frame (lapply(observ, as.numeric), stringsAsFactors=FALSE)
