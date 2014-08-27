@@ -102,6 +102,11 @@ avisMap<-function(obs, label = '', maptype = 'admin')
 .avisRenderMapAdmin<-function(obs, label)
 {
   # ravis_shape_spain: shape in package data folder
+  
+  # hack for avoiding NOTE on check: 'no visible binding for global variable'
+  # see: http://stackoverflow.com/questions/9439256/how-can-i-handle-r-cmd-check-no-visible-binding-for-global-variable-notes-when
+  ravis_shape_spain <- NULL
+  rm(ravis_shape_spain)
 
   plot (ravis_shape_spain, border="grey75", ylim=c(34,44), xlim=c(-10,5))
   points(obs$x, obs$y, col=alpha ("red", 0.5), pch=19, cex=1.2)

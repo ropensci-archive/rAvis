@@ -28,7 +28,13 @@
 
 # logs to web with ravis specific user
 .avisUserLogin <- function() {
-  return (.avisLogin("ravis-user", ravis_credentials[[1]]))
+
+    # hack for avoiding NOTE on check: 'no visible binding for global variable'
+    # see: http://stackoverflow.com/questions/9439256/how-can-i-handle-r-cmd-check-no-visible-binding-for-global-variable-notes-when
+    ravis_credentials <- NULL
+    rm(ravis_credentials)
+    
+    return (.avisLogin("ravis-user", ravis_credentials[[1]]))
 }
 
 # logs to web with user defined credentials
