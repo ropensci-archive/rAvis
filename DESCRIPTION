@@ -1,14 +1,14 @@
 Package: rAvis
 Encoding: UTF-8
 Type: Package
-Title: Interface to the bird-watching datasets at proyectoavis.com
+Title: Interface to the Bird-Watching Dataset Proyecto AVIS
 Version: 0.1.3 
 Date: 2015-06-17
 BugReports: https://github.com/ropensci/rAvis/issues
 Author: Javier González Hernández <javigzz@yahoo.es>, Sara Varela <svarela@paleobiogeography.org>
 Maintainer: Sara Varela <svarela@paleobiogeography.org>
-Description: Interface to the proyectoavis.com bird observations records
-    database. It provides means to download datasets filtered by species, order,
+Description: Interface to <http://proyectoavis.com> database. 
+    It provides means to download data filtered by species, order,
     family, and several other criteria. Provides also basic functionality to
     plot exploratory maps of the datasets.
 License: GPL-2
