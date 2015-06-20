@@ -109,7 +109,7 @@
   return (as.integer(status[[1]]))
 }
 
-# Checks weather a text contains some string, returning logical
+# Checks whether a text contains some string, returning logical
 .textHasString <- function(text, string) {
   
   res <- grep(string, text)
