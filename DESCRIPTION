@@ -2,8 +2,8 @@ Package: rAvis
 Encoding: UTF-8
 Type: Package
 Title: Interface to the Bird-Watching Dataset Proyecto AVIS
-Version: 0.1.3 
-Date: 2015-06-17
+Version: 0.1.4
+Date: 2015-06-20
 BugReports: https://github.com/ropensci/rAvis/issues
 Author: Javier González Hernández <javigzz@yahoo.es>, Sara Varela <svarela@paleobiogeography.org>
 Maintainer: Sara Varela <svarela@paleobiogeography.org>

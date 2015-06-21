@@ -1,7 +1,5 @@
 # Functions related to search from http://proyectoavis.com/cgi-bin/bus_avanzada.cgi
 
-.ravis_search_url_base<- "http://proyectoavis.com/cgi-bin/bus_avanzada.cgi"
-
 # translate
 .ravis_translated_params_map<- list( 
 	id_species = 'id_especie', # string / list -> id_especie
@@ -41,11 +39,7 @@
 	menu = '', tipo_grafica = 'comparadas', 
 	filtro_mes = '', filtro_ano = '', 
 	filtro_id_especie = '', filtro_estacion = '', cobertura = '', 
-	mostrar_capa = '', capa = '', 
-	formato_consulta = 'tabla', 
-	tipo_consulta = '', 
-	control = 1, 
-	excel = 1
+	mostrar_capa = '', capa = ''
 )
 
 #' avisQuerySpecies
@@ -236,42 +230,39 @@ avisQuery <- function (id_species = '', species = '', family = '', order = '', a
 	return (rawargs)
 }
 
-# internal
+#' .avisQueryRaw
+#'
+#' Performs a query on observations for given arguments
+#'
+#' @param args list of arguments must have the exact names expected by the underlying API
+#' @return dataframe
+	
 .avisQueryRaw <- function (args)
 {
-	# query the project database with the argments
-	# the arguments must have the exact names that proyectoavis.com gets (raw parameters)
-	
 	if(!is.list(args)){
 		stop("Object of type 'list' expected for query args")
 	}
 
 	args<-.avisMergeArgumentList(args, .ravis_raw_search_default_params)
 
-	# query string
-	qs <- ''
-	for (argName in names(args)) {
-		qs <- paste(qs, argName, "=", args[argName], '&', sep = "")
-	}
-	qs <- substr(qs,0,nchar(qs)-1)
+	data <- .avisApiBusAvanzada(args)
 
-	url <- paste(.ravis_search_url_base, qs, sep = "?")
+	data <- .addLatLonColumns(data)
 
-	.avisVerboseMessage(paste("INFO: querying to proyectoavis.com at: ", url))
+	return(data)
+}
 
-	.avisQueryRawData <- .avisGetURL(url)
-
-  	data <- read.csv(textConnection(.avisQueryRawData), sep = ";", quote = "")
-  
+.addLatLonColumns <- function (data)
+{
 	utm_latlon<-.getUTMLatlong()
 
 	x = utm_latlon$x [match (substring(data$UTM,4), utm_latlon$utm)]
 
 	y = utm_latlon$y [match (substring(data$UTM,4), utm_latlon$utm)]
-
+	
 	data<- data.frame(data, "x"= x, "y"= y)
 
-	return(data)
+	return (data)
 }
 
 # merge two argument list. first argument lists overwrite seccond (default)

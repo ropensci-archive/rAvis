@@ -68,17 +68,9 @@ avisAllSpecies <- function()
 {
   .avisVerboseMessage("INFO: fetching species list from proyectoavis.com server")
 
-  rawhtml<- .avisGetURL("http://proyectoavis.com/cgi-bin/bus_orden.cgi", TRUE)
-  id<- grep("id_especie=[0-9]+",rawhtml)
-  ids<- str_extract_all (rawhtml, "id_especie=[0-9]+")
-  id_specie<- as.numeric (substring(unlist (ids [c(id)]), 12))
-  name<- grep("<i>.*?</i>", rawhtml)
-  names<- str_extract_all (rawhtml, "<i>.*?</i>")
-  names_specie<- substring (unlist (names[c(name)]),4)
-  names_species<- .avisNormalizeSpeciesName(substr(names_specie, 1, nchar(names_specie)-4))
-  names(id_specie) <- names_species
+  species<- .avisApiBusOrden()
 
-  return (id_specie)
+  return (species)
 }
 
 
@@ -112,12 +104,8 @@ avisSpeciesSummary <- function ()
 
     # fetches form server
     .avisVerboseMessage("INFO: fetching species summary from proyectoavis.com server")
-    tables<- XML::readHTMLTable ("http://proyectoavis.com/cgi-bin/bus_especie.cgi")
-    table_obs<- tables[[4]]
-    observ<-  table_obs[4:dim(table_obs)[1],3:6]
-    names (observ)<- c("Observations", "Individuals", "UTM.10x10", "Birdwatchers")
-    spsummary<- data.frame (lapply(observ, as.numeric), stringsAsFactors=FALSE)
-    row.names (spsummary)<- table_obs [4:dim(table_obs)[1],2]
+
+    spsummary<- .avisApiBusEspecie()
 
     return(spsummary)
   });
