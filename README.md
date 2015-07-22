@@ -1,3 +1,11 @@
+
+[![Build Status](https://travis-ci.org/ropensci/rAvis.svg)](https://travis-ci.org/ropensci/rAvis)
+
+[![Coverage Status](https://coveralls.io/repos/ropensci/rAvis/badge.svg)](https://coveralls.io/r/ropensci/rAvis)
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/rAvis)](https://github.com/metacran/cranlogs.app)
+[![cran version](http://www.r-pkg.org/badges/version/rAvis)](http://cran.rstudio.com/web/packages/rAvis)
+
+
 rAvis
 =====
 
