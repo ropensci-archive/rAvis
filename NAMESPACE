@@ -10,4 +10,5 @@ import(rgdal)
 import(maptools)
 import(sp)
 importFrom (raster, plotRGB, text, brick)
-
+importFrom(graphics, layout, par, points, rect)
+importFrom(utils, read.csv)
