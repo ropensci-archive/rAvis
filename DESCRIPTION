@@ -12,7 +12,7 @@ Description: Interface to <http://proyectoavis.com> database.
     plot exploratory maps of the datasets.
 License: GPL-2
 BugReports: https://github.com/ropensci/rAvis/issues
-URL: https://github.com/ropensci/rAvis
+URL: https://docs.ropensci.org/rAvis, https://github.com/ropensci/rAvis
 LazyData: true
 Imports:
     stringr,
