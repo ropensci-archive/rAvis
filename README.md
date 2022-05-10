@@ -1,3 +1,5 @@
-# rAvis: archived package
+# rAvis
 
-2022-04-29: This package has not been updated in 5 years and was [archived on cran](https://cran.r-project.org/web/packages/rAvis/index.html) because it depends on a package [scraper](https://cran.r-project.org/web/packages/scrapeR/index.html) that was also archived (and has not been updated in 12 years).
+[![Project Status: Abandoned](https://www.repostatus.org/badges/latest/abandoned.svg)](https://www.repostatus.org/#abandoned)
+
+This repository has been archived. The former README is now in [README-NOT.md](README-NOT.md).
